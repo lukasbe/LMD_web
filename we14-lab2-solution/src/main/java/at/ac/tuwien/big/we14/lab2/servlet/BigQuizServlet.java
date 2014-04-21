@@ -13,7 +13,7 @@ public class BigQuizServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
-	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	            throws ServletException, IOException {
 	        
@@ -21,10 +21,21 @@ public class BigQuizServlet extends HttpServlet {
 	        if(action==null) {
 	            return;
 	        }
-	        if(action.equals("login")) {     
+	        if(action.equals("start")) {     
+	        	
+	        	
+	        }else if (action.equals("question")){
+	        
+	        	
+	        }else if (action.equals("roundcomplete")){
+	        
 	        	
 	        }
-	        
 	 }
+	
+	@Override
+	public String getServletInfo() {
+        return "Servlet to navigate through the game";
+    }
 	
 }
