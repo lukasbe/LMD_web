@@ -19,18 +19,19 @@ public class BigQuizServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	            throws ServletException, IOException {
 	        
-	        String action = request.getParameter("action");
-	        if(action==null) {
-	            return;
+	        //String action = request.getParameter("action");
+	        String action = "start";
+			if(action==null) {
+	            //return;
 	        }
 	        if(action.equals("start")) {     
-	        	
+	        	/*
 	        	HttpSession session = request.getSession(true);//vllt nicht wichtig
 	            
 	        	
 	        	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.html");
 	            dispatcher.forward(request, response);  
-	        	
+	        	*/
 	        }else if (action.equals("question")){
 	        
 	        	
