@@ -14,8 +14,7 @@ package at.ac.tuwien.big.we14.lab2.tests;
  * Simple implementation for a choice in the test cases
  * 
  * DO NOT MODIFY ANYTHING IN THIS FILE
- * 
- * Test 
+ *
  * 
  */
 public class Choice {
