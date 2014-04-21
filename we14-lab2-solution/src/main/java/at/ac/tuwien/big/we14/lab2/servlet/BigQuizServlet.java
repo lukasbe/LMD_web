@@ -21,8 +21,8 @@ public class BigQuizServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	            throws ServletException, IOException {
 	        
-	        //String action = request.getParameter("action");
-	        String action = "start";
+	        String action = request.getParameter("action");
+	        
 			if(action==null) {
 	            //return;
 	        }
@@ -30,7 +30,7 @@ public class BigQuizServlet extends HttpServlet {
 	        	
 	        	HttpSession session = request.getSession(true);//vllt nicht wichtig
 	        	
-	        	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.html");
+	        	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/finish.html");
 	            dispatcher.forward(request, response);  
 	        	
 	        }else if (action.equals("question")){
