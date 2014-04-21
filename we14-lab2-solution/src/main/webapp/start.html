@@ -19,7 +19,10 @@
         </nav>
         
         <section role="main" id="quiz">
-          <a id="startgame" href="question.html">Quiz starten</a>
+        <form id="startform" action="#" method="get">
+        	<input type="hidden" name="action" value="start"></input>
+			<a id="startgame" href="javascript:{}" onclick="document.getElementById('startform').submit();">Quiz starten</a>
+		</form>
         </section>
 
         <!-- footer -->
