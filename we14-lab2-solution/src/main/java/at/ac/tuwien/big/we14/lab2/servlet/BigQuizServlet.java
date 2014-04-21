@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.gargoylesoftware.htmlunit.javascript.host.Console;
+
 // Your Servlet implementation
 
 public class BigQuizServlet extends HttpServlet {
@@ -24,13 +26,13 @@ public class BigQuizServlet extends HttpServlet {
 			if(action==null) {
 	            //return;
 	        }
-	        if(action.equals("start")) {     
-	        	/*
+	        if(action.equals("start")) {  
+	        	
 	        	HttpSession session = request.getSession(true);//vllt nicht wichtig
 	        	
 	        	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.html");
 	            dispatcher.forward(request, response);  
-	        	*/
+	        	
 	        }else if (action.equals("question")){
 	        
 	        	
