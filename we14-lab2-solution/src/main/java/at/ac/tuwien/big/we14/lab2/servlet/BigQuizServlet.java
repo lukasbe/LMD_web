@@ -2,10 +2,12 @@ package at.ac.tuwien.big.we14.lab2.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 // Your Servlet implementation
 
@@ -23,6 +25,11 @@ public class BigQuizServlet extends HttpServlet {
 	        }
 	        if(action.equals("start")) {     
 	        	
+	        	HttpSession session = request.getSession(true);//vllt nicht wichtig
+	            
+	        	
+	        	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.html");
+	            dispatcher.forward(request, response);  
 	        	
 	        }else if (action.equals("question")){
 	        
