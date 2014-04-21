@@ -29,6 +29,8 @@ public class BigQuizServlet extends HttpServlet {
 	        	
 	        }else if (action.equals("roundcomplete")){
 	        
+	        	//if counter == 3 -> finish.html
+	        	//else roundcomplete.html
 	        	
 	        }
 	 }
