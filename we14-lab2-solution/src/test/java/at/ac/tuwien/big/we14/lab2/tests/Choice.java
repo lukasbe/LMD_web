@@ -16,6 +16,8 @@ package at.ac.tuwien.big.we14.lab2.tests;
  * DO NOT MODIFY ANYTHING IN THIS FILE
  * 
  * 
+ * testnachlöschen
+ * 
  */
 public class Choice {
 
