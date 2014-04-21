@@ -18,6 +18,8 @@ package at.ac.tuwien.big.we14.lab2.tests;
  * testlukas
  * testmichi
  * 
+ * testnachlöschen
+ * 
  */
 public class Choice {
 
