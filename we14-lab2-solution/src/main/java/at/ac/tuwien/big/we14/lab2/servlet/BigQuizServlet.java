@@ -1,9 +1,11 @@
 package at.ac.tuwien.big.we14.lab2.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.gargoylesoftware.htmlunit.javascript.host.Console;
 
 // Your Servlet implementation
-
+@WebServlet(name="BigQuiz", urlPatterns= {"/we15-lab2-solution" })
 public class BigQuizServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -23,6 +25,7 @@ public class BigQuizServlet extends HttpServlet {
 	        
 	        String action = request.getParameter("action");
 	        
+	       
 			if(action==null) {
 	            //return;
 	        }
