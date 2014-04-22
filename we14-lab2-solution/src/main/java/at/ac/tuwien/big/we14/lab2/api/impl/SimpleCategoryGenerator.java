@@ -5,7 +5,13 @@ import java.util.List;
 import java.util.Random;
 
 import at.ac.tuwien.big.we14.lab2.api.Category;
-
+/**
+ * 
+ * @author Daniel Ramsauer 1226696
+ * Diese Klasse stellt einen Kategorie Generator zur Verfügung.
+ * Bei der ersten Instanzierung wird eine Kategorie zufällig festgelegt.
+ * Bei jedem getCategory Aufruf, wird eine neue noch nicht verwendete Kategorie zurückgeliefert
+ */
 public class SimpleCategoryGenerator {
 
 	List<Category> alreadyUsedCategory = new ArrayList<Category>();
