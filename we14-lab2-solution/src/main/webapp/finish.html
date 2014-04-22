@@ -37,7 +37,11 @@
                     <span id="player2name" class="playername">Spieler 2</span>
                     <p id="player2roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player2wonrounds" class="playerwonrounds">1</span></p>
                 </div>
-                <a id="next" href="question.html" accesskey="n">Neues Spiel</a>
+                <form id="finishform" action="BigQuizServlet" method="GET">
+		        	<input type="hidden" name="action" value="........"/>
+					<a id="next" href="javascript:{}" onclick="document.getElementById('finishform').submit();">Neues Spiel</a>
+				</form>
+                <!-- <a id="next" href="question.html" accesskey="n">Neues Spiel</a> -->
             </section>
         </section>
 
