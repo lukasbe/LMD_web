@@ -17,11 +17,14 @@ import javax.servlet.http.HttpSession;
 public class BigQuizServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-
+	private int roundcounter;
+	private int questioncounter;
 	 @Override
 	    public void init() throws ServletException {
 	        super.init();
 	        
+	        roundcounter = -1;
+	        questioncounter = -1;
 	    }
 	
 	
@@ -33,22 +36,44 @@ public class BigQuizServlet extends HttpServlet {
 	        
 	       
 			if(action==null) {
+				
+				PrintWriter noactionwriter = response.getWriter();
+				noactionwriter.println("<html>");
+				noactionwriter.println("<head>");
+				noactionwriter.println("<title>Something went wrong</title>");            
+				noactionwriter.println("</head>");
+				noactionwriter.println("<body>");
+				noactionwriter.println("<h1>QuizError: Something went wrong! No action set!</h1>");
+                noactionwriter.println("</body>");
+                noactionwriter.println("</html>");
+				
 	            return;
 	        }
 			
 	        if(action.equals("start")) {  
 	        	
+	        	//Neues Spiel wird gestartet.
+	        	HttpSession session = request.getSession(true);
+	        	
+	        	roundcounter = 1;
+	        	questioncounter = 1;
+	        	session.setAttribute("roundcounter", roundcounter);
+	        	session.setAttribute("questioncounter", questioncounter);
 	        	
 	        	
 	        	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
 	            dispatcher.forward(request, response);  
 	        	
 	        }else if (action.equals("questioncomplete")){
-	        	
+	        	///Old... and they lived in post section happy ever after
 	        	
 	        }else if (action.equals("roundcompleteweiter")){
 	        	//sind 5 runden vergangen, dann kommt finish html, sonst kommen neue question.jsp seiten.
 	        	
+	        	HttpSession session = request.getSession(true);
+	        	roundcounter = (int)session.getAttribute("roundcounter");
+	        	questioncounter = (int)session.getAttribute("questioncounter");
+	        	/*	        	
 	        	if(true){
 	        		PrintWriter out = response.getWriter();
 	                out.println("<html>");
@@ -59,16 +84,22 @@ public class BigQuizServlet extends HttpServlet {
 	                out.println("<h1>Hello RoundComplete getriggert"  + "</h1>");
 	                out.println("</body>");
 	                out.println("</html>");
-	        		
+	        	}	
+	        	*/
+	        	if(roundcounter >= 5){
+	        		//finishseite aufrufen
+	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/finish.jsp");
+		            dispatcher.forward(request, response);  
+		        	
 	        	}else{
-	        		
-	        		
+	        		roundcounter = roundcounter + 1;
+	        		questioncounter = 1;
+	        		session.setAttribute("roundcounter", roundcounter);
+		        	session.setAttribute("questioncounter", questioncounter);
+		        	
+	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
+		            dispatcher.forward(request, response);  
 	        	}
-	        	
-	        	
-	        	
-	        	//RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/finish.jsp");
-	            //dispatcher.forward(request, response);  
 	        	//if counter == 3 -> finish.html
 	        	//else roundcomplete.html
 	        	
@@ -84,37 +115,28 @@ public class BigQuizServlet extends HttpServlet {
 	       
 			if(action==null) {
 	            return;
-	        }
-			PrintWriter out = response.getWriter();
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Question Complete getriggert</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>POSTEVENTHello uestion Complete getriggert" + request.getParameter("timeleftvalue") + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+			}
 	        if(action.equals("questioncomplete")) { 
 	        	
 	        	//sind schon 3 fragen gefragt? wenn ja counter zurücksetzen und auf roundcomplete.jsp gehen
-	        	
 	        	HttpSession session = request.getSession(true);
+	        	roundcounter = (int)session.getAttribute("roundcounter");
+	        	questioncounter = (int)session.getAttribute("questioncounter");
 	        	
 	        	
-	        	if(true){
-	        		PrintWriter out2 = response.getWriter();
-	                out2.println("<html>");
-	                out2.println("<head>");
-	                out2.println("<title>Question Complete getriggert</title>");            
-	                out2.println("</head>");
-	                out2.println("<body>");
-	                out2.println("<h1>Hello uestion Complete getriggert" + request.getParameter("timeleftvalue") + "</h1>");
-	                out2.println("</body>");
-	                out2.println("</html>");
-	        		
+	        	
+	        	if(questioncounter >= 3){
+	        		questioncounter = 1;
+	        		session.setAttribute("questioncounter", questioncounter);
+		        	
+	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/roundcomplete.jsp");
+		            dispatcher.forward(request, response);  
 	        	}else{
-	        		
-	        		
+	        		questioncounter = questioncounter + 1;
+	        		session.setAttribute("questioncounter", questioncounter);
+		        	
+	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
+		            dispatcher.forward(request, response);  
 	        	}
 	        	
 	        	//RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");

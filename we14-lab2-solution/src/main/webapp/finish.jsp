@@ -41,7 +41,6 @@
 		        	<input type="hidden" name="action" value="start"/>
 					<a id="next" href="javascript:{}" onclick="document.getElementById('finishform').submit();">Neues Spiel</a>
 				</form>
-                <!-- <a id="next" href="question.html" accesskey="n">Neues Spiel</a> -->
             </section>
         </section>
 

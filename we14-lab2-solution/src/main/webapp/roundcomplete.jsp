@@ -1,3 +1,8 @@
+
+<% //HttpSession sessionroundcomplete = request.getSession(true); %>
+
+
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
@@ -23,7 +28,7 @@
             <!-- winner message -->
             <section id="roundwinner" aria-labelledby="roundwinnerheading">
                 <h2 id="roundwinnerheading" class="accessibility">Rundenzwischenstand</h2>
-                <p class="roundwinnermessage">Spieler 2 gewinnt Runde 1!</p>
+                <p class="roundwinnermessage">Spieler 2 gewinnt Runde 1Michi(vergangen ist runde <%= session.getAttribute("roundcounter") %>)!</p>
             </section>
         
             <!-- round info -->    
@@ -56,6 +61,6 @@
         </section>
 
         <!-- footer -->
-        <footer role="contentinfo">Â© 2014 BIG Quiz</footer>
+        <footer role="contentinfo">© 2014 BIG Quiz</footer>
     </body>
 </html>
