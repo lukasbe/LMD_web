@@ -41,13 +41,11 @@
                         <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class="unknown">Unbekannt</span></li>
                     </ul>
                 </div>
-                <!-- Dynamisch-Kategorie -->
                 <div id="currentcategory"><span class="accessibility">Kategorie:</span><%= question.getCategory()%></div>
             </section>
             
             <!-- Question -->
             <section id="question" aria-labelledby="questionheading">
-                <!-- Dynamisch-Frage -->
                 <form id="questionform" action="BigQuizServlet" method="post">
                     <h2 id="questionheading" class="accessibility">Frage</h2>
                     <p id="questiontext"><%= question.getText()%></p>
