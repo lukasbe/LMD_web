@@ -1,4 +1,6 @@
+<%@page import="at.ac.tuwien.big.we14.lab2.api.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%= Question question = new SimpleQuestionGenerator()%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
     <head>
@@ -39,33 +41,34 @@
                         <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class="unknown">Unbekannt</span></li>
                     </ul>
                 </div>
-                <div id="currentcategory"><span class="accessibility">Kategorie:</span> Sport</div>
+                <!-- Dynamisch-Kategorie -->
+                <div id="currentcategory"><span class="accessibility">Kategorie:</span><%= question.getCategory()%></div>
             </section>
             
             <!-- Question -->
             <section id="question" aria-labelledby="questionheading">
-                
+                <!-- Dynamisch-Frage -->
                 <form id="questionform" action="BigQuizServlet" method="post">
                     <h2 id="questionheading" class="accessibility">Frage</h2>
-                    <p id="questiontext">Welche zwei LVAs werden im Model EWA zusammengefasst?</p>
+                    <p id="questiontext"><%= question.getText()%></p>
                     <ul id="answers">
-                        <li><input id="option1" type="checkbox"/><label for="option1">IT Strategie</label></li>
-                        <li><input id="option2" type="checkbox"/><label for="option2">Web Engineering</label></li>
-                        <li><input id="option3" type="checkbox"/><label for="option3">Semistrukturierte Daten</label></li>
-                        <li><input id="option4" type="checkbox"/><label for="option4">Objektorientierte Modellierung</label></li>
+                        <li><input id="option1" type="checkbox"/><label for="option1"><%= question.getAllChoices().get(0) %></label></li>
+                        <li><input id="option2" type="checkbox"/><label for="option2"><%= question.getAllChoices().get(1) %></label></li>
+                        <li><input id="option3" type="checkbox"/><label for="option3"><%= question.getAllChoices().get(2) %></label></li>
+                        <li><input id="option4" type="checkbox"/><label for="option4"><%= question.getAllChoices().get(3) %></label></li>
                     </ul>
-                    <input id="timeleftvalue" type="hidden" value="100"/>
+                    <input id="timeleftvalue" type="hidden" value="<%= question.getMaxTime() %>"/>
                     <input id="next" type="submit" value="weiter" accesskey="s"/>
-                    <input type="hidden" name="action" value="questioncomplete"/>
+                    <input id="action" type="hidden" name="action" value="questioncomplete"/>
                 </form>
             </section>
             
             <section id="timer" aria-labelledby="timerheading">
                 <h2 id="timerheading" class="accessibility">Timer</h2>
-                <p><span id="timeleftlabel">Verbleibende Zeit:</span> <time id="timeleft">00:30</time></p>
+                <p><span id="timeleftlabel">Verbleibende Zeit:</span> <time id="timeleft"><%= question.getMaxTime() %></time></p>
                 <meter id="timermeter" min="0" low="20" value="100" max="100"/>
             </section>
-            
+            <<!-- Dynamisch: Letztes Spiel(nur bei Local Storage Support) -->
             <section id="lastgame">
                 <p>Letztes Spiel: Nie</p>
             </section>
