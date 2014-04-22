@@ -38,14 +38,25 @@ public class BigQuizServlet extends HttpServlet {
 	        	
 	        	HttpSession session = request.getSession(true);//vllt nicht wichtig
 	        	
-	        	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.html");
+	        	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
 	            dispatcher.forward(request, response);  
 	        	
 	        }else if (action.equals("question")){
-	        
+	        	
+	        	if(true){
+	        		
+	        		
+	        	}else{
+	        		
+	        		
+	        	}
+	        	
+	        	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
+	            dispatcher.forward(request, response);  
 	        	
 	        }else if (action.equals("roundcomplete")){
-	        
+	        	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/finish.jsp");
+	            dispatcher.forward(request, response);  
 	        	//if counter == 3 -> finish.html
 	        	//else roundcomplete.html
 	        	
