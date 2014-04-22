@@ -1,6 +1,6 @@
 <%@page import="at.ac.tuwien.big.we14.lab2.api.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%= Question question = new SimpleQuestionGenerator(new SimpleCategoryGenerator().getCategory()).getQuestion()%>
+<%= Question question = new SimpleQuestionGenerator(new SimpleCategoryGenerator().getCategory()).getQuestion();%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
     <head>
