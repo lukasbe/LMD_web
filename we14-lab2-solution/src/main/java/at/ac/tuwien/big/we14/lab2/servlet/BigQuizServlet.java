@@ -32,13 +32,13 @@ public class BigQuizServlet extends HttpServlet {
 	        
 	       
 			if(action==null) {
-	            //return;
+	            return;
 	        }
 	        if(action.equals("start")) {  
 	        	
 	        	HttpSession session = request.getSession(true);//vllt nicht wichtig
 	        	
-	        	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/finish.html");
+	        	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.html");
 	            dispatcher.forward(request, response);  
 	        	
 	        }else if (action.equals("question")){
