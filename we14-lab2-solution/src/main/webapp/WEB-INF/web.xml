@@ -9,7 +9,7 @@
 	</servlet-mapping><session-config>
 		<session-timeout>30</session-timeout>
 	</session-config><welcome-file-list>
-  	<welcome-file>start.html</welcome-file>
+  	<welcome-file>start.jsp</welcome-file>
 </welcome-file-list>
 	
 	
