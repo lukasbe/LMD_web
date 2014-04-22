@@ -1,9 +1,4 @@
-
-<% //HttpSession sessionroundcomplete = request.getSession(true); %>
-
-
-
-<?xml version="1.0" encoding="UTF-8"?>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
     <head>
@@ -61,6 +56,6 @@
         </section>
 
         <!-- footer -->
-        <footer role="contentinfo">© 2014 BIG Quiz</footer>
+        <footer role="contentinfo">Â© 2014 BIG Quiz</footer>
     </body>
 </html>
