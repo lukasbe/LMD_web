@@ -30,6 +30,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 
+// Holt alle Kategorien
 public class JSONQuestionDataProvider implements QuestionDataProvider {
 
 	private InputStream inputStream;
@@ -61,6 +62,7 @@ public class JSONQuestionDataProvider implements QuestionDataProvider {
 
 }
 
+// Setzt Namen zu den einzelnen Kategorien
 class CategoryDeserializer implements JsonDeserializer<Category> {
 	
 	private QuizFactory factory;
@@ -90,6 +92,7 @@ class CategoryDeserializer implements JsonDeserializer<Category> {
 
 }
 
+// Fügt jeder Kategorie Fragen hinzu
 class QuestionDeserialzier implements JsonDeserializer<Question> {
 	
 	private QuizFactory factory;
