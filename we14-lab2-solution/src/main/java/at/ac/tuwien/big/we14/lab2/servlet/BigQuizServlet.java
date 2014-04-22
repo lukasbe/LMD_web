@@ -34,6 +34,7 @@ public class BigQuizServlet extends HttpServlet {
 			if(action==null) {
 	            return;
 	        }
+			
 	        if(action.equals("start")) {  
 	        	
 	        	HttpSession session = request.getSession(true);//vllt nicht wichtig
