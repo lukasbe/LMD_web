@@ -137,7 +137,7 @@ public class BigQuizServlet extends HttpServlet {
 		            dispatcher.forward(request, response);  
 	        	}else{
 	        		questioncounter = questioncounter + 1;
-	        		Question question = new SimpleQuestionGenerator(new SimpleCategoryGenerator().getCategory()).getQuestion();
+	        		Question question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator().getCategory()).getQuestion());
 	        		session.setAttribute("question", question);
 	        		session.setAttribute("questioncounter", questioncounter);
 	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
