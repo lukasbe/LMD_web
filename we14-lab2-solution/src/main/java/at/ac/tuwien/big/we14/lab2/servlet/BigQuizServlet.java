@@ -2,8 +2,10 @@ package at.ac.tuwien.big.we14.lab2.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import at.ac.tuwien.big.we14.lab2.api.Category;
 import at.ac.tuwien.big.we14.lab2.api.Question;
+import at.ac.tuwien.big.we14.lab2.api.QuestionDataProvider;
+import at.ac.tuwien.big.we14.lab2.api.QuizFactory;
+import at.ac.tuwien.big.we14.lab2.api.impl.ServletQuizFactory;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleCategoryGenerator;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleQuestionGenerator;
 
@@ -137,8 +143,15 @@ public class BigQuizServlet extends HttpServlet {
 		            dispatcher.forward(request, response);  
 	        	}else{
 	        		questioncounter = questioncounter + 1;
-	        		Question question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator().getCategory()).getQuestion());
-	        		session.setAttribute("question", question);
+	        		
+	        		ServletContext servletContext = getServletContext(); 
+	        		QuizFactory factory = ServletQuizFactory.init(servletContext); 
+	        		QuestionDataProvider provider = factory.createQuestionDataProvider(); 
+	        		List<Category> categories = provider.loadCategoryData();
+	        		
+	        		
+	        		//Question question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator(categories).getCategory()).getQuestion());
+	        		//session.setAttribute("question", question);
 	        		session.setAttribute("questioncounter", questioncounter);
 	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
 		            dispatcher.forward(request, response);  
