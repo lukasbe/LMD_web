@@ -56,7 +56,7 @@ public class BigQuizServlet extends HttpServlet {
 	                out.println("<title>RoundComplete getriggert</title>");            
 	                out.println("</head>");
 	                out.println("<body>");
-	                out.println("<h1>Hello "  + "</h1>");
+	                out.println("<h1>Hello RoundComplete getriggert"  + "</h1>");
 	                out.println("</body>");
 	                out.println("</html>");
 	        		
@@ -85,7 +85,15 @@ public class BigQuizServlet extends HttpServlet {
 			if(action==null) {
 	            return;
 	        }
-			
+			PrintWriter out = response.getWriter();
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Question Complete getriggert</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>POSTEVENTHello uestion Complete getriggert" + request.getParameter("timeleftvalue") + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
 	        if(action.equals("questioncomplete")) { 
 	        	
 	        	//sind schon 3 fragen gefragt? wenn ja counter zurücksetzen und auf roundcomplete.jsp gehen
@@ -94,15 +102,15 @@ public class BigQuizServlet extends HttpServlet {
 	        	
 	        	
 	        	if(true){
-	        		PrintWriter out = response.getWriter();
-	                out.println("<html>");
-	                out.println("<head>");
-	                out.println("<title>Question Complete getriggert</title>");            
-	                out.println("</head>");
-	                out.println("<body>");
-	                out.println("<h1>Hello " + request.getParameter("timeleftvalue") + "</h1>");
-	                out.println("</body>");
-	                out.println("</html>");
+	        		PrintWriter out2 = response.getWriter();
+	                out2.println("<html>");
+	                out2.println("<head>");
+	                out2.println("<title>Question Complete getriggert</title>");            
+	                out2.println("</head>");
+	                out2.println("<body>");
+	                out2.println("<h1>Hello uestion Complete getriggert" + request.getParameter("timeleftvalue") + "</h1>");
+	                out2.println("</body>");
+	                out2.println("</html>");
 	        		
 	        	}else{
 	        		
