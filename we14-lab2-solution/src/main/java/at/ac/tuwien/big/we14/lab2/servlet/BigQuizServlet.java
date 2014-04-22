@@ -1,7 +1,6 @@
 package at.ac.tuwien.big.we14.lab2.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,14 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.gargoylesoftware.htmlunit.javascript.host.Console;
 
 // Your Servlet implementation
-@WebServlet(name="BigQuiz", urlPatterns= {"/we15-lab2-solution" })
+@WebServlet(name="BigQuiz", urlPatterns= {"/we14-lab2-solution" })
 public class BigQuizServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
+	 @Override
+	    public void init() throws ServletException {
+	        super.init();
+	        
+	    }
+	
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	            throws ServletException, IOException {
@@ -46,6 +51,14 @@ public class BigQuizServlet extends HttpServlet {
 	        	
 	        }
 	 }
+	
+	 @Override
+	    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	            throws ServletException, IOException {
+
+		 
+	 }
+	
 	
 	@Override
 	public String getServletInfo() {
