@@ -67,6 +67,25 @@ public class BigQuizServlet extends HttpServlet {
 	        	
 	        	roundcounter = 1;
 	        	questioncounter = 1;
+	        	
+	        	ServletContext servletContext = getServletContext(); 
+        		QuizFactory factory = ServletQuizFactory.init(servletContext); 
+        		QuestionDataProvider provider = factory.createQuestionDataProvider(); 
+        		List<Category> categories = provider.loadCategoryData();
+        		Question question;
+        		
+        		if(!categories.isEmpty())
+        		{
+        			question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator(categories).getCategory()).getQuestion());
+        			if(question == null)
+        			{
+        				
+        			}
+        		}else{
+        			return;
+        		}
+	        	
+        		session.setAttribute("question", question);
 	        	session.setAttribute("roundcounter", roundcounter);
 	        	session.setAttribute("questioncounter", questioncounter);
 	        	
@@ -149,6 +168,7 @@ public class BigQuizServlet extends HttpServlet {
 	        		QuestionDataProvider provider = factory.createQuestionDataProvider(); 
 	        		List<Category> categories = provider.loadCategoryData();
 	        		Question question;
+	        		
 	        		if(!categories.isEmpty())
 	        		{
 	        			question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator(categories).getCategory()).getQuestion());
