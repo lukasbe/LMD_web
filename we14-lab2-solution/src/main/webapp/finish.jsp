@@ -10,7 +10,7 @@
         <script src="js/jquery.js" type="text/javascript"></script>
         <script src="js/framework.js" type="text/javascript"></script>
     </head>
-    <body id="winnerpage">
+    <body id="winnerpage" onLoad="timeStamp();">
         <a class="accessibility" href="#roundwinner">Zur Spielwertung springen</a>
         <header role="banner" aria-labelledby="mainheading"><h1 id="mainheading"><span class="accessibility">Business Informatics Group</span> Quiz</h1></header>
         <nav role="navigation" aria-labelledby="navheading">
@@ -47,5 +47,16 @@
 
         <!-- footer -->
         <footer role="contentinfo">© 2014 BIG Quiz</footer>
+    
+          
+         <script type="text/javascript">
+            //<![CDATA[
+         
+                       function timeStamp() {
+                       if(supportsLocalStorage()==true)
+                    	   localStorage.setItem(Date.now());
+                       }
+         </script>
+    
     </body>
 </html>
