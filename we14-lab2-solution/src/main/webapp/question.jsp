@@ -52,10 +52,10 @@
                     <h2 id="questionheading" class="accessibility">Frage</h2>
                     <p id="questiontext"><%= question.getText()%></p>
                     <ul id="answers">
-                        <li><input id="option1" type="checkbox"/><label for="option1"><%= question.getAllChoices().get(0).getText() %></label></li>
-                        <li><input id="option2" type="checkbox"/><label for="option2"><%= question.getAllChoices().get(1).getText() %></label></li>
-                        <li><input id="option3" type="checkbox"/><label for="option3"><%= question.getAllChoices().get(2).getText()%></label></li>
-                        <li><input id="option4" type="checkbox"/><label for="option4"><%= question.getAllChoices().get(3).getText() %></label></li>
+                    	<% int counter = 1;%>
+                        <%for(Choice c : question.getAllChoices()){ %>
+                        <li><input id="<%="option"+counter%>" type="checkbox"/><label for="<%="option" + counter++%>"><%= c.getText() %></label></li>
+                        <%} %>
                     </ul>
                     <input id="timeleftvalue" type="hidden" value="<%= question.getMaxTime() %>"/>
                     <input id="next" type="submit" value="weiter" accesskey="s"/>
