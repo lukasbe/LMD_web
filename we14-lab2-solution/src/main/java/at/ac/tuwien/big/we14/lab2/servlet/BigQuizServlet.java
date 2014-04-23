@@ -20,6 +20,7 @@ import at.ac.tuwien.big.we14.lab2.api.Question;
 import at.ac.tuwien.big.we14.lab2.api.QuestionDataProvider;
 import at.ac.tuwien.big.we14.lab2.api.QuizFactory;
 import at.ac.tuwien.big.we14.lab2.api.impl.ServletQuizFactory;
+import at.ac.tuwien.big.we14.lab2.api.impl.SimpleCategory;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleCategoryGenerator;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleQuestion;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleQuestionGenerator;
@@ -71,14 +72,16 @@ public class BigQuizServlet extends HttpServlet {
 	        	
 	        	roundcounter = 1;
 	        	questioncounter = 1;
-	        	
+	        	/*
 	        	ServletContext servletContext = getServletContext(); 
         		QuizFactory factory = ServletQuizFactory.init(servletContext); 
         		QuestionDataProvider provider = factory.createQuestionDataProvider(); 
         		List<Category> categories = provider.loadCategoryData();
-        		Question question = new SimpleQuestion();
+        		*/
         		
-        		if(!categories.isEmpty())
+        		Question question = new SimpleQuestion(1, "test", 30, new SimpleCategory("testcat"));
+        		
+        		/*if(!categories.isEmpty())
         		{
         			question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator(categories).getCategory()).getQuestion());
         			if(question == null)
@@ -94,7 +97,7 @@ public class BigQuizServlet extends HttpServlet {
         		}else{
         			log.info("categories leer!");
         		}
-	        	
+	        	*/
         		session.setAttribute("question", question);
 	        	session.setAttribute("roundcounter", roundcounter);
 	        	session.setAttribute("questioncounter", questioncounter);
