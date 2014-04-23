@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 
@@ -22,6 +23,12 @@ public class GameEntity {
 		Game = game;
 		roundSize = game.size();
 		roundCount = game.size();
+		for(Entry<String, List<Question>> entry : Game.entrySet()) {
+		   
+		    roundList.add(entry.getKey());
+		    
+
+		}
 		log.info("set game sagt hallo");
 	}
 
@@ -38,7 +45,7 @@ public class GameEntity {
 		int count = roundSize;
 		Iterator<String> it = roundList.iterator();
 		log.info("nextRound sagt hallo");
-		log.info("roundlistiterator empty?"+it.hasNext());
+		log.info("roundlistiterator hasNext?"+it.hasNext());
 		while(it.hasNext())
 		{
 			log.info("nextround whileschleife passiert");
