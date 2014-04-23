@@ -21,7 +21,7 @@ public class SimpleQuestionGenerator implements QuestionGenerator{
 	public SimpleQuestionGenerator(Category cat)
 	{
 		this.category = cat;
-		alreadyAskedQuestionList = null;
+		alreadyAskedQuestionList = new ArrayList<Question>();
 	}
 	
 	@Override
