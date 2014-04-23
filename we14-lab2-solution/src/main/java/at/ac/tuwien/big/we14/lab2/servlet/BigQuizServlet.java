@@ -183,7 +183,7 @@ public class BigQuizServlet extends HttpServlet {
 		            dispatcher.forward(request, response);  
 	        	}else{
 	        		questioncounter = questioncounter + 1;
-	        		/*
+	        		
 	        		ServletContext servletContext = getServletContext(); 
 	        		QuizFactory factory = ServletQuizFactory.init(servletContext); 
 	        		QuestionDataProvider provider = factory.createQuestionDataProvider(); 
@@ -202,7 +202,7 @@ public class BigQuizServlet extends HttpServlet {
 	        		}
 	        		session.setAttribute("question", question);
 	        		session.setAttribute("questioncounter", questioncounter);
-	        		*/
+	        		
 	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
 		            dispatcher.forward(request, response);  
 	        	}
