@@ -5,11 +5,6 @@ import java.util.HashMap;
 
 public interface Answer {
 
-	//ID von der Frage
-	//Zeit
-	//Frage richtig beantwortet
-	//Spieler
-	//Angehackerlte Fragen
 	/**
 	 * ID setzen
 	 * @param id
@@ -58,7 +53,7 @@ public interface Answer {
 	 * @param tickedhackerl
 	 * @return
 	 */
-	public HashMap<Choice, Boolean> setTickedHackerl(HashMap<Choice,Boolean> tickedhackerl);
+	public void setTickedHackerl(HashMap<Choice,Boolean> tickedhackerl);
 	
 	/**
 	 * Validiert mit einer ArrayList voller Choice Objecte welche die richtigen Antworten enthalten.
