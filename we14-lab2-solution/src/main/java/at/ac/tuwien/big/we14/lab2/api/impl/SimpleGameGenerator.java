@@ -19,7 +19,9 @@ public class SimpleGameGenerator implements GameGenerator{
 	
 	private SimpleCategoryGenerator catGen = new SimpleCategoryGenerator();
 	private QuestionGenerator questionGen = new SimpleQuestionGenerator();
+	
 	public SimpleGameGenerator(){}
+	
 	public SimpleGameGenerator(List<Category> categories, GameEntity gameEntity)
 	{
 		this.categories = categories;
@@ -27,7 +29,7 @@ public class SimpleGameGenerator implements GameGenerator{
 	}
 	
 	@Override
-	public void generateGame(int rounds, int questioncount) {
+	public HashMap<String, List<Question>> generateGame(int rounds, int questioncount) {
 		HashMap<String, List<Question>> Game = new HashMap<String, List<Question>>();
 		
 		
@@ -49,6 +51,8 @@ public class SimpleGameGenerator implements GameGenerator{
 				
 			}
 		}
+		
+		return null;
 		
 	}
 
