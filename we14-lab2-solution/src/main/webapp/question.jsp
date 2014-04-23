@@ -43,7 +43,7 @@
                         <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class="unknown">Unbekannt</span></li>
                     </ul>
                 </div>
-                <div id="currentcategory"><span class="accessibility">Kategorie:</span><%= question.getCategory()%></div>
+                <div id="currentcategory"><span class="accessibility">Kategorie:</span><%= question.getCategory().getName()%></div>
             </section>
             
             <!-- Question -->
