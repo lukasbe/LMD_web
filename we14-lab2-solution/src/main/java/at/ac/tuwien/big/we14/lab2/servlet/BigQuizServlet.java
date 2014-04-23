@@ -77,6 +77,8 @@ public class BigQuizServlet extends HttpServlet {
 	        	log.info("Action: Start");
 	        	//Neues Spiel wird gestartet.
 	        	HttpSession session = request.getSession(true);
+	        	GameEntity gameEntity = new GameEntity();//Multiuser Test
+	        	
 	        	
 	        	roundcounter = 1;
 	        	questioncounter = 1;
