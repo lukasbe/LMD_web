@@ -66,21 +66,22 @@ public class BigQuizServlet extends HttpServlet {
 	        }
 			
 	        if(action.equals("start")) {  
-	        	
+	        	log.info("Action: Start");
 	        	//Neues Spiel wird gestartet.
 	        	HttpSession session = request.getSession(true);
 	        	
 	        	roundcounter = 1;
 	        	questioncounter = 1;
-	        	/*
+	        	
 	        	ServletContext servletContext = getServletContext(); 
         		QuizFactory factory = ServletQuizFactory.init(servletContext); 
         		QuestionDataProvider provider = factory.createQuestionDataProvider(); 
         		List<Category> categories = provider.loadCategoryData();
-        		*/
+        		if(categories.isEmpty()) log.info("cat ist empty");
+        		else {log.info("cat ist nicht empty");}
         		
         		Question question = new SimpleQuestion(1, "test", 30, new SimpleCategory("testcat"));
-        		
+        		log.info("Action: Start > nach question");
         		/*if(!categories.isEmpty())
         		{
         			question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator(categories).getCategory()).getQuestion());
@@ -99,17 +100,24 @@ public class BigQuizServlet extends HttpServlet {
         		}
 	        	*/
         		session.setAttribute("question", question);
+        		log.info("nach setAttribut(question");
 	        	session.setAttribute("roundcounter", roundcounter);
+	        	log.info("nach setAttribut(roundcounter");
 	        	session.setAttribute("questioncounter", questioncounter);
+	        	log.info("nach setAttribut(questioncounter");
 	        	
 	        	
 	        	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
-	            dispatcher.forward(request, response);  
+	        	log.info("nach dispatcher");
+	            dispatcher.forward(request, response);
+	            log.info("nach forward");
 	        	
 	        }else if (action.equals("questioncomplete")){
+	        	log.info("Action: questioncomplete");
 	        	///Old... and they lived in post section happy ever after
 	        	
 	        }else if (action.equals("roundcompleteweiter")){
+	        	log.info("Action: roundcomplete");
 	        	//sind 5 runden vergangen, dann kommt finish html, sonst kommen neue question.jsp seiten.
 	        	
 	        	HttpSession session = request.getSession(true);
