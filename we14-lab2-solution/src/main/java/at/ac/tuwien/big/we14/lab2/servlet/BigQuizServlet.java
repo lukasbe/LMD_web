@@ -59,8 +59,7 @@ public class BigQuizServlet extends HttpServlet {
 	        
 	        String action = request.getParameter("action");
 	        
-	       
-			if(action==null) {
+	       if(action==null) {
 				
 				PrintWriter noactionwriter = response.getWriter();
 				noactionwriter.println("<html>");
