@@ -145,8 +145,11 @@ public class BigQuizServlet extends HttpServlet {
 		        	session.setAttribute("questioncounter", questioncounter);
 		        	//session.setAttribute("loadCat", true);
 		        	
-		        	// Der Kategorie eine neue zufällige zuweisen
+		        	// Neue zufällige Kategorie wählen
 		        	category = catGen.getCategory();
+		        	// Dem Fragengenerator die neue zufällige Kategorie zuweisen 
+	        		questionGen = new SimpleQuestionGenerator(category);
+	        		
 	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
 		            dispatcher.forward(request, response);  
 	        	}
