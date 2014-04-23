@@ -62,4 +62,8 @@ public interface Answer {
 	 */
 	public Boolean validateWith(ArrayList<Choice> correctChoices);
 	
+	public Boolean getIsComputerCorrect();
+	
+	public int getComputerTime();
+	
 }

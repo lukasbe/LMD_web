@@ -20,6 +20,7 @@ public class SimpleAnswer implements Answer{
 	private Boolean isCorrect = null;
 	private int time;
 	private String player;
+	private int computertime;
 	HashMap<Choice, Boolean> tickedhackerl;
 	ArrayList<Choice> correctChoices;
 	
@@ -114,6 +115,16 @@ public class SimpleAnswer implements Answer{
 		Random random = new Random();
 	    return random.nextBoolean();
 	}
-	
+	@Override
+	public int getComputerTime(){
+		if(computertime == -1){
+			Random generator = new Random();
+			
+			this.computertime = generator.nextInt(30);
+			return computertime;
+		}else{
+			return computertime;
+		}
+	}
 	
 }
