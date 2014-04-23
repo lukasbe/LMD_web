@@ -54,6 +54,7 @@ public class SimpleGameGenerator implements GameGenerator{
 				// Aus den möglichen Fragen einer Kategorie eine neue zufällige Frage wählen
 				question = questionGen.getQuestion();
 				questionList.add(question);
+				log.info("Kat: " + category.getName() + " Q:" + question.getId());
 			}
 			Game.put(category.getName(), questionList);
 		}
