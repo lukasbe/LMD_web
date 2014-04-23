@@ -82,7 +82,10 @@ public class BigQuizServlet extends HttpServlet {
         			question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator(categories).getCategory()).getQuestion());
         			if(question == null)
         			{
-        				
+        				log.info("question ist null");
+        			}else
+        			{
+        				log.info("question ist nicht null");
         			}
         		}else{
         			return;
@@ -177,7 +180,7 @@ public class BigQuizServlet extends HttpServlet {
 	        			question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator(categories).getCategory()).getQuestion());
 	        			if(question == null)
 	        			{
-	        				log.info("question ist null");
+	        				
 	        			}
 	        		}else{
 	        			return;
