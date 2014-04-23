@@ -38,12 +38,14 @@ public class GameEntity {
 		int count = roundSize;
 		Iterator<String> it = roundList.iterator();
 		log.info("nextRound sagt hallo");
+		log.info("roundlistiterator empty?"+it.hasNext());
 		while(it.hasNext())
 		{
 			log.info("nextround whileschleife passiert");
 		    String Runde = it.next();
 		    if(count == roundCount){
 		    	roundCount--;
+		    	log.info("Runde in nextRound: "+Runde);
 		    	return Game.get(Runde);
 		    }
 		}
