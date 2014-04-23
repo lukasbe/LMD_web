@@ -148,10 +148,18 @@ public class BigQuizServlet extends HttpServlet {
 	        		QuizFactory factory = ServletQuizFactory.init(servletContext); 
 	        		QuestionDataProvider provider = factory.createQuestionDataProvider(); 
 	        		List<Category> categories = provider.loadCategoryData();
-	        		
-	        		
-	        		//Question question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator(categories).getCategory()).getQuestion());
-	        		//session.setAttribute("question", question);
+	        		Question question;
+	        		if(!categories.isEmpty())
+	        		{
+	        			question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator(categories).getCategory()).getQuestion());
+	        			if(question == null)
+	        			{
+	        				
+	        			}
+	        		}else{
+	        			return;
+	        		}
+	        		session.setAttribute("question", question);
 	        		session.setAttribute("questioncounter", questioncounter);
 	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
 		            dispatcher.forward(request, response);  
