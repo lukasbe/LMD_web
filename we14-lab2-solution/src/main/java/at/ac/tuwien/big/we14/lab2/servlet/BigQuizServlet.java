@@ -35,6 +35,13 @@ public class BigQuizServlet extends HttpServlet {
 	private int roundcounter;
 	private int questioncounter;
 	protected static Logger log = Logger.getLogger(BigQuizServlet.class);
+	
+	private Question question = new SimpleQuestion();
+	private Category category = new SimpleCategory();
+	
+	private SimpleCategoryGenerator catGen = new SimpleCategoryGenerator();
+	private QuestionGenerator questionGen = new SimpleQuestionGenerator();
+	
 	 @Override
 	    public void init() throws ServletException {
 	        super.init();
@@ -80,15 +87,13 @@ public class BigQuizServlet extends HttpServlet {
         		QuestionDataProvider provider = factory.createQuestionDataProvider(); 
         		List<Category> categories = provider.loadCategoryData();
         		
-        		Question question = new SimpleQuestion();
-        		Category cg = new SimpleCategory();
-        		
-        		SimpleCategoryGenerator catGen = new SimpleCategoryGenerator(categories);        		
+        		// dem Generator einen Liste von Kategorien zuweisen
+        		catGen = new SimpleCategoryGenerator(categories);        		
         		// Neue zufällige Kategorie wählen, welche noch nicht war
-        		cg = catGen.getCategory();
+        		category = catGen.getCategory();
         		
         		// Dem Fragengenerator eine zufällige Kategorie zuweisen 
-        		QuestionGenerator questionGen = new SimpleQuestionGenerator(cg);
+        		questionGen = new SimpleQuestionGenerator(category);
         		// Aus den möglichen Fragen einer Kategorie eine neue zufällige Frage wählen
         		question = questionGen.getQuestion();
         		
@@ -138,7 +143,10 @@ public class BigQuizServlet extends HttpServlet {
 	        		questioncounter = 1;
 	        		session.setAttribute("roundcounter", roundcounter);
 		        	session.setAttribute("questioncounter", questioncounter);
-		        	session.setAttribute("loadCat", true);
+		        	//session.setAttribute("loadCat", true);
+		        	
+		        	// Der Kategorie eine neue zufällige zuweisen
+		        	category = catGen.getCategory();
 	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
 		            dispatcher.forward(request, response);  
 	        	}
@@ -176,22 +184,9 @@ public class BigQuizServlet extends HttpServlet {
 	        	}else{
 	        		questioncounter = questioncounter + 1;
 	        		
-	        		ServletContext servletContext = getServletContext(); 
-	        		QuizFactory factory = ServletQuizFactory.init(servletContext); 
-	        		QuestionDataProvider provider = factory.createQuestionDataProvider(); 
-	        		List<Category> categories = provider.loadCategoryData();
-	        		Question question;
+	        		// Neue Fragen generieren
+	        		question = questionGen.getQuestion();
 	        		
-	        		if(!categories.isEmpty())
-	        		{
-	        			question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator(categories).getCategory()).getQuestion());
-	        			if(question == null)
-	        			{
-	        				
-	        			}
-	        		}else{
-	        			return;
-	        		}
 	        		session.setAttribute("question", question);
 	        		session.setAttribute("questioncounter", questioncounter);
 	        		
