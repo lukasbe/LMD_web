@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import at.ac.tuwien.big.we14.lab2.api.Category;
 import at.ac.tuwien.big.we14.lab2.api.Question;
 import at.ac.tuwien.big.we14.lab2.api.QuestionDataProvider;
@@ -29,6 +31,7 @@ public class BigQuizServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private int roundcounter;
 	private int questioncounter;
+	protected static Logger log = Logger.getLogger("BigQuizServlet.class");
 	 @Override
 	    public void init() throws ServletException {
 	        super.init();
@@ -174,7 +177,7 @@ public class BigQuizServlet extends HttpServlet {
 	        			question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator(categories).getCategory()).getQuestion());
 	        			if(question == null)
 	        			{
-	        				
+	        				log.info("question ist null");
 	        			}
 	        		}else{
 	        			return;
