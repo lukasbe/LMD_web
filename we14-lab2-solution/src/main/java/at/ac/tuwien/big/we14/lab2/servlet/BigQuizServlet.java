@@ -16,14 +16,12 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import at.ac.tuwien.big.we14.lab2.api.Category;
-import at.ac.tuwien.big.we14.lab2.api.Question;
+import at.ac.tuwien.big.we14.lab2.api.GameGenerator;
 import at.ac.tuwien.big.we14.lab2.api.QuestionDataProvider;
-import at.ac.tuwien.big.we14.lab2.api.QuestionGenerator;
 import at.ac.tuwien.big.we14.lab2.api.QuizFactory;
+import at.ac.tuwien.big.we14.lab2.api.impl.GameEntity;
 import at.ac.tuwien.big.we14.lab2.api.impl.ServletQuizFactory;
-import at.ac.tuwien.big.we14.lab2.api.impl.SimpleCategory;
-import at.ac.tuwien.big.we14.lab2.api.impl.SimpleCategoryGenerator;
-import at.ac.tuwien.big.we14.lab2.api.impl.SimpleQuestion;
+import at.ac.tuwien.big.we14.lab2.api.impl.SimpleGameGenerator;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleQuestionGenerator;
 
 
@@ -36,11 +34,15 @@ public class BigQuizServlet extends HttpServlet {
 	private int questioncounter;
 	protected static Logger log = Logger.getLogger(BigQuizServlet.class);
 	
-	private Question question = new SimpleQuestion();
-	private Category category = new SimpleCategory();
+	//private Question question = new SimpleQuestion();
+	//private Category category = new SimpleCategory();
 	
-	private SimpleCategoryGenerator catGen = new SimpleCategoryGenerator();
-	private QuestionGenerator questionGen = new SimpleQuestionGenerator();
+	//private SimpleCategoryGenerator catGen = new SimpleCategoryGenerator();
+	//private QuestionGenerator questionGen = new SimpleQuestionGenerator();
+	
+	private GameGenerator gameGen = new SimpleGameGenerator();
+	private GameEntity gameEntity = new GameEntity();
+	
 	
 	 @Override
 	    public void init() throws ServletException {
@@ -87,6 +89,16 @@ public class BigQuizServlet extends HttpServlet {
         		QuestionDataProvider provider = factory.createQuestionDataProvider(); 
         		List<Category> categories = provider.loadCategoryData();
         		
+        		// Erstellt automatisch ein komplettes Spiel mit Kategorien
+        		gameGen = new SimpleGameGenerator(categories, gameEntity);
+        		int rounds = 5;
+        		int questioncount = 3;
+        		gameGen.generateGame(rounds, questioncount);
+        		
+        		//gameEntity hat als HashMap alle Daten vom Spiel gespeichert (Runden mit Fragen)
+        		gameEntity.getGame();
+        		
+        		/*
         		// dem Generator einen Liste von Kategorien zuweisen
         		catGen = new SimpleCategoryGenerator(categories);        		
         		// Neue zufällige Kategorie wählen, welche noch nicht war
@@ -101,7 +113,7 @@ public class BigQuizServlet extends HttpServlet {
         		if(question.getCategory() == null || question.getText().equals("")){
         			log.info("question ist leer");
         		}
-	        	
+	        	*/
         		session.setAttribute("question", question);
 	        	session.setAttribute("roundcounter", roundcounter);
 	        	session.setAttribute("questioncounter", questioncounter);	        	
