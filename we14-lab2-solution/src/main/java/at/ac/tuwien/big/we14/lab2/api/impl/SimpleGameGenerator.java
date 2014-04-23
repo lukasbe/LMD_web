@@ -30,6 +30,8 @@ public class SimpleGameGenerator implements GameGenerator{
 	
 	@Override
 	public HashMap<String, List<Question>> generateGame(int rounds, int questioncount) {
+		if(categories.isEmpty())
+		
 		HashMap<String, List<Question>> Game = new HashMap<String, List<Question>>();
 		
 		
