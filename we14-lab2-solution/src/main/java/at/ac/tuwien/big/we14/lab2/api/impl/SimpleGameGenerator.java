@@ -12,7 +12,6 @@ import at.ac.tuwien.big.we14.lab2.api.QuestionGenerator;
 public class SimpleGameGenerator implements GameGenerator{
 
 	private List<Category> categories = new ArrayList<Category>();
-	private GameEntity gameEntity = new GameEntity();
 	
 	private Question question = new SimpleQuestion();
 	private Category category = new SimpleCategory();
@@ -25,7 +24,6 @@ public class SimpleGameGenerator implements GameGenerator{
 	public SimpleGameGenerator(List<Category> categories, GameEntity gameEntity)
 	{
 		this.categories = categories;
-		this.gameEntity = gameEntity;
 	}
 	
 	@Override
@@ -44,6 +42,8 @@ public class SimpleGameGenerator implements GameGenerator{
 			category = catGen.getCategory();
 			// Dem Fragengenerator eine zufällige Kategorie zuweisen 
 			questionGen = new SimpleQuestionGenerator(category);
+			
+			
 			for(int j = 0; i < questioncount; j++)
 			{
 				// Aus den möglichen Fragen einer Kategorie eine neue zufällige Frage wählen

@@ -93,9 +93,18 @@ public class BigQuizServlet extends HttpServlet {
         		gameGen = new SimpleGameGenerator(categories, gameEntity);
         		int rounds = 5;
         		int questioncount = 3;
+        		gameEntity.setRoundCount(rounds);
+        		gameEntity.setQuestionCount(questioncount);
         		gameEntity.setGame(gameGen.generateGame(rounds, questioncount));
         		
-        		gameEntity.getGame().get(gameEntity.getCategoriesList().get(roundcounter));
+        		
+        		gameEntity.getNextRound().get(gameEntity.getQuestionCount());
+        		
+        		
+        		
+        		
+        		
+        		gameEntity.getGame().get(gameEntity.getRoundList().get(roundcounter));
         		
         		//gameEntity hat als HashMap alle Daten vom Spiel gespeichert (Runden mit Fragen)
         		HashMap game = gameEntity.getGame();
