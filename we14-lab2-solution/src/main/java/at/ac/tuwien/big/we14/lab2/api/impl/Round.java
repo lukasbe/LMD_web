@@ -9,6 +9,4 @@ public class Round {
 	
 	private List<Question> list = new ArrayList<Question>();
 	private Round next;
-
-	
 }

@@ -13,10 +13,7 @@ public class SimpleQuestionGenerator implements QuestionGenerator{
 	private Category category = null;
 	private List<Question> alreadyAskedQuestionList = new ArrayList<Question>();
 	
-	public SimpleQuestionGenerator()
-	{
-		
-	}
+	public SimpleQuestionGenerator(){}
 	
 	public SimpleQuestionGenerator(Category cat)
 	{

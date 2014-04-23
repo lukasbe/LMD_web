@@ -2,6 +2,7 @@ package at.ac.tuwien.big.we14.lab2.api.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import at.ac.tuwien.big.we14.lab2.api.Category;
@@ -31,7 +32,7 @@ public class SimpleGameGenerator implements GameGenerator{
 		if(categories.isEmpty()) return null;
 		
 		HashMap<String, List<Question>> Game = new HashMap<String, List<Question>>();
-		List<Question> questionList = new ArrayList<Question>();
+		List<Question> questionList = new LinkedList<Question>();
 		
 		// dem Generator einen Liste von Kategorien zuweisen
 		catGen = new SimpleCategoryGenerator(categories);        		
