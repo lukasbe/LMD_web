@@ -44,6 +44,7 @@ public class GameEntity {
 		    String Runde = it.next();
 		    if(count == roundCount){
 		    	roundCount--;
+		    	log.info("Runde in nextRound: "+Runde);
 		    	return Game.get(Runde);
 		    }
 		}
