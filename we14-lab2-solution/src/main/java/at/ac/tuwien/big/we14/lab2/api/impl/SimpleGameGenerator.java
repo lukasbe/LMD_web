@@ -30,32 +30,30 @@ public class SimpleGameGenerator implements GameGenerator{
 	
 	@Override
 	public HashMap<String, List<Question>> generateGame(int rounds, int questioncount) {
-		if(categories.isEmpty())
+		if(categories.isEmpty()) return null;
 		
 		HashMap<String, List<Question>> Game = new HashMap<String, List<Question>>();
-		
+		List<Question> questionList = new ArrayList<Question>();
 		
 		// dem Generator einen Liste von Kategorien zuweisen
 		catGen = new SimpleCategoryGenerator(categories);        		
-		// Neue zufällige Kategorie wählen, welche noch nicht war
-		category = catGen.getCategory();
-		
-		// Dem Fragengenerator eine zufällige Kategorie zuweisen 
-		questionGen = new SimpleQuestionGenerator(category);
-		// Aus den möglichen Fragen einer Kategorie eine neue zufällige Frage wählen
-		question = questionGen.getQuestion();
-		
 		
 		for(int i = 0; i < rounds; i++)
 		{
+			// Neue zufällige Kategorie wählen, welche noch nicht war
+			category = catGen.getCategory();
+			// Dem Fragengenerator eine zufällige Kategorie zuweisen 
+			questionGen = new SimpleQuestionGenerator(category);
 			for(int j = 0; i < questioncount; j++)
 			{
+				// Aus den möglichen Fragen einer Kategorie eine neue zufällige Frage wählen
+				question = questionGen.getQuestion();
+				questionList.add(question);
 				
 			}
+			Game.put(category.getName(), questionList);
 		}
-		
-		return null;
-		
+		return Game;
 	}
 
 }
