@@ -22,7 +22,7 @@ public class SimpleGameGenerator implements GameGenerator{
 	
 	public SimpleGameGenerator(){}
 	
-	public SimpleGameGenerator(List<Category> categories, GameEntity gameEntity)
+	public SimpleGameGenerator(List<Category> categories)
 	{
 		this.categories = categories;
 	}
