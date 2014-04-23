@@ -82,7 +82,7 @@ public class BigQuizServlet extends HttpServlet {
         		
         		Question question = new SimpleQuestion(1, "test", 30, new SimpleCategory("testcat"));
         		log.info("Action: Start > nach question");
-        		/*if(!categories.isEmpty())
+        		if(!categories.isEmpty())
         		{
         			question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator(categories).getCategory()).getQuestion());
         			if(question == null)
@@ -98,7 +98,7 @@ public class BigQuizServlet extends HttpServlet {
         		}else{
         			log.info("categories leer!");
         		}
-	        	*/
+	        	
         		session.setAttribute("question", question);
         		log.info("nach setAttribut(question");
 	        	session.setAttribute("roundcounter", roundcounter);
