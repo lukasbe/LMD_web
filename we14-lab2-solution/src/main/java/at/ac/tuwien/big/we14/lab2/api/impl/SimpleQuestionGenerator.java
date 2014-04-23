@@ -31,7 +31,6 @@ public class SimpleQuestionGenerator implements QuestionGenerator{
 		
 		for(Question q: category.getQuestions())
 		{
-			// Falls die Frage noch nicht gestellt wurde
 			if(!alreadyAskedQuestionList.contains(q))
 			{
 				
