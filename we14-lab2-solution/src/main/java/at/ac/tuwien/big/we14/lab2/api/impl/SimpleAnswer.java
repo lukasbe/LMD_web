@@ -3,6 +3,7 @@ package at.ac.tuwien.big.we14.lab2.api.impl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.Random;
 
 import org.apache.log4j.Logger;
 import org.eclipse.jetty.util.log.Log;
@@ -105,6 +106,13 @@ public class SimpleAnswer implements Answer{
 		
 		
 		return false;
+	}
+
+	@Override
+	public Boolean getIsComputerCorrect() {
+		// TODO Auto-generated method stub
+		Random random = new Random();
+	    return random.nextBoolean();
 	}
 	
 	
