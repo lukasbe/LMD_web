@@ -73,39 +73,20 @@ public class BigQuizServlet extends HttpServlet {
 	        	roundcounter = 1;
 	        	questioncounter = 1;
 	        	
+	        	//Diese vier Codezeilen holen alle Kategorien, Fragen und Antworten aus der data.json
 	        	ServletContext servletContext = getServletContext(); 
         		QuizFactory factory = ServletQuizFactory.init(servletContext); 
         		QuestionDataProvider provider = factory.createQuestionDataProvider(); 
         		List<Category> categories = provider.loadCategoryData();
-        		if(categories.isEmpty()) log.info("cat ist empty");
-        		else {log.info("cat ist nicht empty");}
         		
-        		Question question = new SimpleQuestion(1, "test", 30, new SimpleCategory("testcat"));
-        		log.info("Action: Start > nach question");
-        		if(!categories.isEmpty())
-        		{
-        			question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator(categories).getCategory()).getQuestion());
-        			if(question == null)
-        			{
-        				log.info("question ist null");
-        			}else
-        			{
-        				log.info("question ist nicht null");
-        			}
-        			if(question.getCategory() == null || question.getText().equals("")){
-        				log.info("question ist leer");
-        			}
-        		}else{
-        			log.info("categories leer!");
+        		Question question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator(categories).getCategory()).getQuestion());
+        		if(question.getCategory() == null || question.getText().equals("")){
+        			log.info("question ist leer");
         		}
 	        	
         		session.setAttribute("question", question);
-        		log.info("nach setAttribut(question");
 	        	session.setAttribute("roundcounter", roundcounter);
-	        	log.info("nach setAttribut(roundcounter");
-	        	session.setAttribute("questioncounter", questioncounter);
-	        	log.info("nach setAttribut(questioncounter");
-	        	
+	        	session.setAttribute("questioncounter", questioncounter);	        	
 	        	
 	        	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
 	        	log.info("nach dispatcher");
