@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% org.apache.log4j.Logger.getLogger("start.jsp").info("roundcomplete.jsp wurde aufgerufen!"); %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
     <head>
