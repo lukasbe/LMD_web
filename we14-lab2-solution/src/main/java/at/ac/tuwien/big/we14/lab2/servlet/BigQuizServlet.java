@@ -21,6 +21,7 @@ import at.ac.tuwien.big.we14.lab2.api.QuestionDataProvider;
 import at.ac.tuwien.big.we14.lab2.api.QuizFactory;
 import at.ac.tuwien.big.we14.lab2.api.impl.ServletQuizFactory;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleCategoryGenerator;
+import at.ac.tuwien.big.we14.lab2.api.impl.SimpleQuestion;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleQuestionGenerator;
 
 
@@ -31,7 +32,7 @@ public class BigQuizServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private int roundcounter;
 	private int questioncounter;
-	protected static Logger log = Logger.getLogger("BigQuizServlet.class");
+	protected static Logger log = Logger.getLogger(BigQuizServlet.class);
 	 @Override
 	    public void init() throws ServletException {
 	        super.init();
@@ -75,7 +76,7 @@ public class BigQuizServlet extends HttpServlet {
         		QuizFactory factory = ServletQuizFactory.init(servletContext); 
         		QuestionDataProvider provider = factory.createQuestionDataProvider(); 
         		List<Category> categories = provider.loadCategoryData();
-        		Question question;
+        		Question question = new SimpleQuestion();
         		
         		if(!categories.isEmpty())
         		{
