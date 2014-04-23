@@ -33,6 +33,7 @@ public class SimpleQuestionGenerator implements QuestionGenerator{
 			// Falls die Frage noch nicht gestellt wurde
 			if(!alreadyAskedQuestionList.contains(q))
 			{
+				
 				list.add(q);
 			}
 		}
