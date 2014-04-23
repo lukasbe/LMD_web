@@ -44,17 +44,14 @@ public class SimpleGameGenerator implements GameGenerator{
 			// Dem Fragengenerator eine zufällige Kategorie zuweisen 
 			questionGen = new SimpleQuestionGenerator(category);
 			
-			
 			for(int j = 0; i < questioncount; j++)
 			{
 				// Aus den möglichen Fragen einer Kategorie eine neue zufällige Frage wählen
 				question = questionGen.getQuestion();
 				questionList.add(question);
-				
 			}
 			Game.put(category.getName(), questionList);
 		}
 		return Game;
 	}
-
 }

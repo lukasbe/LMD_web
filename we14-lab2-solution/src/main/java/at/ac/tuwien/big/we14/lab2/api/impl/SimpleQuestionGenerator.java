@@ -30,7 +30,6 @@ public class SimpleQuestionGenerator implements QuestionGenerator{
 		{
 			if(!alreadyAskedQuestionList.contains(q))
 			{
-				
 				list.add(q);
 			}
 		}
