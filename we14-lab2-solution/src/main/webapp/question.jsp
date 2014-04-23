@@ -28,7 +28,7 @@
             <section id="roundinfo" aria-labelledby="roundinfoheading">
                 <h2 id="roundinfoheading" class="accessibility">Spielerinformationen</h2>
                 <div id="player1info">
-                    <span id="player1name">Spieler 1</span>
+                    <span id="player1name">Mark</span>
                     <ul class="playerroundsummary">
                         <li><span class="accessibility">Frage 1:</span><span id="player1answer1" class="correct">Richtig</span></li>
                         <li><span class="accessibility">Frage 2:</span><span id="player1answer2" class="incorrect">Falsch</span></li>
@@ -36,7 +36,7 @@
                     </ul>
                 </div>
                 <div id="player2info">
-                    <span id="player2name">Spieler 2</span>
+                    <span id="player2name">Günther</span>
                     <ul class="playerroundsummary">
                         <li><span class="accessibility">Frage 1:</span><span id="player2answer1" class="correct">Richtig</span></li>
                         <li><span class="accessibility">Frage 2:</span><span id="player2answer2" class="correct">Richtig</span></li>
@@ -52,10 +52,10 @@
                     <h2 id="questionheading" class="accessibility">Frage</h2>
                     <p id="questiontext"><%= question.getText()%></p>
                     <ul id="answers">
-                        <li><input id="option1" type="checkbox"/><label for="option1"><%= question.getAllChoices().get(0) %></label></li>
-                        <li><input id="option2" type="checkbox"/><label for="option2"><%= question.getAllChoices().get(1) %></label></li>
-                        <li><input id="option3" type="checkbox"/><label for="option3"><%= question.getAllChoices().get(2) %></label></li>
-                        <li><input id="option4" type="checkbox"/><label for="option4"><%= question.getAllChoices().get(3) %></label></li>
+                        <li><input id="option1" type="checkbox"/><label for="option1"><%= question.getAllChoices().get(0).getText() %></label></li>
+                        <li><input id="option2" type="checkbox"/><label for="option2"><%= question.getAllChoices().get(1).getText() %></label></li>
+                        <li><input id="option3" type="checkbox"/><label for="option3"><%= question.getAllChoices().get(2).getText()%></label></li>
+                        <li><input id="option4" type="checkbox"/><label for="option4"><%= question.getAllChoices().get(3).getText() %></label></li>
                     </ul>
                     <input id="timeleftvalue" type="hidden" value="<%= question.getMaxTime() %>"/>
                     <input id="next" type="submit" value="weiter" accesskey="s"/>
