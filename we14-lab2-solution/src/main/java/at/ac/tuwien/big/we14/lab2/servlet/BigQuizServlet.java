@@ -41,8 +41,7 @@ public class BigQuizServlet extends HttpServlet {
 	//private SimpleCategoryGenerator catGen = new SimpleCategoryGenerator();
 	//private QuestionGenerator questionGen = new SimpleQuestionGenerator();
 	
-	private GameGenerator gameGen = new SimpleGameGenerator();
-	private GameEntity gameEntity = new GameEntity();
+	
 	
 	 @Override
 	    public void init() throws ServletException {
@@ -57,10 +56,9 @@ public class BigQuizServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	            throws ServletException, IOException {
 	        
-	        String action = request.getParameter("action");
+	       String action = request.getParameter("action");
 	        
 	       if(action==null) {
-				
 				PrintWriter noactionwriter = response.getWriter();
 				noactionwriter.println("<html>");
 				noactionwriter.println("<head>");
@@ -70,7 +68,6 @@ public class BigQuizServlet extends HttpServlet {
 				noactionwriter.println("<h1>QuizError: Something went wrong! No action set!</h1>");
                 noactionwriter.println("</body>");
                 noactionwriter.println("</html>");
-				
 	            return;
 	        }
 			
@@ -88,12 +85,15 @@ public class BigQuizServlet extends HttpServlet {
         		QuestionDataProvider provider = factory.createQuestionDataProvider(); 
         		List<Category> categories = provider.loadCategoryData();
         		
+        		
+        		GameGenerator gameGen = new SimpleGameGenerator();
+        		GameEntity gameEntity = new GameEntity();
+        		
         		// Erstellt automatisch ein komplettes Spiel mit Kategorien
-        		gameGen = new SimpleGameGenerator(categories, gameEntity);
+        		gameGen = new SimpleGameGenerator(categories);
         		int rounds = 5;
         		int questioncount = 3;
-        		gameEntity.setRoundCount(rounds);
-        		gameEntity.setQuestionCount(questioncount);
+        		
         		gameEntity.setGame(gameGen.generateGame(rounds, questioncount));
         		
         		
