@@ -36,7 +36,7 @@ public class BigQuizServlet extends HttpServlet {
 	 @Override
 	    public void init() throws ServletException {
 	        super.init();
-	        
+	        log.info("initialisiert");
 	        roundcounter = -1;
 	        questioncounter = -1;
 	    }
