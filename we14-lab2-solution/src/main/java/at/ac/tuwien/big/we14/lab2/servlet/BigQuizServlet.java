@@ -89,20 +89,23 @@ public class BigQuizServlet extends HttpServlet {
         		
         		GameGenerator gameGen = new SimpleGameGenerator();
         		GameEntity gameEntity = new GameEntity();
-        		
+        		log.info("neues Spiel wird erstellt:");
         		// Erstellt automatisch ein komplettes Spiel mit Kategorien
         		gameGen = new SimpleGameGenerator(categories);
         		int rounds = 5;
         		int questioncount = 3;
         		gameEntity.setGame(gameGen.generateGame(rounds, questioncount));
-        		
+        		log.info("neues spiel wurde erstellt.");
         		if(gameEntity.hasNextRound() == true){
+        			log.info("es gibt eine nächste Runde");
         			Question question = gameEntity.nextRound().iterator().next();
+        			log.info("Es wurden die Questions eingelesen");
         			session.setAttribute("question", question);
         			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
     	            dispatcher.forward(request, response);
         		}else{
         			//Keine Runden mehr.
+        			log.info("es gibt keine nächste Runde");
         			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/finish.jsp");
 		            dispatcher.forward(request, response);
         			
