@@ -93,12 +93,10 @@ public class BigQuizServlet extends HttpServlet {
         		gameGen = new SimpleGameGenerator(categories);
         		int rounds = 5;
         		int questioncount = 3;
-        		
         		gameEntity.setGame(gameGen.generateGame(rounds, questioncount));
         		
         		
-        		gameEntity.getNextRound().get(gameEntity.getQuestionCount());
-        		
+        		gameEntity.
         		
         		
         		

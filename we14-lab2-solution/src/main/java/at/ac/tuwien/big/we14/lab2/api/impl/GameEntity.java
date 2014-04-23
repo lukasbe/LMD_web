@@ -13,58 +13,21 @@ public class GameEntity {
 	private List<String> roundList = new ArrayList<String>();
 	private int roundCount = 0;
 	private int questionCount = 0;
-	
-	public HashMap<String, List<Question>> getGame() {
-		return Game;
-	}
 
 	public void setGame(HashMap<String, List<Question>> game) {
 		Game = game;
 	}
 
-	public List<String> getRoundList() {
-		return roundList;
-	}
-
-	public void setRoundList(List<String> roundList) {
-		this.roundList = roundList;
+	public boolean hasNextRound(){
+		
+		return false;
 	}
 	
-	public boolean hasNext()
-	{
-		
-		return true;
-	}
-	public int getRoundCount() {
-		return roundCount;
-	}
-
-	public void setRoundCount(int roundCount) {
-		this.roundCount = roundCount;
-	}
-
-	public int getQuestionCount() {
-		return questionCount++;
-	}
-
-	public void setQuestionCount(int questionCount) {
-		this.questionCount = questionCount;
-	}
-
-	public List<Question> next()
-	{
+	public Round nextRound(){
 		
 		return null;
 	}
+
 	
-	public List<Question> getNextRound()
-	{
-		return null;
-	}
-	
-	public void iterateQuestionCount()
-	{
-		
-	}
 	
 }
