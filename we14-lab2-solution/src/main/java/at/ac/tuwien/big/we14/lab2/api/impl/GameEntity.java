@@ -50,13 +50,16 @@ public class GameEntity {
 		{
 			log.info("nextround whileschleife passiert");
 		    String Runde = it.next();
+		    log.info("count("+count+") ?=? roundCount("+roundCount);
 		    if(count == roundCount){
 		    	roundCount--;
 		    	log.info("Runde in nextRound: "+Runde);
 		    	return Game.get(Runde);
 		    }
+		    count--;
 		}
-		return null;
+		log.info("Rueckgabe hat einen Fehler!");
+		return new ArrayList<Question>();
 	}
 
 	
