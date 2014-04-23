@@ -26,6 +26,7 @@ public class SimpleQuestionGenerator implements QuestionGenerator{
 	
 	@Override
 	public Question getQuestion() {
+		if(category == null) return null;
 		List<Question> list = new ArrayList<Question>();
 		
 		for(Question q: category.getQuestions())

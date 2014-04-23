@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
+
 import at.ac.tuwien.big.we14.lab2.api.Category;
 /**
  * 
@@ -16,7 +18,7 @@ public class SimpleCategoryGenerator {
 
 	List<Category> alreadyUsedCategory = new ArrayList<Category>();
 	List<Category> categories = new ArrayList<Category>();
-	
+	//protected static Logger log = Logger.getLogger(SimpleCategoryGenerator.class);
 	public SimpleCategoryGenerator(){}
 	
 	public SimpleCategoryGenerator(List<Category> catergories)
@@ -25,9 +27,12 @@ public class SimpleCategoryGenerator {
 	}
 	
 	public Category getCategory()
-	{		
-		List<Category> list = new ArrayList<Category>();
+	{
+		if(categories == null) return null;
+		if(categories.isEmpty()) return null;
 		
+		List<Category> list = new ArrayList<Category>();
+
 		for(Category c: categories)
 		{
 			// Falls die Category noch nicht verwendet wurde
