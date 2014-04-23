@@ -44,6 +44,7 @@ public class SimpleGameGenerator implements GameGenerator{
 		
 		for(int i = 0; i < rounds; i++)
 		{
+			questionList = new LinkedList<Question>();
 			// Neue zufällige Kategorie wählen, welche noch nicht war
 			category = catGen.getCategory();
 			// Dem Fragengenerator eine zufällige Kategorie zuweisen 
@@ -57,6 +58,7 @@ public class SimpleGameGenerator implements GameGenerator{
 				log.info("Kat: " + category.getName() + " Q:" + question.getId());
 			}
 			Game.put(category.getName(), questionList);
+			log.info("Cat: " +category+ Game.get(category.getName()).size());
 		}
 		return Game;
 	}
