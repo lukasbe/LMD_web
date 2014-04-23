@@ -89,7 +89,7 @@ public class BigQuizServlet extends HttpServlet {
         				log.info("question ist nicht null");
         			}
         		}else{
-        			return;
+        			log.info("categories leer!");
         		}
 	        	
         		session.setAttribute("question", question);
