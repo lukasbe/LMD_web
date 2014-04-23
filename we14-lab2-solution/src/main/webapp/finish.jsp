@@ -54,7 +54,7 @@
          
                        function timeStamp() {
                        if(supportsLocalStorage()==true)
-                    	   localStorage.setItem(Date.now());
+                    	   localStorage.setItem("Date", Date.now());
                        }
          </script>
     

@@ -70,7 +70,7 @@
             </section>
             <<!-- Dynamisch: Letztes Spiel(nur bei Local Storage Support) -->
             <section id="lastgame">
-                <p>Letztes Spiel: Nie</p>
+                <p id="lg">Letztes Spiel: Nie</p>
             </section>
         </section>
 
@@ -80,6 +80,20 @@
         <script type="text/javascript">
             //<![CDATA[
             
+            //display lastGame
+            function dispLastGame(){
+            if(supportsLocalStorage()){
+            	if(localStorage.getItem("Date") === null)
+            		document.getElementById('lg').innerHTML = "Letztes Spiel: Nie"
+            
+            	else{
+            		document.getElementById('lg').innerHTML = "Letztes Spiel: " + localStorage.getItem("Date");
+            	}
+            }
+            else{
+            	document.getElementById('lg').innerHTML = "Letztes Spiel: Nie";
+            }
+            }          
             // initialize time
             $(document).ready(function() {
                 var maxtime = <%=question.getMaxTime()%>;

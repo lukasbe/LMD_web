@@ -28,5 +28,6 @@
 
         <!-- footer -->
         <footer role="contentinfo">© 2014 BIG Quiz</footer>
+
     </body>
 </html>
