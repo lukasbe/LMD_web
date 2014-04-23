@@ -18,6 +18,7 @@ import org.apache.log4j.Logger;
 import at.ac.tuwien.big.we14.lab2.api.Category;
 import at.ac.tuwien.big.we14.lab2.api.Question;
 import at.ac.tuwien.big.we14.lab2.api.QuestionDataProvider;
+import at.ac.tuwien.big.we14.lab2.api.QuestionGenerator;
 import at.ac.tuwien.big.we14.lab2.api.QuizFactory;
 import at.ac.tuwien.big.we14.lab2.api.impl.ServletQuizFactory;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleCategory;
@@ -79,7 +80,19 @@ public class BigQuizServlet extends HttpServlet {
         		QuestionDataProvider provider = factory.createQuestionDataProvider(); 
         		List<Category> categories = provider.loadCategoryData();
         		
-        		Question question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator(categories).getCategory()).getQuestion());
+        		Question question = new SimpleQuestion();
+        		Category cg = new SimpleCategory();
+        		
+        		SimpleCategoryGenerator catGen = new SimpleCategoryGenerator(categories);        		
+        		// Neue zufällige Kategorie wählen, welche noch nicht war
+        		cg = catGen.getCategory();
+        		
+        		// Dem Fragengenerator eine zufällige Kategorie zuweisen 
+        		QuestionGenerator questionGen = new SimpleQuestionGenerator(cg);
+        		// Aus den möglichen Fragen einer Kategorie eine neue zufällige Frage wählen
+        		question = questionGen.getQuestion();
+        		
+        		//Question question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator(categories).getCategory()).getQuestion());
         		if(question.getCategory() == null || question.getText().equals("")){
         			log.info("question ist leer");
         		}
@@ -89,9 +102,7 @@ public class BigQuizServlet extends HttpServlet {
 	        	session.setAttribute("questioncounter", questioncounter);	        	
 	        	
 	        	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
-	        	log.info("nach dispatcher");
 	            dispatcher.forward(request, response);
-	            log.info("nach forward");
 	        	
 	        }else if (action.equals("questioncomplete")){
 	        	log.info("Action: questioncomplete");
@@ -127,7 +138,7 @@ public class BigQuizServlet extends HttpServlet {
 	        		questioncounter = 1;
 	        		session.setAttribute("roundcounter", roundcounter);
 		        	session.setAttribute("questioncounter", questioncounter);
-		        	
+		        	session.setAttribute("loadCat", true);
 	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
 		            dispatcher.forward(request, response);  
 	        	}
