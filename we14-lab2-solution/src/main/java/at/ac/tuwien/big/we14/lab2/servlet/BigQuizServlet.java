@@ -2,6 +2,7 @@ package at.ac.tuwien.big.we14.lab2.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -42,7 +43,6 @@ public class BigQuizServlet extends HttpServlet {
 	
 	private GameGenerator gameGen = new SimpleGameGenerator();
 	private GameEntity gameEntity = new GameEntity();
-	
 	
 	 @Override
 	    public void init() throws ServletException {
@@ -95,10 +95,11 @@ public class BigQuizServlet extends HttpServlet {
         		int questioncount = 3;
         		gameEntity.setGame(gameGen.generateGame(rounds, questioncount));
         		
-        		//gameEntity hat als HashMap alle Daten vom Spiel gespeichert (Runden mit Fragen)
-        		gameEntity.getGame();
+        		gameEntity.getGame().get(gameEntity.getCategoriesList().get(roundcounter));
         		
-        		/*
+        		//gameEntity hat als HashMap alle Daten vom Spiel gespeichert (Runden mit Fragen)
+        		HashMap game = gameEntity.getGame();
+        		/*ALT
         		// dem Generator einen Liste von Kategorien zuweisen
         		catGen = new SimpleCategoryGenerator(categories);        		
         		// Neue zufällige Kategorie wählen, welche noch nicht war
@@ -113,7 +114,9 @@ public class BigQuizServlet extends HttpServlet {
         		if(question.getCategory() == null || question.getText().equals("")){
         			log.info("question ist leer");
         		}
+        		ALT
 	        	*/
+        		
         		session.setAttribute("question", question);
 	        	session.setAttribute("roundcounter", roundcounter);
 	        	session.setAttribute("questioncounter", questioncounter);	        	
