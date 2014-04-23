@@ -52,7 +52,6 @@
                     <h2 id="questionheading" class="accessibility">Frage</h2>
                     <p id="questiontext"><%= question.getText()%></p>
                     <ul id="answers">
-                    <%for() %>
                         <li><input id="option1" type="checkbox"/><label for="option1"><%= question.getAllChoices().get(0) %></label></li>
                         <li><input id="option2" type="checkbox"/><label for="option2"><%= question.getAllChoices().get(1) %></label></li>
                         <li><input id="option3" type="checkbox"/><label for="option3"><%= question.getAllChoices().get(2) %></label></li>
