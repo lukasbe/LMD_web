@@ -88,6 +88,9 @@ public class BigQuizServlet extends HttpServlet {
         			{
         				log.info("question ist nicht null");
         			}
+        			if(question.getCategory() == null || question.getText().equals("")){
+        				log.info("question ist leer");
+        			}
         		}else{
         			log.info("categories leer!");
         		}
