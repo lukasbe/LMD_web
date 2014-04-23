@@ -18,6 +18,7 @@ import org.apache.log4j.Logger;
 
 import at.ac.tuwien.big.we14.lab2.api.Category;
 import at.ac.tuwien.big.we14.lab2.api.GameGenerator;
+import at.ac.tuwien.big.we14.lab2.api.Question;
 import at.ac.tuwien.big.we14.lab2.api.QuestionDataProvider;
 import at.ac.tuwien.big.we14.lab2.api.QuizFactory;
 import at.ac.tuwien.big.we14.lab2.api.impl.GameEntity;
@@ -95,16 +96,27 @@ public class BigQuizServlet extends HttpServlet {
         		int questioncount = 3;
         		gameEntity.setGame(gameGen.generateGame(rounds, questioncount));
         		
+        		if(gameEntity.hasNextRound() == true){
+        			Question question = gameEntity.nextRound().iterator().next();
+        			session.setAttribute("question", question);
+        			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
+    	            dispatcher.forward(request, response);
+        		}else{
+        			//Keine Runden mehr.
+        			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/finish.jsp");
+		            dispatcher.forward(request, response);
+        			
+        		}
         		
-        		gameEntity.
         		
         		
         		
-        		
-        		gameEntity.getGame().get(gameEntity.getRoundList().get(roundcounter));
+        		//gameEntity.getGame().get(gameEntity.getRoundList().get(roundcounter));
         		
         		//gameEntity hat als HashMap alle Daten vom Spiel gespeichert (Runden mit Fragen)
-        		HashMap game = gameEntity.getGame();
+        		//HashMap game = gameEntity.getGame();
+        		
+        		
         		/*ALT
         		// dem Generator einen Liste von Kategorien zuweisen
         		catGen = new SimpleCategoryGenerator(categories);        		
@@ -123,12 +135,10 @@ public class BigQuizServlet extends HttpServlet {
         		ALT
 	        	*/
         		
-        		session.setAttribute("question", question);
-	        	session.setAttribute("roundcounter", roundcounter);
+        		session.setAttribute("roundcounter", roundcounter);
 	        	session.setAttribute("questioncounter", questioncounter);	        	
 	        	
-	        	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
-	            dispatcher.forward(request, response);
+	        	
 	        	
 	        }else if (action.equals("questioncomplete")){
 	        	log.info("Action: questioncomplete");
@@ -165,12 +175,12 @@ public class BigQuizServlet extends HttpServlet {
 	        		session.setAttribute("roundcounter", roundcounter);
 		        	session.setAttribute("questioncounter", questioncounter);
 		        	//session.setAttribute("loadCat", true);
-		        	
+		        	/* ALT
 		        	// Neue zufällige Kategorie wählen
 		        	category = catGen.getCategory();
 		        	// Dem Fragengenerator die neue zufällige Kategorie zuweisen 
 	        		questionGen = new SimpleQuestionGenerator(category);
-	        		
+	        		 */
 	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
 		            dispatcher.forward(request, response);  
 	        	}
@@ -208,12 +218,13 @@ public class BigQuizServlet extends HttpServlet {
 	        	}else{
 	        		questioncounter = questioncounter + 1;
 	        		
+	        		/*ALT
 	        		// Neue Fragen generieren
 	        		question = questionGen.getQuestion();
 	        		
 	        		session.setAttribute("question", question);
 	        		session.setAttribute("questioncounter", questioncounter);
-	        		
+	        		*/
 	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
 		            dispatcher.forward(request, response);  
 	        	}
