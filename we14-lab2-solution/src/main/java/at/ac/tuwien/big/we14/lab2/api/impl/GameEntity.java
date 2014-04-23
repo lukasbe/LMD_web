@@ -11,7 +11,7 @@ import at.ac.tuwien.big.we14.lab2.api.Question;
 import at.ac.tuwien.big.we14.lab2.servlet.BigQuizServlet;
 
 public class GameEntity {
-	protected static Logger log = Logger.getLogger(BigQuizServlet.class);
+	protected static Logger log = Logger.getLogger(GameEntity.class);
 	// Key = CategoryName meistens 5, List<Question> = questioncount viele Fragen pro Key
 	private HashMap<String, List<Question>> Game = new HashMap<String, List<Question>>();
 	private List<String> roundList = new ArrayList<String>();
@@ -22,6 +22,7 @@ public class GameEntity {
 		Game = game;
 		roundSize = game.size();
 		roundCount = game.size();
+		log.info("set game sagt hallo");
 	}
 
 	public boolean hasNextRound(){
@@ -36,6 +37,7 @@ public class GameEntity {
 	public List<Question> nextRound(){
 		int count = roundSize;
 		Iterator<String> it = roundList.iterator();
+		log.info("nextRound sagt hallo");
 		while(it.hasNext())
 		{
 			log.info("nextround whileschleife passiert");

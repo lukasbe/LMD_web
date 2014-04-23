@@ -92,6 +92,7 @@ public class BigQuizServlet extends HttpServlet {
         		log.info("neues Spiel wird erstellt:");
         		// Erstellt automatisch ein komplettes Spiel mit Kategorien
         		gameGen = new SimpleGameGenerator(categories);
+        		log.info("simple generatior ist aus");
         		int rounds = 5;
         		int questioncount = 3;
         		gameEntity.setGame(gameGen.generateGame(rounds, questioncount));
