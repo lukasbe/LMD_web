@@ -86,27 +86,21 @@ public class SimpleAnswer implements Answer{
 		
 		this.correctChoices = correctChoices;
 		
-		for(Entry<Choice, Boolean> jedestickedhackerl : tickedhackerl.entrySet()) {
-		    Choice c = jedestickedhackerl.getKey();
-		    Boolean b = jedestickedhackerl.getValue();
-		    for(Choice ch: correctChoices){
-		    	  if(c.getId() == ch.getId()){
-		    		  if(b == true){
-		    			  this.isCorrect = true;
-		    			  return true;		    			  
-		    		  }else{
-		    			  this.isCorrect = false;
-		    			  return false;
-		    		  }
-		    		  
-		    	  }else{
-		    		  return false;
-		    	  }
-		    }
+		boolean answeredCorrectly = false;
+		
+		for(Choice c : tickedhackerl.keySet()){
+			
+			if(correctChoices.contains(tickedhackerl.get(c))){
+				answeredCorrectly = true;
+			}
+			else{
+				answeredCorrectly = false;
+				break;
+			}
+			
 		}
 		
-		
-		return false;
+		return answeredCorrectly;
 	}
 
 	@Override
