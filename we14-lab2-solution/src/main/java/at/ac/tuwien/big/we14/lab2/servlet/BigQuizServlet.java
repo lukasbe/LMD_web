@@ -197,7 +197,8 @@ public class BigQuizServlet extends HttpServlet {
         			log.info("submitted time: "+request.getParameter("timeleftvalue"));
         			
         			
-        			log.info("parameter: "+ request.getPara);
+        			log.info("parameter: "+ request.getParameterNames().toString());
+        			log.info("parametervalues: "+ request.getParameterValues("checkedChoices"));
         			
         			HashMap<Choice, Boolean> hackerl = new HashMap<Choice,Boolean>();
         			
