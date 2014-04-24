@@ -160,7 +160,11 @@ public class BigQuizServlet extends HttpServlet {
 	        	
 	        	
 	        	if(gameEntity.hasNextRound(gameBean) == true){
-        			//Es gibt noch Runden
+        			
+	        		gameBean.getPlayer1RoundSummary().clear();
+	        		gameBean.getPlayer2RoundSummary().clear();
+	        		
+	        		//Es gibt noch Runden
         			log.info("es gibt eine nächste Runde");
         			//Question question = gameEntity.nextRound().next();
         			gameEntity.nextQuestion(gameEntity.nextRound(gameBean),gameBean);
