@@ -207,13 +207,6 @@ public class BigQuizServlet extends HttpServlet {
         		if(gameEntity.thisRound(gameBean).hasNext()){
         			//Es gibt noch Fragen!
         			
-        			GameBean alteBean = gameBean;
-        			GameBean inputBean = new GameBean();
-        			
-        			Answer ans = new SimpleAnswer();
-        			ans.setId(1);
-        			ans.setPlayer(gameBean.getPlayer1());
-        			ans.setTime(Integer.parseInt(request.getParameter("timeleftvalue")));
         			log.info("submitted time: "+request.getParameter("timeleftvalue"));
         			
         			
@@ -244,6 +237,7 @@ public class BigQuizServlet extends HttpServlet {
         			//GEWINNER BESTIMMEN!!
         			
         			
+        			gameEntity.validateQuestion(gameBean.getPlayer1(), Integer.parseInt(request.getParameter("timeleftvalue")),request.getParameterValues("checkedChoices"),gameBean);
         			
         			
         			
