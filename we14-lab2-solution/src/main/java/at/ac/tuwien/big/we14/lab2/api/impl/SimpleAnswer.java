@@ -114,7 +114,7 @@ public class SimpleAnswer implements Answer{
 	    return random.nextBoolean();
 	}
 	@Override
-	public int getComputerTime(ArrayList<Choice> correctChoices){
+	public int getComputerTime(List<Choice> correctChoices){
 		if(computertime == -1){
 			Random generator = new Random();
 			
