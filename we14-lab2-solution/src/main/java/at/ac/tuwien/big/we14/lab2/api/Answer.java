@@ -54,7 +54,7 @@ public interface Answer {
 	 * @param tickedhackerl
 	 * @return
 	 */
-	public void setTickedHackerl(HashMap<Choice,Boolean> tickedhackerl);
+	public void setTickedHackerl(ArrayList<Choice> tickedhackerl);
 	
 	/**
 	 * Validiert mit einer ArrayList voller Choice Objecte welche die richtigen Antworten enthalten.

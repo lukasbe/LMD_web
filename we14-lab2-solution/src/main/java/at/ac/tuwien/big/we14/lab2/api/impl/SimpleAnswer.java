@@ -22,7 +22,7 @@ public class SimpleAnswer implements Answer{
 	private int time;
 	private String player;
 	private int computertime;
-	HashMap<Choice, Boolean> tickedhackerl;
+	ArrayList<Choice> tickedhackerl;
 	List<Choice> correctChoices;
 	
 
@@ -74,7 +74,7 @@ public class SimpleAnswer implements Answer{
 
 	@Override
 	public void setTickedHackerl(
-			HashMap<Choice, Boolean> tickedhackerl) {		
+			ArrayList<Choice> tickedhackerl) {		
 		this.tickedhackerl = tickedhackerl;
 	}
 
@@ -93,19 +93,19 @@ public class SimpleAnswer implements Answer{
 		
 		log.info("validate, boolean initialisiert");
 		
-		if(!(tickedhackerl.keySet().size() == correctChoices.size())){
+		if(!(tickedhackerl.size() == correctChoices.size())){
 				log.info("vergleich Größe false");
 			return false;
 		}
 			
-		for(Choice c : tickedhackerl.keySet()){
+		for(Choice c : tickedhackerl){
 				
-			if(correctChoices.contains(tickedhackerl.get(c))){
+			if(correctChoices.contains(c)){
 				log.info("korrekte Antwort ausgewählt");
 				answeredCorrectly = true;
 			}
 			else{
-				log.info("Antwort ausgewählt, die nicht korrekt ist");
+				log.info("Antwort ausgewählt, die nicht korrekt ist: " + c);
 				answeredCorrectly = false;
 				break;
 			}
