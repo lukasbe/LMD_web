@@ -68,7 +68,6 @@
                 <p><span id="timeleftlabel">Verbleibende Zeit:</span> <time id="timeleft"><%= question.getMaxTime() %></time></p>
                 <meter id="timermeter" min="0" low="20" value="100" max="100"/>
             </section>
-            <<!-- Dynamisch: Letztes Spiel(nur bei Local Storage Support) -->
             <section id="lastgame">
                 <p id="lg">Letztes Spiel: Nie</p>
             </section>
