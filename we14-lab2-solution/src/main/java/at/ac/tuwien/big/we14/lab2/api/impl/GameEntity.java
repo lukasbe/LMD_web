@@ -28,9 +28,6 @@ public class GameEntity {
 		return Game.size()-roundCount;
 	}
 	
-	
-	
-	
 	public void setGame(HashMap<String, List<Question>> game) {
 		//Game = game;
 		roundSize = game.size();
@@ -75,6 +72,7 @@ public class GameEntity {
 		    	log.info("Runde in nextRound: "+Runde);
 		    	currentRound = Game.get(Runde);
 		    	gamebean.setCurrentRound(this.getRoundNumber());
+		    	gamebean.setPlayer1("Dagobert");
 		    	return Game.get(Runde);
 		    }
 		    count--;
@@ -87,10 +85,16 @@ public class GameEntity {
 		return currentRound;
 	}
 	
+	public GameBean getBean(){
+		return gamebean;
+	}
+	
 	public void nextQuestion(Round r){
 		
-		log.info("nächste Frage:"+r.next());
-		
+		Question q = r.next();
+		gamebean.setCurrentQuestion(q);
+		log.info("nächste Frage:"+q);
+		log.info("nächste Frage backtrace"+gamebean.getCurrentQuestion());
 	}
 
 	public String getCurrentRoundWinner() {

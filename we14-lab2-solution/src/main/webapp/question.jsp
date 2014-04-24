@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="at.ac.tuwien.big.we14.lab2.api.*"%>
 <% org.apache.log4j.Logger.getLogger("start.jsp").info("question.jsp wurde aufgerufen!"); %>
-<jsp:useBean id="gameBean" scope="session" class="at.ac.tuwien.big.we14.lab2.api.impl.GameBean" />
+<jsp:useBean id="gameEntity" scope="session" class="at.ac.tuwien.big.we14.lab2.api.impl.GameEntity" />
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
@@ -28,7 +28,7 @@
             <section id="roundinfo" aria-labelledby="roundinfoheading">
                 <h2 id="roundinfoheading" class="accessibility">Spielerinformationen</h2>
                 <div id="player1info">
-                    <span id="player1name">Mark</span>
+                    <span id="player1name"><%= gameEntity.getBean().getPlayer1() %></span>
                     <ul class="playerroundsummary">
                         <li><span class="accessibility">Frage 1:</span><span id="player1answer1" class="correct">Richtig</span></li>
                         <li><span class="accessibility">Frage 2:</span><span id="player1answer2" class="incorrect">Falsch</span></li>
@@ -36,28 +36,28 @@
                     </ul>
                 </div>
                 <div id="player2info">
-                    <span id="player2name">Günther</span>
+                    <span id="player2name"><%= gameEntity.getBean().getPlayer2() %></span>
                     <ul class="playerroundsummary">
                         <li><span class="accessibility">Frage 1:</span><span id="player2answer1" class="correct">Richtig</span></li>
                         <li><span class="accessibility">Frage 2:</span><span id="player2answer2" class="correct">Richtig</span></li>
                         <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class="unknown">Unbekannt</span></li>
                     </ul>
                 </div>
-                <div id="currentcategory"><span class="accessibility">Kategorie:</span><%= gameBean.getCurrentQuestion().getCategory().getName() %></div>
+                <div id="currentcategory"><span class="accessibility">Kategorie:</span><% if(gameEntity.getBean().getCurrentQuestion() == null){return;} %><%= gameEntity.getBean().getCurrentQuestion().getCategory().getName() %></div>
             </section>
             
             <!-- Question -->
             <section id="question" aria-labelledby="questionheading">
                 <form id="questionform" action="BigQuizServlet" method="post">
                     <h2 id="questionheading" class="accessibility">Frage</h2>
-                    <p id="questiontext"><%= gameBean.getCurrentQuestion().getText()%></p>
+                    <p id="questiontext"><%= gameEntity.getBean().getCurrentQuestion().getText()%></p>
                     <ul id="answers">
                     	<% int counter = 1;%>
-                        <%for(Choice c : gameBean.getCurrentQuestion().getAllChoices()){ %>
+                        <%for(Choice c : gameEntity.getBean().getCurrentQuestion().getAllChoices()){ %>
                         <li><input id="<%="option" + counter%>" type="checkbox"/><label for="<%="option" + counter++%>"><%= c.getText() %></label></li>
                         <%} %>
                     </ul>
-                    <input id="timeleftvalue" type="hidden" value="<%= gameBean.getCurrentQuestion().getMaxTime() %>"/>
+                    <input id="timeleftvalue" type="hidden" value="<%= gameEntity.getBean().getCurrentQuestion().getMaxTime() %>"/>
                     <input id="next" type="submit" value="weiter" accesskey="s"/>
                     <input id="action" type="hidden" name="action" value="questioncomplete"/>
                 </form>
@@ -65,7 +65,7 @@
             
             <section id="timer" aria-labelledby="timerheading">
                 <h2 id="timerheading" class="accessibility">Timer</h2>
-                <p><span id="timeleftlabel">Verbleibende Zeit:</span> <time id="timeleft"><%= gameBean.getCurrentQuestion().getMaxTime() %></time></p>
+                <p><span id="timeleftlabel">Verbleibende Zeit:</span> <time id="timeleft"><%= gameEntity.getBean().getCurrentQuestion().getMaxTime() %></time></p>
                 <meter id="timermeter" min="0" low="20" value="100" max="100"/>
             </section>
             <section id="lastgame">
@@ -95,7 +95,7 @@
             }          
             // initialize time
             $(document).ready(function() {
-                var maxtime = <%=gameBean.getCurrentQuestion().getMaxTime()%>;
+                var maxtime = <%=gameEntity.getBean().getCurrentQuestion().getMaxTime()%>;
                 var hiddenInput = $("#timeleftvalue");
                 var meter = $("#timer meter");
                 var timeleft = $("#timeleft");
