@@ -34,7 +34,7 @@
 	                        <li><span class="accessibility">Frage <%=i%>:</span><%="<span id=\""%><%="player1answer" + i%>" 	
 		                        
 		                        <%if(gameBean.getPlayer1RoundSummary().get(i-1) == null){%>
-		                        	<%="class=\"correct\">Richtig"%><%}%>
+		                        	<%="class=\"unknown\">Unbekannt"%><%}%>
 		                     	
 		                        <%if(gameBean.getPlayer1RoundSummary().get(i-1)){%>
 		                        	<%="class=\"correct\">Richtig"%><%}%>
