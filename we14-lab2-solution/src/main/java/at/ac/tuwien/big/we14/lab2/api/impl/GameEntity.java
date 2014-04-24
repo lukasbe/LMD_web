@@ -24,10 +24,17 @@ public class GameEntity {
 	private String gameWinner = "";
 	private GameBean gamebean;
 	
+	private int getRoundNumber(){
+		return Game.size()-roundCount;
+	}
+	
+	
+	
 	
 	public void setGame(HashMap<String, List<Question>> game) {
 		//Game = game;
 		roundSize = game.size();
+		gamebean.setRoundsQuantity(game.size());		
 		roundCount = game.size();
 		for(Entry<String, List<Question>> entry : game.entrySet()) {
 		   
@@ -63,6 +70,7 @@ public class GameEntity {
 		    	roundCount--;
 		    	log.info("Runde in nextRound: "+Runde);
 		    	currentRound = Game.get(Runde);
+		    	gamebean.setCurrentRound(this.getRoundNumber());
 		    	return Game.get(Runde);
 		    }
 		    count--;
@@ -73,11 +81,6 @@ public class GameEntity {
 
 	public Round thisRound(){
 		return currentRound;
-	}
-	
-	public int getRoundNumber(){
-		int s = -1;
-		return Game.size()-roundCount;
 	}
 
 	public String getCurrentRoundWinner() {
