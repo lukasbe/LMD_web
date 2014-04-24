@@ -140,4 +140,43 @@ public class GameEntity {
 		log.info("nächste Frage:"+q);
 		log.info("nächste Frage backtrace"+gamebean.getCurrentQuestion());
 	}
+	
+public void determineRounds(GameBean bean){
+		
+		int player1Points = 0;
+		int player2Points = 0;
+		
+		for(boolean b : bean.getPlayer1RoundSummary()){
+			 if(b == true){
+				 player1Points++;
+			 }
+			 else{
+				 player1Points--;
+			 }
+		}
+		
+		for(boolean b : bean.getPlayer2RoundSummary()){
+			 if(b == true){
+				 player2Points++;
+			 }
+			 else{
+				 player2Points--;
+			 }
+		}
+		if(player1Points < player2Points){
+			bean.setCurrentRoundWinner(bean.getPlayer2());
+		} else if(player1Points > player2Points){
+			bean.setCurrentRoundWinner(bean.getPlayer1());
+		} else{
+			if(bean.getPlayer1RoundTime() < bean.getPlayer2RoundTime()){
+				bean.setCurrentRoundWinner(bean.getPlayer1());	
+			} else if(bean.getPlayer1RoundTime() > bean.getPlayer2RoundTime()){
+				bean.setCurrentRoundWinner(bean.getPlayer2());
+			}else{
+				bean.setCurrentRoundWinner("Niemand");
+				
+			}
+		}
+	}
+	
 }
