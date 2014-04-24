@@ -100,7 +100,7 @@ public class BigQuizServlet extends HttpServlet {
         		log.info("neues spiel wurde erstellt.");
         		if(gameEntity.hasNextRound() == true){
         			log.info("es gibt eine nächste Runde");
-        			Question question = gameEntity.nextRound().iterator().next();
+        			Question question = gameEntity.nextRound().next();
         			log.info("Es wurden die Questions eingelesen");
         			session.setAttribute("gameEntity", gameEntity);
         			log.info("game im session gespeichert");
@@ -220,9 +220,24 @@ public class BigQuizServlet extends HttpServlet {
         		
 	        	gameEntity = (GameEntity) session.getAttribute("gameEntity");
         		log.info("spiel wurde aus dem session geladen");
-        		if(gameEntity.hasNextRound() == true){
+        		
+        		if(gameEntity.thisRound().hasNext()){
+        			//Es gibt noch Fragen!
+        			
+        			log.info("es gibt eine nächste Frage");
+        			Question question = gameEntity.thisRound().next();
+        			log.info("Es wurden die (nicht ersten) Questions eingelesen");
+        			session.setAttribute("gameEntity", gameEntity);
+        			log.info("game im session gespeichert");
+        			session.setAttribute("question", question);
+        			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
+    	            dispatcher.forward(request, response);
+        			
+        			
+        		}else if(gameEntity.hasNextRound() == true){
+        			//Es gibt noch Runden
         			log.info("es gibt eine nächste Runde");
-        			Question question = gameEntity.nextRound().iterator().next();
+        			Question question = gameEntity.nextRound().next();
         			log.info("Es wurden die Questions eingelesen");
         			session.setAttribute("gameEntity", gameEntity);
         			log.info("game im session gespeichert");
