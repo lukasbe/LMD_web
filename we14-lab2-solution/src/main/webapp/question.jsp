@@ -57,7 +57,7 @@
                         <li><input id="<%="option" + counter%>" type="checkbox"/><label for="<%="option" + counter++%>"><%= c.getText() %></label></li>
                         <%} %>
                     </ul>
-                    <input id="timeleftvalue" type="hidden" value="<%= gameBean.getCurrentQuestion().getMaxTime() %>"/>
+                    <input id="timeleftvalue" type="hidden" name="timeleftvalue" value="<%= gameBean.getCurrentQuestion().getMaxTime() %>"/>
                     <input id="next" type="submit" value="weiter" accesskey="s"/>
                     <input id="action" type="hidden" name="action" value="questioncomplete"/>
                 </form>

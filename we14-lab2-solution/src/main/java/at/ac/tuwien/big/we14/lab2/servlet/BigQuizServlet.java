@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
+import at.ac.tuwien.big.we14.lab2.api.Answer;
 import at.ac.tuwien.big.we14.lab2.api.Category;
 import at.ac.tuwien.big.we14.lab2.api.GameGenerator;
 import at.ac.tuwien.big.we14.lab2.api.Question;
@@ -25,6 +26,7 @@ import at.ac.tuwien.big.we14.lab2.api.QuizFactory;
 import at.ac.tuwien.big.we14.lab2.api.impl.GameBean;
 import at.ac.tuwien.big.we14.lab2.api.impl.GameEntity;
 import at.ac.tuwien.big.we14.lab2.api.impl.ServletQuizFactory;
+import at.ac.tuwien.big.we14.lab2.api.impl.SimpleAnswer;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleGameGenerator;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleQuestionGenerator;
 
@@ -96,7 +98,7 @@ public class BigQuizServlet extends HttpServlet {
         		int rounds = 5;
         		int questioncount = 3;
         		gameEntity.setGame(gameGen.generateGame(rounds, questioncount), gameBean);
-        		log.info("neues spiel wurde erstellt.");
+        		log.info("neues spiel wurde erstellt.Alles sollte zufällig sein");
         		if(gameEntity.hasNextRound(gameBean) == true){
         			log.info("es gibt eine nächste Runde");
         			//Question question = gameEntity.nextRound().next();
@@ -184,6 +186,17 @@ public class BigQuizServlet extends HttpServlet {
         		if(gameEntity.thisRound(gameBean).hasNext()){
         			//Es gibt noch Fragen!
         			
+        			GameBean alteBean = gameBean;
+        			GameBean inputBean = new GameBean();
+        			
+        			Answer ans = new SimpleAnswer();
+        			ans.setId(1);
+        			ans.setPlayer(gameBean.getPlayer1());
+        			//ans.setTime((int) request.getAttribute("timeleftvalue"));
+        			log.info("submitted time: "+request.getParameter("timeleftvalue"));
+        			request.getPara
+        			
+        			
         			log.info("es gibt eine nächste Frage");
         			//Question question = gameEntity.thisRound().next();
         			gameEntity.nextQuestion(gameEntity.thisRound(gameBean),gameBean);
@@ -199,6 +212,11 @@ public class BigQuizServlet extends HttpServlet {
         			
         			//GEWINNER BESTIMMEN!!
         			
+        			
+        			
+        			
+        			
+        			
         			List<Boolean> lis = new ArrayList<Boolean>();
         			lis.add(true);
         			lis.add(false);
@@ -208,6 +226,8 @@ public class BigQuizServlet extends HttpServlet {
         			lis2.add(true);
         			lis2.add(true);
         			lis2.add(false);
+        			
+        			
         			
         			
         			gameBean.setPlayer1RoundSummary(lis);
