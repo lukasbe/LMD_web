@@ -45,7 +45,7 @@
                 <div id="player2info" class="playerinfo">
                     <span id="player2name" class="playername"><%=gameBean.getPlayer2()%></span>
                     <ul class="playerroundsummary">
-                       <%for(int i = 1; i <= gameBean.getRoundsQuantity(); i++){%>
+                       <%for(int i = 1; i <= gameBean.getQuestionsQuantity(); i++){%>
                         <li><span class="accessibility">Frage <%=i%>:</span><%="<span id=\""%><%="player2answer" + i%>" 	<%if(gameBean.getPlayer2RoundSummary().get(i-1)){%><%="class=\"correct\">Richtig"%><%}%>
                         																					<%if(!gameBean.getPlayer2RoundSummary().get(i-1)){%><%="class=\"incorrect\">Falsch"%><%}%>
                         <%="</span>"%></li>
