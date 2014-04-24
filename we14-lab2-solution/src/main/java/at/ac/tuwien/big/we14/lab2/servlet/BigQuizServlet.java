@@ -19,6 +19,7 @@ import org.apache.log4j.Logger;
 
 import at.ac.tuwien.big.we14.lab2.api.Answer;
 import at.ac.tuwien.big.we14.lab2.api.Category;
+import at.ac.tuwien.big.we14.lab2.api.Choice;
 import at.ac.tuwien.big.we14.lab2.api.GameGenerator;
 import at.ac.tuwien.big.we14.lab2.api.Question;
 import at.ac.tuwien.big.we14.lab2.api.QuestionDataProvider;
@@ -192,9 +193,15 @@ public class BigQuizServlet extends HttpServlet {
         			Answer ans = new SimpleAnswer();
         			ans.setId(1);
         			ans.setPlayer(gameBean.getPlayer1());
-        			//ans.setTime((int) request.getAttribute("timeleftvalue"));
+        			ans.setTime(Integer.parseInt(request.getParameter("timeleftvalue")));
         			log.info("submitted time: "+request.getParameter("timeleftvalue"));
         			
+        			
+        			log.info("parameter: "+ request.getPara);
+        			
+        			HashMap<Choice, Boolean> hackerl = new HashMap<Choice,Boolean>();
+        			
+        			//ans.setTickedHackerl(tickedhackerl);
         			
         			
         			log.info("es gibt eine nächste Frage");
