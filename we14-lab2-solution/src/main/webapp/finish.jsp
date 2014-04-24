@@ -25,19 +25,19 @@
             <!-- winner message -->
             <section id="roundwinner" aria-labelledby="roundwinnerheading">
                 <h2 id="roundwinnerheading" class="accessibility">Endstand</h2>
-                <p class="roundwinnermessage">Spieler 2 gewinnt!</p>
+                <p class="roundwinnermessage"><%=gameBean.getGameWinner()%> gewinnt!</p>
             </section>
         
             <!-- round info -->    
             <section id="roundinfo" aria-labelledby="roundinfoheading">
                 <h2 id="roundinfoheading" class="accessibility">Spielerinformationen</h2>
                 <div id="player1info" class="playerinfo">
-                    <span id="player1name" class="playername">Spieler 1</span>
-                    <p id="player1roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player1wonrounds" class="playerwonrounds">2</span></p>
+                    <span id="player1name" class="playername"><%=gameBean.getPlayer1() %></span>
+                    <p id="player1roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player1wonrounds" class="playerwonrounds"><%=gameBean.getPlayer1WonRounds() %></span></p>
                 </div>
                 <div id="player2info" class="playerinfo">
-                    <span id="player2name" class="playername">Spieler 2</span>
-                    <p id="player2roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player2wonrounds" class="playerwonrounds">1</span></p>
+                    <span id="player2name" class="playername"><%=gameBean.getPlayer2() %></span>
+                    <p id="player2roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player2wonrounds" class="playerwonrounds"><%= gameBean.getPlayer2WonRounds()%></span></p>
                 </div>
                 <form id="finishform" action="BigQuizServlet" method="GET">
 		        	<input type="hidden" name="action" value="start"/>
