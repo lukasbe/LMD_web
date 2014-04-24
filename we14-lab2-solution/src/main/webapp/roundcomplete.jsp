@@ -34,14 +34,25 @@
                 <div id="player1info" class="playerinfo">
                     <span id="player1name" class="playername"><%=gameBean.getPlayer1()%></span>
                     <ul class="playerroundsummary">
-                        <%for(int i = 1; i <= gameBean.getQuestionsQuantity(); i++){%>
-	                        <li><span class="accessibility">Frage <%=i%>:</span><%="<span id=\""%><%="player1answer" + i%>" 	
-		                        <%if(gameBean.getPlayer1RoundSummary().get(i-1)){%>
-		                        	<%="class=\"correct\">Richtig"%><%}%>
+                       <%for(int i = 1; i <= gameBean.getQuestionsQuantity(); i++){%>
+	                        <li><span class="accessibility">Frage <%=i%>:</span><%="<span id=\""%><%="Player1answer" + i%>" 	
+		                        
+		                        <%if(gameBean.getPlayer1RoundSummary().isEmpty()) { %>
+		                        	<%="class=\"unknown\">Empty"%>
+		                        
+		                        <% } try{
+		                        	if(gameBean.getPlayer1RoundSummary().get(i-1) == null){%>
+		                        	<%="class=\"unknown\">Unbekannt"%>
+		                     	
+		                        <% } else if(gameBean.getPlayer1RoundSummary().get(i-1)){ %>
+		                        	<%="class=\"correct\">Richtig"%>
 		                        	
-		                        <%if(!gameBean.getPlayer1RoundSummary().get(i-1)){%>
-		                        	<%="class=\"incorrect\">Falsch"%><%}%>
-		                        	
+		                        <% } else {%>
+		                        	<%="class=\"incorrect\">Falsch"%>
+		                         <%}
+		                        		}catch(Exception e){%>
+		                        	<%="class=\"unknown\">Unbekannt"%>
+		                        		<% } %>
 	                        <%="</span>"%></li>
                         <%}%>
                         </ul>
@@ -51,9 +62,25 @@
                     <span id="player2name" class="playername"><%=gameBean.getPlayer2()%></span>
                     <ul class="playerroundsummary">
                        <%for(int i = 1; i <= gameBean.getQuestionsQuantity(); i++){%>
-                        <li><span class="accessibility">Frage <%=i%>:</span><%="<span id=\""%><%="player2answer" + i%>" 	<%if(gameBean.getPlayer2RoundSummary().get(i-1)){%><%="class=\"correct\">Richtig"%><%}%>
-                        																					<%if(!gameBean.getPlayer2RoundSummary().get(i-1)){%><%="class=\"incorrect\">Falsch"%><%}%>
-                        <%="</span>"%></li>
+	                        <li><span class="accessibility">Frage <%=i%>:</span><%="<span id=\""%><%="Player2answer" + i%>" 	
+		                        
+		                        <%if(gameBean.getPlayer2RoundSummary().isEmpty()) { %>
+		                        	<%="class=\"unknown\">Empty"%>
+		                        
+		                        <% } try{
+		                        	if(gameBean.getPlayer2RoundSummary().get(i-1) == null){%>
+		                        	<%="class=\"unknown\">Unbekannt"%>
+		                     	
+		                        <% } else if(gameBean.getPlayer2RoundSummary().get(i-1)){ %>
+		                        	<%="class=\"correct\">Richtig"%>
+		                        	
+		                        <% } else {%>
+		                        	<%="class=\"incorrect\">Falsch"%>
+		                         <%}
+		                        		}catch(Exception e){%>
+		                        	<%="class=\"unknown\">Unbekannt"%>
+		                        		<% } %>
+	                        <%="</span>"%></li>
                         <%}%>
                     </ul>
                     <p id="player2roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player2wonrounds" class="playerwonrounds"><%=gameBean.getPlayer2WonRounds() %></span></p>
