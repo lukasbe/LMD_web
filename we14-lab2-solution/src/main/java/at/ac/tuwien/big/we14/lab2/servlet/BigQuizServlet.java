@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -220,8 +222,11 @@ public class BigQuizServlet extends HttpServlet {
         			
         			log.info("parameter: "+ request.getParameterNames().toString());
         			log.info("parametervalues: "+ request.getParameterValues("checkedChoices"));
+        			        			
+        			gameEntity.validateQuestion(gameBean.getPlayer1(), Integer.parseInt(request.getParameter("timeleftvalue")),request.getParameterValues("checkedChoices"),gameBean);
         			
-        			HashMap<Choice, Boolean> hackerl = new HashMap<Choice,Boolean>();
+        			
+        			
         			
         			//ans.setTickedHackerl(tickedhackerl);
         			

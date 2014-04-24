@@ -9,6 +9,8 @@ import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 
+import at.ac.tuwien.big.we14.lab2.api.Answer;
+import at.ac.tuwien.big.we14.lab2.api.Choice;
 import at.ac.tuwien.big.we14.lab2.api.Question;
 import at.ac.tuwien.big.we14.lab2.servlet.BigQuizServlet;
 
@@ -90,6 +92,27 @@ public class GameEntity {
 	
 	public GameBean getBean(){
 		return gamebean;
+	}
+	
+	public void validateQuestion(String player, int timeleft, String[] ticked, GameBean bean){
+		HashMap<Choice, Boolean> gesetzehackerl = new HashMap<Choice,Boolean>();
+		
+		for(String s:ticked){
+			log.info("parametervalues: "+ s);
+			for(Choice c:bean.getCurrentQuestion().getAllChoices()){
+				if(c.getId() == Integer.parseInt(s)){
+					gesetzehackerl.put(c, true);
+				}
+			}
+		}
+		Answer ans = new SimpleAnswer();
+		ans.setId(1);
+		ans.setPlayer(player);
+		ans.setTime(timeleft);
+		ans.setTickedHackerl(gesetzehackerl);
+		
+		log.info("ist es wahr?: "+ans.validateWith(bean.getCurrentQuestion().getCorrectChoices()));
+		
 	}
 	
 	public void nextQuestion(Round r, GameBean bean){

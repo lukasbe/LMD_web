@@ -2,6 +2,7 @@ package at.ac.tuwien.big.we14.lab2.api;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public interface Answer {
 
@@ -60,10 +61,10 @@ public interface Answer {
 	 * @param correctChoices Arraylist
 	 * @return allChoices are okay
 	 */
-	public Boolean validateWith(ArrayList<Choice> correctChoices);
+	public Boolean validateWith(List<Choice> correctChoices);
 	
 	public Boolean getIsComputerCorrect();
 	
-	public int getComputerTime(ArrayList<Choice> correctChoices);
+	public int getComputerTime(List<Choice> correctChoices);
 	
 }
