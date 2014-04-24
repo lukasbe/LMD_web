@@ -6,10 +6,10 @@ import at.ac.tuwien.big.we14.lab2.api.Question;
 
 public class GameBean {
 	
-	private String player1;
+	private String player1 = "Hugobert";
 	private List<Boolean> player1RoundSummary;
 	private int player1WonRounds;
-	private String player2;
+	private String player2 = "Computer";
 	private List<Boolean> player2RoundSummary;
 	private int player2WonRounds;
 	private int currentRound;
