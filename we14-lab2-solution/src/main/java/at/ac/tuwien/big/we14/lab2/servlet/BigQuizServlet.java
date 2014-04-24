@@ -2,6 +2,7 @@ package at.ac.tuwien.big.we14.lab2.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -198,7 +199,20 @@ public class BigQuizServlet extends HttpServlet {
         			
         			//GEWINNER BESTIMMEN!!
         			
+        			List<Boolean> lis = new ArrayList<Boolean>();
+        			lis.add(true);
+        			lis.add(false);
+        			lis.add(false);
         			
+        			List<Boolean> lis2 = new ArrayList<Boolean>();
+        			lis2.add(true);
+        			lis2.add(true);
+        			lis2.add(false);
+        			
+        			
+        			gameBean.setPlayer1RoundSummary(lis);
+        			gameBean.setPlayer2RoundSummary(lis2);
+        			session.setAttribute("gameBean",gameBean);
         			
         			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/roundcomplete.jsp");
     	            dispatcher.forward(request, response);       			
