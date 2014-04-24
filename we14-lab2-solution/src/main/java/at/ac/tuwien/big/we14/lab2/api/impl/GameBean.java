@@ -24,12 +24,13 @@ public class GameBean {
 	private Question currentQuestion;
 	protected static Logger log = Logger.getLogger(GameBean.class);
 	private int roundCount;
+	private Round currentRoundObj;
+	private List<String> roundList = new ArrayList<String>();
 	
 	
 	private HashMap<String, Round> Game = new HashMap<String, Round>();
-	private List<String> roundList = new ArrayList<String>();
 	
-	//private Round currentRound = new Round(null);
+	
 	
 	
 	
@@ -113,6 +114,18 @@ public class GameBean {
 	}
 	public void setRoundCount(int roundCount) {
 		this.roundCount = roundCount;
+	}
+	public Round getCurrentRoundObj() {
+		return currentRoundObj;
+	}
+	public void setCurrentRoundObj(Round currentRoundObj) {
+		this.currentRoundObj = currentRoundObj;
+	}
+	public List<String> getRoundList() {
+		return roundList;
+	}
+	public void setRoundList(List<String> roundList) {
+		this.roundList = roundList;
 	}
 
 }
