@@ -16,9 +16,6 @@ public class GameEntity {
 	protected static Logger log = Logger.getLogger(GameEntity.class);
 	// Key = CategoryName meistens 5, List<Question> = questioncount viele Fragen pro Key
 	private HashMap<String, Round> Game = new HashMap<String, Round>();
-	private List<String> roundList = new ArrayList<String>();
-	private Round currentRound = new Round(null);
-	
 	private GameBean gamebean;
 	
 	private int getRoundNumber(){
@@ -33,8 +30,8 @@ public class GameEntity {
 		gamebean.setRoundCount(game.size());
 		
 		for(Entry<String, List<Question>> entry : game.entrySet()) {
-		   
-		   roundList.add(entry.getKey());
+		   gamebean.setRoundList(gamebean.getRoundList().add(entry.getKey()));
+		   //roundList.add(entry.getKey());
 		   gamebean.setQuestionsQuantity(entry.getValue().size());
 		   Round r = new Round(entry.getValue());
 		   Game.put(entry.getKey(), r);
@@ -55,7 +52,7 @@ public class GameEntity {
 	
 	public Round nextRound(){
 		int count = gamebean.getRoundsQuantity();
-		Iterator<String> it = roundList.iterator();
+		Iterator<String> it = gamebean.getRoundList().iterator();
 		log.info("nextRound sagt hallo");
 		log.info("roundlistiterator hasNext?"+it.hasNext());
 		while(it.hasNext())
@@ -66,9 +63,9 @@ public class GameEntity {
 		    if(count == gamebean.getRoundCount()){
 		    	gamebean.setRoundCount(gamebean.getRoundCount()-1);
 		    	log.info("Runde in nextRound: "+Runde);
-		    	currentRound = Game.get(Runde);
+		    	//currentRound = Game.get(Runde); alt
+		    	gamebean.setCurrentRoundObj(Game.get(Runde));
 		    	gamebean.setCurrentRound(this.getRoundNumber());
-		    	gamebean.setPlayer1("Dagobert");
 		    	return Game.get(Runde);
 		    }
 		    count--;
@@ -78,7 +75,7 @@ public class GameEntity {
 	}
 
 	public Round thisRound(){
-		return currentRound;
+		return gamebean.getCurrentRoundObj();
 	}
 	
 	public GameBean getBean(){
