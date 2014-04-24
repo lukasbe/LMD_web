@@ -96,12 +96,19 @@ public class GameEntity {
 	
 	public void validateQuestion(String player, int timeleft, String[] ticked, GameBean bean){
 		HashMap<Choice, Boolean> gesetzehackerl = new HashMap<Choice,Boolean>();
+		List<Choice> gesetzehackerlliste = new ArrayList<Choice>();
+		
+		
+		
+		
 		
 		for(String s:ticked){
 			log.info("parametervalues: "+ s);
 			for(Choice c:bean.getCurrentQuestion().getAllChoices()){
 				if(c.getId() == Integer.parseInt(s)){
-					gesetzehackerl.put(c, true);
+					gesetzehackerlliste.add(c);
+					
+					//gesetzehackerl.put(c, true);
 				}
 			}
 		}
@@ -109,7 +116,7 @@ public class GameEntity {
 		ans.setId(1);
 		ans.setPlayer(player);
 		ans.setTime(timeleft);
-		ans.setTickedHackerl(gesetzehackerl);
+		ans.setTickedHackerl(gesetzehackerlliste);
 		log.info("ist es wahr?: "+ans.validateWith(bean.getCurrentQuestion().getCorrectChoices()));
 		
 	}
