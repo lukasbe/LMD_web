@@ -26,8 +26,6 @@ public class GameBean {
 	private int roundCount;
 	private Round currentRoundObj;
 	private List<String> roundList = new ArrayList<String>();
-	
-	
 	private HashMap<String, Round> Game = new HashMap<String, Round>();
 	
 	
@@ -126,6 +124,12 @@ public class GameBean {
 	}
 	public void setRoundList(List<String> roundList) {
 		this.roundList = roundList;
+	}
+	public HashMap<String, Round> getGame() {
+		return Game;
+	}
+	public void setGame(HashMap<String, Round> game) {
+		Game = game;
 	}
 
 }
