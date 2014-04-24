@@ -59,7 +59,7 @@
 	                        <li><span class="accessibility">Frage <%=i%>:</span><%="<span id=\""%><%="Player2answer" + i%>" 	
 		                        
 		                        <%if(gameBean.getPlayer2RoundSummary().isEmpty()) { %>
-		                        	<%="class=\"unknown\">Unbekannt"%>
+		                        	<%="class=\"unknown\">Empty"%>
 		                        
 		                        <% } else if(gameBean.getPlayer2RoundSummary().get(i-1) == null){%>
 		                        	<%="class=\"unknown\">Unbekannt"%>
