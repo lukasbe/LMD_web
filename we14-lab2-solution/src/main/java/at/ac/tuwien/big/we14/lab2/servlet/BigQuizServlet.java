@@ -148,29 +148,41 @@ public class BigQuizServlet extends HttpServlet {
 	        	
 	        	
 	        }else if (action.equals("questioncomplete")){
-	        	log.info("Action: questioncomplete");
+	        	log.info("Action: in GET questioncomplete");
 	        	///Old... and they lived in post section happy ever after
 	        	
 	        }else if (action.equals("roundcompleteweiter")){
 	        	log.info("Action: roundcomplete");
-	        	//sind 5 runden vergangen, dann kommt finish html, sonst kommen neue question.jsp seiten.
-	        	
 	        	HttpSession session = request.getSession(true);
 	        	roundcounter = (int)session.getAttribute("roundcounter");
 	        	questioncounter = (int)session.getAttribute("questioncounter");
-	        	/*	        	
-	        	if(true){
-	        		PrintWriter out = response.getWriter();
-	                out.println("<html>");
-	                out.println("<head>");
-	                out.println("<title>RoundComplete getriggert</title>");            
-	                out.println("</head>");
-	                out.println("<body>");
-	                out.println("<h1>Hello RoundComplete getriggert"  + "</h1>");
-	                out.println("</body>");
-	                out.println("</html>");
-	        	}	
-	        	*/
+	        	
+	        	
+	        	gameEntity = (GameEntity) session.getAttribute("gameEntity");
+        		log.info("spiel wurde aus dem session geladen");
+	        	
+	        	
+	        	if(gameEntity.hasNextRound() == true){
+        			//Es gibt noch Runden
+        			log.info("es gibt eine nächste Runde");
+        			Question question = gameEntity.nextRound().next();
+        			log.info("Es wurden die Questions eingelesen");
+        			session.setAttribute("gameEntity", gameEntity);
+        			log.info("game im session gespeichert");
+        			session.setAttribute("question", question);
+        			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
+    	            dispatcher.forward(request, response);
+        		}else{
+        			//Keine Runden mehr.
+        			log.info("es gibt keine nächste Runde");
+        			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/finish.jsp");
+		            dispatcher.forward(request, response);
+        			
+        		}      	
+	        	
+	        	
+	        	
+	        	/*
 	        	if(roundcounter >= 5){
 	        		//finishseite aufrufen
 	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/finish.jsp");
@@ -187,13 +199,13 @@ public class BigQuizServlet extends HttpServlet {
 		        	category = catGen.getCategory();
 		        	// Dem Fragengenerator die neue zufällige Kategorie zuweisen 
 	        		questionGen = new SimpleQuestionGenerator(category);
-	        		 */
+	        		 *//*
 	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
 		            dispatcher.forward(request, response);  
 	        	}
 	        	//if counter == 3 -> finish.html
 	        	//else roundcomplete.html
-	        	
+	        	*/
 	        }
 	 }
 	
@@ -209,11 +221,7 @@ public class BigQuizServlet extends HttpServlet {
 			}
 	        if(action.equals("questioncomplete")) { 
 	        	
-	        	//sind schon 3 fragen gefragt? wenn ja counter zurücksetzen und auf roundcomplete.jsp gehen
 	        	HttpSession session = request.getSession(true);
-	        	roundcounter = (int)session.getAttribute("roundcounter");
-	        	questioncounter = (int)session.getAttribute("questioncounter");
-	        	
 	        	log.info("Action: question complete");
 	        	
 	        	
@@ -233,55 +241,11 @@ public class BigQuizServlet extends HttpServlet {
         			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
     	            dispatcher.forward(request, response);
         			
-        			
-        		}else if(gameEntity.hasNextRound() == true){
-        			//Es gibt noch Runden
-        			log.info("es gibt eine nächste Runde");
-        			Question question = gameEntity.nextRound().next();
-        			log.info("Es wurden die Questions eingelesen");
-        			session.setAttribute("gameEntity", gameEntity);
-        			log.info("game im session gespeichert");
-        			session.setAttribute("question", question);
-        			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
-    	            dispatcher.forward(request, response);
-        		}else{
-        			//Keine Runden mehr.
-        			log.info("es gibt keine nächste Runde");
-        			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/finish.jsp");
-		            dispatcher.forward(request, response);
-        			
+        		}else { 
+        			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/roundcomplete.jsp");
+    	            dispatcher.forward(request, response);       			
         		}
-	        	
-	        	
-	        	/*
-	        	
-	        	if(questioncounter >= 3){
-	        		questioncounter = 1;
-	        		session.setAttribute("questioncounter", questioncounter);
-		        	
-	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/roundcomplete.jsp");
-		            dispatcher.forward(request, response);  
-	        	}else{
-	        		questioncounter = questioncounter + 1;
-	        		
-	        		/*ALT
-	        		// Neue Fragen generieren
-	        		question = questionGen.getQuestion();
-	        		
-	        		session.setAttribute("question", question);
-	        		session.setAttribute("questioncounter", questioncounter);
-	        		*//*
-	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
-		            dispatcher.forward(request, response);  
-	        	}
-	        	
-	        	*/
-	        	//RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
-	            //dispatcher.forward(request, response);  
-	        	
-	        	
 	        }
-		 
 	 }
 	
 	
