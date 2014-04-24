@@ -61,14 +61,19 @@
 		                        <%if(gameBean.getPlayer2RoundSummary().isEmpty()) { %>
 		                        	<%="class=\"unknown\">Empty"%>
 		                        
-		                        <% } else if(gameBean.getPlayer2RoundSummary().get(i-1) == null){%>
+		                        <% } try{
+		                        	if(gameBean.getPlayer2RoundSummary().get(i-1) == null){%>
 		                        	<%="class=\"unknown\">Unbekannt"%>
 		                     	
 		                        <% } else if(gameBean.getPlayer2RoundSummary().get(i-1)){ %>
 		                        	<%="class=\"correct\">Richtig"%>
 		                        	
 		                        <% } else {%>
-		                        	<%="class=\"incorrect\">Falsch"%><%}%>
+		                        	<%="class=\"incorrect\">Falsch"%>
+		                         <%}
+		                        		}catch(Exception e){%>
+		                        	<%="class=\"unknown\">Unbekannt"%>
+		                        		<% } %>
 	                        <%="</span>"%></li>
                         <%}%>
                     </ul>
