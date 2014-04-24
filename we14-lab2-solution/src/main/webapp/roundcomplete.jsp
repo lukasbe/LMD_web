@@ -34,25 +34,24 @@
                 <div id="player1info" class="playerinfo">
                     <span id="player1name" class="playername"><%=gameBean.getPlayer1()%></span>
                     <ul class="playerroundsummary">
-                        <%for(int i = 1; i <= gameBean.getQuestionsQuantity(); i++){ %>
-                        <li><span class="accessibility"><%="Frage " + i%>:</span><span id=<%="player1answer" + i%>" <% if(gameBean.getPlayer1RoundSummary(i-1)){%> <%="class=\"correct\"> Richtig"%><%}%>
-                        																										<%if(!gameBean.getPlayer1RoundSummary(i-1)){%> <%="class=\"incorrect\"> Falsch"%><%}%><%="</span>"%></li>
-                       
-                        <!--<li><span class="accessibility">Frage 1:</span><span id="player1answer1" class="correct">Richtig</span></li>
-                        <li><span class="accessibility">Frage 2:</span><span id="player1answer2" class="incorrect">Falsch</span></li>
-                        <li><span class="accessibility">Frage 3:</span><span id="player1answer3" class="correct">Richtig</span></li>
-                    	-->
+                        <%for(int i = 1; i <= gameBean.getRoundsQuantity(); i++){%>
+                        <li><span class="accessibility">Frage <%=i%>:</span><%="<span id=\""%><%="player1answer" + i%>" 	<%if(gameBean.getPlayer1RoundSummary().get(i-1)){%><%="class=\"correct\">Richtig"%><%}%>
+                        																					<%if(!gameBean.getPlayer1RoundSummary().get(i-1)){%><%="class=\"incorrect\">Falsch"%><%}%>
+                        <%="</span>"%></li>
+                        <%}%>
                         </ul>
-                    <p id="player1roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player1wonrounds" class="playerwonrounds">2</span></p>
+                    <p id="player1roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player1wonrounds" class="playerwonrounds"><%=gameBean.getPlayer1WonRounds()%></span></p>
                 </div>
                 <div id="player2info" class="playerinfo">
-                    <span id="player2name" class="playername">Spieler 2</span>
+                    <span id="player2name" class="playername"><%=gameBean.getPlayer2()%></span>
                     <ul class="playerroundsummary">
-                        <li><span class="accessibility">Frage 1:</span><span id="player2answer1" class="correct">Richtig</span></li>
-                        <li><span class="accessibility">Frage 2:</span><span id="player2answer2" class="correct">Richtig</span></li>
-                        <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class="correct">Richtig</span></li>
+                       <%for(int i = 1; i <= gameBean.getRoundsQuantity(); i++){%>
+                        <li><span class="accessibility">Frage <%=i%>:</span><%="<span id=\""%><%="player2answer" + i%>" 	<%if(gameBean.getPlayer2RoundSummary().get(i-1)){%><%="class=\"correct\">Richtig"%><%}%>
+                        																					<%if(!gameBean.getPlayer2RoundSummary().get(i-1)){%><%="class=\"incorrect\">Falsch"%><%}%>
+                        <%="</span>"%></li>
+                        <%}%>
                     </ul>
-                    <p id="player2roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player2wonrounds" class="playerwonrounds">1</span></p>
+                    <p id="player2roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player2wonrounds" class="playerwonrounds"><%=gameBean.getPlayer2WonRounds() %></span></p>
                 </div>
             	<form id="nextform" action="BigQuizServlet" method="GET">
 		        	<input type="hidden" name="action" value="roundcompleteweiter"/>
