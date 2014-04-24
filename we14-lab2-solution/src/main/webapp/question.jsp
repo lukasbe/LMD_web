@@ -55,9 +55,22 @@
                 <div id="player2info">
                     <span id="player2name"><%= gameBean.getPlayer2() %></span>
                     <ul class="playerroundsummary">
-                        <li><span class="accessibility">Frage 1:</span><span id="player2answer1" class="correct">Richtig</span></li>
-                        <li><span class="accessibility">Frage 2:</span><span id="player2answer2" class="correct">Richtig</span></li>
-                        <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class="unknown">Unbekannt</span></li>
+                        <%for(int i = 1; i <= gameBean.getQuestionsQuantity(); i++){%>
+	                        <li><span class="accessibility">Frage <%=i%>:</span><%="<span id=\""%><%="Player2answer" + i%>" 	
+		                        
+		                        <%if(gameBean.getPlayer2RoundSummary().isEmpty()){%>
+		                        	<%="class=\"unknown\">Unbekannt"%><%}%>
+		                        
+		                        <%if(gameBean.getPlayer2RoundSummary().get(i-1) == null){%>
+		                        	<%="class=\"unknown\">Unbekannt"%><%}%>
+		                     	
+		                        <%if(gameBean.getPlayer2RoundSummary().get(i-1)){%>
+		                        	<%="class=\"correct\">Richtig"%><%}%>
+		                        	
+		                        <%if(!gameBean.getPlayer2RoundSummary().get(i-1)){%>
+		                        	<%="class=\"incorrect\">Falsch"%><%}%>
+	                        <%="</span>"%></li>
+                        <%}%>
                     </ul>
                 </div>
                 <div id="currentcategory"><span class="accessibility">Kategorie:</span><% if(gameBean.getCurrentQuestion() == null){return;} %><%= gameBean.getCurrentQuestion().getCategory().getName() %></div>
@@ -70,7 +83,7 @@
                     <p id="questiontext"><%= gameBean.getCurrentQuestion().getText()%></p>
                     <ul id="answers">
                         <%for(Choice c : gameBean.getCurrentQuestion().getAllChoices()){ %>
-                        <li><input id="<%="option" + c.getId()%>" name="checkedChoices" type="checkbox"/><label for="<%="option" + c.getId()%>"><%= c.getText() %></label></li>
+                        <li><input id="<%="option" + c.getId()%>" name="checkedChoices" type="checkbox" value="<%=c.getId()%>"/><label for="<%="option" + c.getId()%>"><%= c.getText() %></label></li>
                         <%} %>
                     </ul>
                     <input id="timeleftvalue" type="hidden" name="timeleftvalue" value="<%= gameBean.getCurrentQuestion().getMaxTime() %>"/>
