@@ -25,7 +25,7 @@
             <!-- winner message -->
             <section id="roundwinner" aria-labelledby="roundwinnerheading">
                 <h2 id="roundwinnerheading" class="accessibility">Rundenzwischenstand</h2>
-                <p class="roundwinnermessage"><%= session.getAttribute("playername_winner") %> gewinnt Runde <%= session.getAttribute("roundcounter") %>!<%= gameEntity.getRoundNumber() %></p>
+                <p class="roundwinnermessage"><%= gameEntity.getCurrentRoundWinner() %> gewinnt Runde <%= gameEntity.getRoundNumber() %>!</p>
             </section>
         
             <!-- round info -->    

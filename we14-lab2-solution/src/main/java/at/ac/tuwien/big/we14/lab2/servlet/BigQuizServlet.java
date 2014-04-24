@@ -191,8 +191,11 @@ public class BigQuizServlet extends HttpServlet {
         		}else { 
         			
         			//GEWINNER BESTIMMEN!!
+        			
+        			
+        			
         			session.setAttribute("roundcounter", gameEntity.getRoundNumber());
-        			session.setAttribute("playername_winner", "BigQuizServletDummyPersonToReplaceLater");
+        			gameEntity.setCurrentRoundWinner("BigQuizServletDummyPersonToReplaceLater");
         			
         			
         			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/roundcomplete.jsp");

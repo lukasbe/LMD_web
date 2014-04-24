@@ -20,6 +20,11 @@ public class GameEntity {
 	private int roundSize;
 	private int roundCount;
 	private Round currentRound = new Round(null);
+	private String currentRoundWinner = "";
+	private String gameWinner = "";
+	private GameBean gamebean;
+	
+	
 	public void setGame(HashMap<String, List<Question>> game) {
 		//Game = game;
 		roundSize = game.size();
@@ -73,5 +78,21 @@ public class GameEntity {
 	public int getRoundNumber(){
 		int s = -1;
 		return Game.size()-roundCount;
+	}
+
+	public String getCurrentRoundWinner() {
+		return currentRoundWinner;
+	}
+
+	public void setCurrentRoundWinner(String currentRoundWinner) {
+		this.currentRoundWinner = currentRoundWinner;
+	}
+
+	public String getGameWinner() {
+		return gameWinner;
+	}
+
+	public void setGameWinner(String gameWinner) {
+		this.gameWinner = gameWinner;
 	}
 }
