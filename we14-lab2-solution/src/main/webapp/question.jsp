@@ -58,16 +58,16 @@
                         <%for(int i = 1; i <= gameBean.getQuestionsQuantity(); i++){%>
 	                        <li><span class="accessibility">Frage <%=i%>:</span><%="<span id=\""%><%="Player2answer" + i%>" 	
 		                        
-		                        <%if(gameBean.getPlayer2RoundSummary().isEmpty()){%>
-		                        	<%="class=\"unknown\">Unbekannt"%><%}%>
+		                        <%if(gameBean.getPlayer2RoundSummary().isEmpty()) { %>
+		                        	<%="class=\"unknown\">Unbekannt"%>
 		                        
-		                        <%if(gameBean.getPlayer2RoundSummary().get(i-1) == null){%>
-		                        	<%="class=\"unknown\">Unbekannt"%><%}%>
+		                        <% } else if(gameBean.getPlayer2RoundSummary().get(i-1) == null){%>
+		                        	<%="class=\"unknown\">Unbekannt"%>
 		                     	
-		                        <%if(gameBean.getPlayer2RoundSummary().get(i-1)){%>
-		                        	<%="class=\"correct\">Richtig"%><%}%>
+		                        <% } else if(gameBean.getPlayer2RoundSummary().get(i-1)){ %>
+		                        	<%="class=\"correct\">Richtig"%>
 		                        	
-		                        <%if(!gameBean.getPlayer2RoundSummary().get(i-1)){%>
+		                        <% } else {%>
 		                        	<%="class=\"incorrect\">Falsch"%><%}%>
 	                        <%="</span>"%></li>
                         <%}%>
