@@ -3,6 +3,7 @@ package at.ac.tuwien.big.we14.lab2.api.impl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -14,19 +15,21 @@ import at.ac.tuwien.big.we14.lab2.servlet.BigQuizServlet;
 public class GameEntity {
 	protected static Logger log = Logger.getLogger(GameEntity.class);
 	// Key = CategoryName meistens 5, List<Question> = questioncount viele Fragen pro Key
-	private HashMap<String, List<Question>> Game = new HashMap<String, List<Question>>();
+	private HashMap<String, Round> Game = new HashMap<String, Round>();
 	private List<String> roundList = new ArrayList<String>();
 	private int roundSize;
 	private int roundCount;
-
+	private Round currentRound = new Round(null);
 	public void setGame(HashMap<String, List<Question>> game) {
-		Game = game;
+		//Game = game;
 		roundSize = game.size();
 		roundCount = game.size();
-		for(Entry<String, List<Question>> entry : Game.entrySet()) {
+		for(Entry<String, List<Question>> entry : game.entrySet()) {
 		   
-		    roundList.add(entry.getKey());
-		    
+		   roundList.add(entry.getKey());
+		   
+		   Round r = new Round(entry.getValue());
+		   Game.put(entry.getKey(), r);
 
 		}
 		log.info("set game sagt hallo");
@@ -41,7 +44,7 @@ public class GameEntity {
 		}
 	}
 	
-	public List<Question> nextRound(){
+	public Round nextRound(){
 		int count = roundSize;
 		Iterator<String> it = roundList.iterator();
 		log.info("nextRound sagt hallo");
@@ -54,14 +57,18 @@ public class GameEntity {
 		    if(count == roundCount){
 		    	roundCount--;
 		    	log.info("Runde in nextRound: "+Runde);
+		    	currentRound = Game.get(Runde);
 		    	return Game.get(Runde);
 		    }
 		    count--;
 		}
-		log.info("Rueckgabe hat einen Fehler!");
-		return new ArrayList<Question>();
+		log.info("Rueckgabe hat einen Fehler!Aktuelle Rudne wird zurückgegeben");
+		return new Round(null);
 	}
 
-	
+	public Round thisRound(){
+		return currentRound;
+		
+	}
 	
 }
