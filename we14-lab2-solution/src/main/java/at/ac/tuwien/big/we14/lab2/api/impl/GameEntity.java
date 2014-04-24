@@ -17,24 +17,20 @@ public class GameEntity {
 	// Key = CategoryName meistens 5, List<Question> = questioncount viele Fragen pro Key
 	private HashMap<String, Round> Game = new HashMap<String, Round>();
 	private List<String> roundList = new ArrayList<String>();
-	private int roundSize;
-	private int roundCount;
 	private Round currentRound = new Round(null);
-	private String currentRoundWinner = "";
-	private String gameWinner = "";
+	
 	private GameBean gamebean;
 	
 	private int getRoundNumber(){
-		return Game.size()-roundCount;
+		return Game.size()-gamebean.getRoundCount();
 	}
 	
 	public void setGame(HashMap<String, List<Question>> game) {
 		//Game = game;
-		roundSize = game.size();
 		gamebean = new GameBean();
 		gamebean.setRoundsQuantity(game.size());
 		
-		roundCount = game.size();
+		gamebean.setRoundCount(game.size());
 		
 		for(Entry<String, List<Question>> entry : game.entrySet()) {
 		   
@@ -50,7 +46,7 @@ public class GameEntity {
 
 	public boolean hasNextRound(){
 		log.info("has next round aufgerufen");
-		if(roundCount<=0){
+		if(gamebean.getRoundCount()<=0){
 			return false;
 		}else{
 			return true;
@@ -58,7 +54,7 @@ public class GameEntity {
 	}
 	
 	public Round nextRound(){
-		int count = roundSize;
+		int count = gamebean.getRoundsQuantity();
 		Iterator<String> it = roundList.iterator();
 		log.info("nextRound sagt hallo");
 		log.info("roundlistiterator hasNext?"+it.hasNext());
@@ -66,9 +62,9 @@ public class GameEntity {
 		{
 			log.info("nextround whileschleife passiert");
 		    String Runde = it.next();
-		    log.info("count("+count+") ?=? roundCount("+roundCount);
-		    if(count == roundCount){
-		    	roundCount--;
+		    log.info("count("+count+") ?=? roundCount("+gamebean.getRoundCount());
+		    if(count == gamebean.getRoundCount()){
+		    	gamebean.setRoundCount(gamebean.getRoundCount()--);
 		    	log.info("Runde in nextRound: "+Runde);
 		    	currentRound = Game.get(Runde);
 		    	gamebean.setCurrentRound(this.getRoundNumber());
@@ -97,19 +93,4 @@ public class GameEntity {
 		log.info("nächste Frage backtrace"+gamebean.getCurrentQuestion());
 	}
 
-	public String getCurrentRoundWinner() {
-		return currentRoundWinner;
-	}
-
-	public void setCurrentRoundWinner(String currentRoundWinner) {
-		this.currentRoundWinner = currentRoundWinner;
-	}
-
-	public String getGameWinner() {
-		return gameWinner;
-	}
-
-	public void setGameWinner(String gameWinner) {
-		this.gameWinner = gameWinner;
-	}
 }
