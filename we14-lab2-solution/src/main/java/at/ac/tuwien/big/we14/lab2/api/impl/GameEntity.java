@@ -98,27 +98,39 @@ public class GameEntity {
 		//HashMap<Choice, Boolean> gesetzehackerl = new HashMap<Choice,Boolean>();
 		ArrayList<Choice> gesetzehackerlliste = new ArrayList<Choice>();
 		
+		boolean playerright, cpuplayerright = false;
+		int cputime, playertime = 30;
+		if(ticked == null){
+			playerright = false;
+			Answer a = new SimpleAnswer();
+			cpuplayerright = a.getIsComputerCorrect();
 		
-		
-		
-		
-		for(String s:ticked){
-			log.info("parametervalues: "+ s);
-			for(Choice c:bean.getCurrentQuestion().getAllChoices()){
-				if(c.getId() == Integer.parseInt(s)){
-					gesetzehackerlliste.add(c);
-					
-					//gesetzehackerl.put(c, true);
+		}else{
+			for(String s:ticked){
+				log.info("parametervalues: "+ s);
+				for(Choice c:bean.getCurrentQuestion().getAllChoices()){
+					if(c.getId() == Integer.parseInt(s)){
+						gesetzehackerlliste.add(c);
+						
+						//gesetzehackerl.put(c, true);
+					}
 				}
 			}
+			Answer ans = new SimpleAnswer();
+			ans.setId(1);
+			ans.setPlayer(player);
+			ans.setTime(timeleft);
+			ans.setTickedHackerl(gesetzehackerlliste);
+			log.info("ist es wahr?: "+ans.validateWith(bean.getCurrentQuestion().getCorrectChoices()));
+			cpuplayerright = ans.getIsComputerCorrect();
+			//cputime = ans.getComputerTime(bean.getCurrentQuestion().getCorrectChoices());
+			playerright = ans.validateWith(bean.getCurrentQuestion().getCorrectChoices());
+			
 		}
-		Answer ans = new SimpleAnswer();
-		ans.setId(1);
-		ans.setPlayer(player);
-		ans.setTime(timeleft);
-		ans.setTickedHackerl(gesetzehackerlliste);
-		log.info("ist es wahr?: "+ans.validateWith(bean.getCurrentQuestion().getCorrectChoices()));
+		//ArrayList playerSummary = new ArrayList<Boolean>();
 		
+		gamebean.getPlayer1RoundSummary().add(playerright);
+		gamebean.getPlayer2RoundSummary().add(cpuplayerright);
 	}
 	
 	public void nextQuestion(Round r, GameBean bean){
