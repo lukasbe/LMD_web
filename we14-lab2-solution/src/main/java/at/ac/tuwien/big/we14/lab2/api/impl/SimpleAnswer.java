@@ -88,8 +88,11 @@ public class SimpleAnswer implements Answer{
 		
 		boolean answeredCorrectly = false;
 		
+		if(!(tickedhackerl.keySet().size() == correctChoices.size()))
+				return false;
+		
 		for(Choice c : tickedhackerl.keySet()){
-			
+				
 			if(correctChoices.contains(tickedhackerl.get(c))){
 				answeredCorrectly = true;
 			}
