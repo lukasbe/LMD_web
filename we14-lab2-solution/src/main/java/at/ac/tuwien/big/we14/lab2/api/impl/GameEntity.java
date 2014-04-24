@@ -124,6 +124,7 @@ public class GameEntity {
 			log.info("ist es wahr?: "+ans.validateWith(bean.getCurrentQuestion().getCorrectChoices()));
 			cpuplayerright = ans.getIsComputerCorrect();
 			cputime = ans.getComputerTime(bean.getCurrentQuestion().getCorrectChoices());
+			log.info("cputime"+cputime);
 			playerright = ans.validateWith(bean.getCurrentQuestion().getCorrectChoices());
 			playertime = timeleft;
 		}
@@ -134,7 +135,7 @@ public class GameEntity {
 		gamebean.setPlayer1RoundTime(gamebean.getPlayer1RoundTime()+playertime);
 		gamebean.setPlayer1TotalTime(gamebean.getPlayer1TotalTime()+playertime);
 		gamebean.setPlayer2RoundTime(gamebean.getPlayer2RoundTime()+cputime);
-		gamebean.setPlayer2TotalTime(gamebean.getPlayer2TotalTime()+playertime);
+		gamebean.setPlayer2TotalTime(gamebean.getPlayer2TotalTime()+cputime);
 	}
 	
 	public void nextQuestion(Round r, GameBean bean){
@@ -174,6 +175,7 @@ public void determineRoundsWinner(GameBean bean){
 			bean.setPlayer1WonRounds(bean.getPlayer1WonRounds()+1);
 			bean.setCurrentRoundWinner(bean.getPlayer1());
 		} else{
+			log.info("Unentschieden: Zeit entscheidet: Player1:"+bean.getPlayer1RoundTime()+"Player2: "+bean.getPlayer2RoundTime());
 			if(bean.getPlayer1RoundTime() < bean.getPlayer2RoundTime()){
 				bean.setPlayer1WonRounds(bean.getPlayer1WonRounds()+1);
 				bean.setCurrentRoundWinner(bean.getPlayer1());	

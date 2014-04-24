@@ -15,13 +15,13 @@ import at.ac.tuwien.big.we14.lab2.servlet.BigQuizServlet;
 
 public class SimpleAnswer implements Answer{
 	
-	protected static Logger log = Logger.getLogger(BigQuizServlet.class);
+	protected static Logger log = Logger.getLogger(SimpleAnswer.class);
 	
 	private int Id;
 	private Boolean isCorrect = null;
 	private int time;
 	private String player;
-	private int computertime;
+	private int computertime = -1;
 	ArrayList<Choice> tickedhackerl;
 	List<Choice> correctChoices;
 	
@@ -56,7 +56,6 @@ public class SimpleAnswer implements Answer{
 
 	@Override
 	public void setPlayer(String player) {
-		// TODO Auto-generated method stub
 		this.player = player;
 	}
 
@@ -111,7 +110,6 @@ public class SimpleAnswer implements Answer{
 			}
 			
 		}
-		
 		return answeredCorrectly;
 	}
 
@@ -123,10 +121,12 @@ public class SimpleAnswer implements Answer{
 	}
 	@Override
 	public int getComputerTime(List<Choice> correctChoices){
+		log.info("computertime");
 		if(computertime == -1){
 			Random generator = new Random();
 			
 			this.computertime = generator.nextInt((int)correctChoices.get(0).getQuestion().getMaxTime());
+			log.info("computertime"+computertime);
 			return computertime;
 		}else{
 			return computertime;
