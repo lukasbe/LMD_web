@@ -1,6 +1,7 @@
-<%@page import="at.ac.tuwien.big.we14.lab2.api.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% org.apache.log4j.Logger.getLogger("start.jsp").info("question.jsp wurde aufgerufen!"); %>
+<jsp:useBean id="gameBean" scope="session" class="at.ac.tuwien.big.we14.lab2.api.impl.GameBean" />
+
 <% Question question = (Question)session.getAttribute("question");%>
 <% if(question == null) return; %>
 <!DOCTYPE html>
