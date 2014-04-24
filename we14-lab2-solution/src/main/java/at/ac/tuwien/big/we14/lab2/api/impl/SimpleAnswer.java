@@ -23,7 +23,7 @@ public class SimpleAnswer implements Answer{
 	private String player;
 	private int computertime;
 	HashMap<Choice, Boolean> tickedhackerl;
-	ArrayList<Choice> correctChoices;
+	List<Choice> correctChoices;
 	
 
 	public int getId() {
