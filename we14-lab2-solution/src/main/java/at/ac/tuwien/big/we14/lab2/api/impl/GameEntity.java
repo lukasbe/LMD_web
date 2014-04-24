@@ -72,6 +72,6 @@ public class GameEntity {
 	
 	public int getRoundNumber(){
 		int s = -1;
-		return Game.size()-roundCount + 1;
+		return Game.size()-roundCount;
 	}
 }

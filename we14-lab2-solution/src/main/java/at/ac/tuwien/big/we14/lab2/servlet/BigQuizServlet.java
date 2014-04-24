@@ -216,7 +216,7 @@ public class BigQuizServlet extends HttpServlet {
         		}else { 
         			
         			//GEWINNER BESTIMMEN!!
-        			session.setAttribute("roundcounter", gameEntity.getRoundNumber(););
+        			session.setAttribute("roundcounter", gameEntity.getRoundNumber());
         			gameEntity.getRoundNumber();
         			
         			
