@@ -80,11 +80,6 @@ public class BigQuizServlet extends HttpServlet {
 	        	
 	        	roundcounter = 1;
 	        	
-	        	session.setAttribute("playername_winner", "BigQuizServletDummyPersonToReplaceLater");
-	        	session.setAttribute("player1", "Heinzbert");
-	        	session.setAttribute("player2", "Computer");
-	        	
-	        	
 	        	
 	        	
 	        	//Diese vier Codezeilen holen alle Kategorien, Fragen und Antworten aus der data.json
@@ -104,11 +99,12 @@ public class BigQuizServlet extends HttpServlet {
         		log.info("neues spiel wurde erstellt.");
         		if(gameEntity.hasNextRound() == true){
         			log.info("es gibt eine nächste Runde");
-        			Question question = gameEntity.nextRound().next();
+        			//Question question = gameEntity.nextRound().next();
+        			gameEntity.nextQuestion(gameEntity.nextRound());
         			log.info("Es wurden die Questions eingelesen");
         			session.setAttribute("gameEntity", gameEntity);
         			log.info("game im session gespeichert");
-        			session.setAttribute("question", question);
+        			//session.setAttribute("question", question);
         			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
     	            dispatcher.forward(request, response);
         		}else{
@@ -140,11 +136,12 @@ public class BigQuizServlet extends HttpServlet {
 	        	if(gameEntity.hasNextRound() == true){
         			//Es gibt noch Runden
         			log.info("es gibt eine nächste Runde");
-        			Question question = gameEntity.nextRound().next();
+        			//Question question = gameEntity.nextRound().next();
+        			gameEntity.nextQuestion(gameEntity.nextRound());
         			log.info("Es wurden die Questions eingelesen");
         			session.setAttribute("gameEntity", gameEntity);
         			log.info("game im session gespeichert");
-        			session.setAttribute("question", question);
+        			//session.setAttribute("question", question);
         			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
     	            dispatcher.forward(request, response);
         		}else{
@@ -180,11 +177,12 @@ public class BigQuizServlet extends HttpServlet {
         			//Es gibt noch Fragen!
         			
         			log.info("es gibt eine nächste Frage");
-        			Question question = gameEntity.thisRound().next();
+        			//Question question = gameEntity.thisRound().next();
+        			gameEntity.nextQuestion(gameEntity.thisRound());
         			log.info("Es wurden die (nicht ersten) Questions eingelesen");
         			session.setAttribute("gameEntity", gameEntity);
         			log.info("game im session gespeichert");
-        			session.setAttribute("question", question);
+        			//session.setAttribute("question", question);
         			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
     	            dispatcher.forward(request, response);
         			
@@ -194,9 +192,7 @@ public class BigQuizServlet extends HttpServlet {
         			
         			
         			
-        			session.setAttribute("roundcounter", gameEntity.getRoundNumber());
-        			gameEntity.setCurrentRoundWinner("BigQuizServletDummyPersonToReplaceLater");
-        			
+        			//alt: session.setAttribute("roundcounter", gameEntity.getRoundNumber());
         			
         			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/roundcomplete.jsp");
     	            dispatcher.forward(request, response);       			

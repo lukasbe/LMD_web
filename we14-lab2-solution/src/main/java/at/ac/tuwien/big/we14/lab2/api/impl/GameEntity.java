@@ -34,16 +34,19 @@ public class GameEntity {
 	public void setGame(HashMap<String, List<Question>> game) {
 		//Game = game;
 		roundSize = game.size();
-		gamebean.setRoundsQuantity(game.size());		
+		gamebean.setRoundsQuantity(game.size());
+		
 		roundCount = game.size();
+		
 		for(Entry<String, List<Question>> entry : game.entrySet()) {
 		   
 		   roundList.add(entry.getKey());
-		   
+		   gamebean.setQuestionsQuantity(entry.getValue().size());
 		   Round r = new Round(entry.getValue());
 		   Game.put(entry.getKey(), r);
 
 		}
+		
 		log.info("set game sagt hallo");
 	}
 
@@ -81,6 +84,12 @@ public class GameEntity {
 
 	public Round thisRound(){
 		return currentRound;
+	}
+	
+	public void nextQuestion(Round r){
+		
+		r.next();
+		
 	}
 
 	public String getCurrentRoundWinner() {
