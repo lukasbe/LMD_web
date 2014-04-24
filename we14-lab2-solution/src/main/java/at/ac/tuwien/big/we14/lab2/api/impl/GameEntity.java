@@ -64,7 +64,7 @@ public class GameEntity {
 		    String Runde = it.next();
 		    log.info("count("+count+") ?=? roundCount("+gamebean.getRoundCount());
 		    if(count == gamebean.getRoundCount()){
-		    	gamebean.setRoundCount(gamebean.getRoundCount()--);
+		    	gamebean.setRoundCount(gamebean.getRoundCount()-1);
 		    	log.info("Runde in nextRound: "+Runde);
 		    	currentRound = Game.get(Runde);
 		    	gamebean.setCurrentRound(this.getRoundNumber());
