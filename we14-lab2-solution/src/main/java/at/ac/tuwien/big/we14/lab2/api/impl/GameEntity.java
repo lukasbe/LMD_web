@@ -18,6 +18,7 @@ public class GameEntity {
 	private GameBean gamebean;
 	
 	private int getRoundNumber(){
+		log.info("gamesize: "+gamebean.getGame().size()+" roundcount: "+gamebean.getRoundCount());
 		return gamebean.getGame().size()-gamebean.getRoundCount();
 	}
 	
@@ -28,16 +29,19 @@ public class GameEntity {
 		
 		gamebean.setRoundCount(game.size());
 		
+		HashMap<String, Round> g = new HashMap<String, Round>();
 		for(Entry<String, List<Question>> entry : game.entrySet()) {
 		   gamebean.getRoundList().add(entry.getKey());//ACHTUNG  POINTER?
 		   //gamebean.setRoundList(gamebean.getRoundList().add(entry.getKey()));
 		   //roundList.add(entry.getKey());
 		   gamebean.setQuestionsQuantity(entry.getValue().size());
 		   Round r = new Round(entry.getValue());
-		   HashMap<String, Round> g = new HashMap<String, Round>();
+		  
 		   g.put(entry.getKey(), r);
-		   gamebean.setGame(g);
+		   
 		}
+				
+		gamebean.setGame(g);
 		
 		log.info("set game sagt hallo");
 	}
@@ -64,10 +68,12 @@ public class GameEntity {
 		    String Runde = it.next();
 		    log.info("count("+count+") ?=? roundCount("+gamebean.getRoundCount())")";
 		    if(count == gamebean.getRoundCount()){
+		    	log.info("roundcount ist "+gamebean.getRoundCount());
 		    	gamebean.setRoundCount(gamebean.getRoundCount()-1);
 		    	log.info("Runde in nextRound: "+Runde);
 		    	//currentRound = Game.get(Runde); alt
 		    	gamebean.setCurrentRoundObj(gamebean.getGame().get(Runde));
+		    	log.info("Aktuelles rundenobject: "+gamebean.getGame().get(Runde));
 		    	gamebean.setCurrentRound(this.getRoundNumber());
 		    	return gamebean.getGame().get(Runde);
 		    }
