@@ -179,33 +179,6 @@ public class BigQuizServlet extends HttpServlet {
 		            dispatcher.forward(request, response);
         			
         		}      	
-	        	
-	        	
-	        	
-	        	/*
-	        	if(roundcounter >= 5){
-	        		//finishseite aufrufen
-	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/finish.jsp");
-		            dispatcher.forward(request, response);  
-		        	
-	        	}else{
-	        		roundcounter = roundcounter + 1;
-	        		questioncounter = 1;
-	        		session.setAttribute("roundcounter", roundcounter);
-		        	session.setAttribute("questioncounter", questioncounter);
-		        	//session.setAttribute("loadCat", true);
-		        	/* ALT
-		        	// Neue zufällige Kategorie wählen
-		        	category = catGen.getCategory();
-		        	// Dem Fragengenerator die neue zufällige Kategorie zuweisen 
-	        		questionGen = new SimpleQuestionGenerator(category);
-	        		 *//*
-	        		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/question.jsp");
-		            dispatcher.forward(request, response);  
-	        	}
-	        	//if counter == 3 -> finish.html
-	        	//else roundcomplete.html
-	        	*/
 	        }
 	 }
 	
@@ -224,8 +197,7 @@ public class BigQuizServlet extends HttpServlet {
 	        	HttpSession session = request.getSession(true);
 	        	log.info("Action: question complete");
 	        	
-	        	
-        		
+	        	       		
 	        	gameEntity = (GameEntity) session.getAttribute("gameEntity");
         		log.info("spiel wurde aus dem session geladen");
         		
@@ -242,6 +214,12 @@ public class BigQuizServlet extends HttpServlet {
     	            dispatcher.forward(request, response);
         			
         		}else { 
+        			
+        			//GEWINNER BESTIMMEN!!
+        			session.setAttribute("roundcounter", gameEntity.getRoundNumber(););
+        			gameEntity.getRoundNumber();
+        			
+        			
         			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/roundcomplete.jsp");
     	            dispatcher.forward(request, response);       			
         		}

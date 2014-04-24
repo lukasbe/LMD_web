@@ -68,7 +68,10 @@ public class GameEntity {
 
 	public Round thisRound(){
 		return currentRound;
-		
 	}
 	
+	public int getRoundNumber(){
+		int s = -1;
+		return Game.size()-roundCount + 1;
+	}
 }
