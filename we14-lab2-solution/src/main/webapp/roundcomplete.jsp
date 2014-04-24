@@ -24,14 +24,14 @@
             <!-- winner message -->
             <section id="roundwinner" aria-labelledby="roundwinnerheading">
                 <h2 id="roundwinnerheading" class="accessibility">Rundenzwischenstand</h2>
-                <p class="roundwinnermessage">Spieler 2 gewinnt Runde 1Michi(vergangen ist runde <%= session.getAttribute("roundcounter") %>)!</p>
+                <p class="roundwinnermessage"><%= session.getAttribute("playername_winner") %> gewinnt Runde <%= session.getAttribute("roundcounter") %>!</p>
             </section>
         
             <!-- round info -->    
             <section id="roundinfo" aria-labelledby="roundinfoheading">
                 <h2 id="roundinfoheading" class="accessibility">Spielerinformationen</h2>
                 <div id="player1info" class="playerinfo">
-                    <span id="player1name" class="playername">Spieler 1</span>
+                    <span id="player1name" class="playername">Spieler 1player1</span>
                     <ul class="playerroundsummary">
                         <li><span class="accessibility">Frage 1:</span><span id="player1answer1" class="correct">Richtig</span></li>
                         <li><span class="accessibility">Frage 2:</span><span id="player1answer2" class="incorrect">Falsch</span></li>

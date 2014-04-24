@@ -33,7 +33,6 @@ public class BigQuizServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private int roundcounter;
-	private int questioncounter;
 	protected static Logger log = Logger.getLogger(BigQuizServlet.class);
 	private GameGenerator gameGen = new SimpleGameGenerator();
 	private GameEntity gameEntity = new GameEntity();
@@ -50,7 +49,6 @@ public class BigQuizServlet extends HttpServlet {
 	        super.init();
 	        log.info("initialisiert");
 	        roundcounter = -1;
-	        questioncounter = -1;
 	    }
 	
 	
@@ -81,7 +79,13 @@ public class BigQuizServlet extends HttpServlet {
 	        	
 	        	
 	        	roundcounter = 1;
-	        	questioncounter = 1;
+	        	
+	        	session.setAttribute("playername_winner", "BigQuizServletDummyPersonToReplaceLater");
+	        	session.setAttribute("player1", "Heinzbert");
+	        	session.setAttribute("player2", "Computer");
+	        	
+	        	
+	        	
 	        	
 	        	//Diese vier Codezeilen holen alle Kategorien, Fragen und Antworten aus der data.json
 	        	ServletContext servletContext = getServletContext(); 
@@ -142,8 +146,7 @@ public class BigQuizServlet extends HttpServlet {
         		ALT
 	        	*/
         		
-        		session.setAttribute("roundcounter", roundcounter);
-	        	session.setAttribute("questioncounter", questioncounter);	        	
+        		session.setAttribute("roundcounter", roundcounter);	        	
 	        	
 	        	
 	        	
@@ -155,8 +158,6 @@ public class BigQuizServlet extends HttpServlet {
 	        	log.info("Action: roundcomplete");
 	        	HttpSession session = request.getSession(true);
 	        	roundcounter = (int)session.getAttribute("roundcounter");
-	        	questioncounter = (int)session.getAttribute("questioncounter");
-	        	
 	        	
 	        	gameEntity = (GameEntity) session.getAttribute("gameEntity");
         		log.info("spiel wurde aus dem session geladen");
@@ -217,7 +218,7 @@ public class BigQuizServlet extends HttpServlet {
         			
         			//GEWINNER BESTIMMEN!!
         			session.setAttribute("roundcounter", gameEntity.getRoundNumber());
-        			gameEntity.getRoundNumber();
+        			session.setAttribute("playername_winner", "BigQuizServletDummyPersonToReplaceLater");
         			
         			
         			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/roundcomplete.jsp");
