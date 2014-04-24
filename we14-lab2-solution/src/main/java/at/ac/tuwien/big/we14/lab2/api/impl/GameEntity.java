@@ -182,5 +182,18 @@ public void determineRoundsWinner(GameBean bean){
 			}
 		}
 	}
+
+public void determineWinner(GameBean bean){
+	
+		if(bean.getPlayer1WonRounds() > bean.getPlayer2WonRounds()){
+			bean.setGameWinner(bean.getPlayer1());
+		}
+		else if(bean.getPlayer1WonRounds() < bean.getPlayer2WonRounds()){
+			bean.setGameWinner(bean.getPlayer2());
+		}
+		else{
+			bean.setGameWinner("Niemand");
+		}
+}
 	
 }
