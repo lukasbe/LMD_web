@@ -68,7 +68,7 @@
                     <ul id="answers">
                     	<% int counter = 1;%>
                         <%for(Choice c : gameBean.getCurrentQuestion().getAllChoices()){ %>
-                        <li><input id="<%="option" + c.getId()%>" type="checkbox"/><label for="<%="option" + counter++%>"><%= c.getText() %></label></li>
+                        <li><input id="<%="option" + c.getId()%>" name="checkedChoices" type="checkbox"/><label for="<%="option" + counter++%>"><%= c.getText() %></label></li>
                         <%} %>
                     </ul>
                     <input id="timeleftvalue" type="hidden" name="timeleftvalue" value="<%= gameBean.getCurrentQuestion().getMaxTime() %>"/>
