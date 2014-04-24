@@ -53,8 +53,10 @@
             //<![CDATA[
          
                        function timeStamp() {
-                       if(supportsLocalStorage()==true)
-                    	   localStorage.setItem("Date", Date.now());
+                       if(supportsLocalStorage()==true){
+                    	   	alert("vorher");
+                    	   	localStorage.setItem("Date", "" + Date.now().getDate() + "." + Date.now().getMonth() + "." + Date.now().getYear());
+                       		alert("nachher");
                        }
          </script>
     
