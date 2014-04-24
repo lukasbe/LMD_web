@@ -62,7 +62,7 @@ public class GameBean {
 		return currentRound;
 	}
 	public void setCurrentRound(int currentRound) {
-		log.info("currentQuestion in bean gesetzt:"+currentQuestion.toString());
+		log.info("currentQuestion in bean gesetzt:"+currentRound);
 		this.currentRound = currentRound;
 	}
 	public String getCurrentRoundWinner() {
