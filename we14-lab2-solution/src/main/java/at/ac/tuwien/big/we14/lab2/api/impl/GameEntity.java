@@ -99,7 +99,7 @@ public class GameEntity {
 		ArrayList<Choice> gesetzehackerlliste = new ArrayList<Choice>();
 		
 		boolean playerright, cpuplayerright = false;
-		int cputime, playertime = 30;
+		int cputime = 30, playertime = 30;
 		if(ticked == null){
 			playerright = false;
 			Answer a = new SimpleAnswer();
@@ -123,14 +123,18 @@ public class GameEntity {
 			ans.setTickedHackerl(gesetzehackerlliste);
 			log.info("ist es wahr?: "+ans.validateWith(bean.getCurrentQuestion().getCorrectChoices()));
 			cpuplayerright = ans.getIsComputerCorrect();
-			//cputime = ans.getComputerTime(bean.getCurrentQuestion().getCorrectChoices());
+			cputime = ans.getComputerTime(bean.getCurrentQuestion().getCorrectChoices());
 			playerright = ans.validateWith(bean.getCurrentQuestion().getCorrectChoices());
-			
+			playertime = timeleft;
 		}
 		//ArrayList playerSummary = new ArrayList<Boolean>();
 		
 		gamebean.getPlayer1RoundSummary().add(playerright);
 		gamebean.getPlayer2RoundSummary().add(cpuplayerright);
+		gamebean.setPlayer1RoundTime(gamebean.getPlayer1RoundTime()+playertime);
+		gamebean.setPlayer1TotalTime(gamebean.getPlayer1TotalTime()+playertime);
+		gamebean.setPlayer2RoundTime(gamebean.getPlayer2RoundTime()+cputime);
+		gamebean.setPlayer2TotalTime(gamebean.getPlayer2TotalTime()+playertime);
 	}
 	
 	public void nextQuestion(Round r, GameBean bean){
