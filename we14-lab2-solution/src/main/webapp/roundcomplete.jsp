@@ -25,19 +25,24 @@
             <!-- winner message -->
             <section id="roundwinner" aria-labelledby="roundwinnerheading">
                 <h2 id="roundwinnerheading" class="accessibility">Rundenzwischenstand</h2>
-                <p class="roundwinnermessage"><%= gameEntity.getCurrentRoundWinner() %> gewinnt Runde <%= gameEntity.getRoundNumber() %>!</p>
+                <p class="roundwinnermessage"><%= gameBean.getCurrentRoundWinner() %> gewinnt Runde <%= gameBean.getCurrentRound() %>!</p>
             </section>
         
             <!-- round info -->    
             <section id="roundinfo" aria-labelledby="roundinfoheading">
                 <h2 id="roundinfoheading" class="accessibility">Spielerinformationen</h2>
                 <div id="player1info" class="playerinfo">
-                    <span id="player1name" class="playername">Spieler 1player1</span>
+                    <span id="player1name" class="playername"><%=gameBean.getPlayer1()%></span>
                     <ul class="playerroundsummary">
-                        <li><span class="accessibility">Frage 1:</span><span id="player1answer1" class="correct">Richtig</span></li>
+                        <%for(int i = 1; i <= gameBean.getQuestionsQuantity(); i++){ %>
+                        <li><span class="accessibility"><%="Frage " + i%>:</span><span id=<%="player1answer" + i%>" <% if(gameBean.getPlayer1RoundSummary(i-1)){%> <%="class=\"correct\"> Richtig"%><%}%>
+                        																										<%if(!gameBean.getPlayer1RoundSummary(i-1)){%> <%="class=\"incorrect\"> Falsch"%><%}%><%="</span>"%></li>
+                       
+                        <!--<li><span class="accessibility">Frage 1:</span><span id="player1answer1" class="correct">Richtig</span></li>
                         <li><span class="accessibility">Frage 2:</span><span id="player1answer2" class="incorrect">Falsch</span></li>
                         <li><span class="accessibility">Frage 3:</span><span id="player1answer3" class="correct">Richtig</span></li>
-                    </ul>
+                    	-->
+                        </ul>
                     <p id="player1roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player1wonrounds" class="playerwonrounds">2</span></p>
                 </div>
                 <div id="player2info" class="playerinfo">

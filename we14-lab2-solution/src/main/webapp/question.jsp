@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="at.ac.tuwien.big.we14.lab2.api.*"%>
 <% org.apache.log4j.Logger.getLogger("start.jsp").info("question.jsp wurde aufgerufen!"); %>
 <jsp:useBean id="gameBean" scope="session" class="at.ac.tuwien.big.we14.lab2.api.impl.GameBean" />
 
@@ -55,7 +56,7 @@
                     <ul id="answers">
                     	<% int counter = 1;%>
                         <%for(Choice c : question.getAllChoices()){ %>
-                        <li><input id="<%="option"+counter%>" type="checkbox"/><label for="<%="option" + counter++%>"><%= c.getText() %></label></li>
+                        <li><input id="<%="option" + counter%>" type="checkbox"/><label for="<%="option" + counter++%>"><%= c.getText() %></label></li>
                         <%} %>
                     </ul>
                     <input id="timeleftvalue" type="hidden" value="<%= question.getMaxTime() %>"/>
