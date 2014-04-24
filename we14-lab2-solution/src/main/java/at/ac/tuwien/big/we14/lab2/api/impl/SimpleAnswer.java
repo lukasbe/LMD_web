@@ -85,19 +85,27 @@ public class SimpleAnswer implements Answer{
 			return null;
 		}
 		
+		log.info("validate");
+		
 		this.correctChoices = correctChoices;
 		
 		boolean answeredCorrectly = false;
 		
-		if(!(tickedhackerl.keySet().size() == correctChoices.size()))
-				return false;
+		log.info("validate, boolean initialisiert");
 		
+		if(!(tickedhackerl.keySet().size() == correctChoices.size())){
+				log.info("vergleich Größe false");
+			return false;
+		}
+			
 		for(Choice c : tickedhackerl.keySet()){
 				
 			if(correctChoices.contains(tickedhackerl.get(c))){
+				log.info("korrekte Antwort ausgewählt");
 				answeredCorrectly = true;
 			}
 			else{
+				log.info("Antwort ausgewählt, die nicht korrekt ist");
 				answeredCorrectly = false;
 				break;
 			}
