@@ -2,6 +2,7 @@ package at.ac.tuwien.big.we14.lab2.api.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.Random;
 
@@ -78,7 +79,7 @@ public class SimpleAnswer implements Answer{
 	}
 
 	@Override
-	public Boolean validateWith(ArrayList<Choice> correctChoices) {
+	public Boolean validateWith(List<Choice> correctChoices) {
 		if(tickedhackerl == null){
 			log.info("FEHLER!! Zuerst die Hackerl in setTickedHackerl initialisieren.");
 			return null;
