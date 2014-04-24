@@ -120,32 +120,6 @@ public class BigQuizServlet extends HttpServlet {
         		}
         		
         		
-        		
-        		
-        		//gameEntity.getGame().get(gameEntity.getRoundList().get(roundcounter));
-        		
-        		//gameEntity hat als HashMap alle Daten vom Spiel gespeichert (Runden mit Fragen)
-        		//HashMap game = gameEntity.getGame();
-        		
-        		
-        		/*ALT
-        		// dem Generator einen Liste von Kategorien zuweisen
-        		catGen = new SimpleCategoryGenerator(categories);        		
-        		// Neue zufällige Kategorie wählen, welche noch nicht war
-        		category = catGen.getCategory();
-        		
-        		// Dem Fragengenerator eine zufällige Kategorie zuweisen 
-        		questionGen = new SimpleQuestionGenerator(category);
-        		// Aus den möglichen Fragen einer Kategorie eine neue zufällige Frage wählen
-        		question = questionGen.getQuestion();
-        		
-        		//Question question = (new SimpleQuestionGenerator(new SimpleCategoryGenerator(categories).getCategory()).getQuestion());
-        		if(question.getCategory() == null || question.getText().equals("")){
-        			log.info("question ist leer");
-        		}
-        		ALT
-	        	*/
-        		
         		session.setAttribute("roundcounter", roundcounter);	        	
 	        	
 	        	

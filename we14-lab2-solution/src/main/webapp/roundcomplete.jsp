@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% org.apache.log4j.Logger.getLogger("start.jsp").info("roundcomplete.jsp wurde aufgerufen!"); %>
+<jsp:useBean id="gameEntity" scope="session" class="at.ac.tuwien.big.we14.lab2.api.impl.GameEntity" />
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
     <head>
@@ -24,7 +25,7 @@
             <!-- winner message -->
             <section id="roundwinner" aria-labelledby="roundwinnerheading">
                 <h2 id="roundwinnerheading" class="accessibility">Rundenzwischenstand</h2>
-                <p class="roundwinnermessage"><%= session.getAttribute("playername_winner") %> gewinnt Runde <%= session.getAttribute("roundcounter") %>!</p>
+                <p class="roundwinnermessage"><%= session.getAttribute("playername_winner") %> gewinnt Runde <%= session.getAttribute("roundcounter") %>!<%= gameEntity.getRoundNumber() %></p>
             </section>
         
             <!-- round info -->    
