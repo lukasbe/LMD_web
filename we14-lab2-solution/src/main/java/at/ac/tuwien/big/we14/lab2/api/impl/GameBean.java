@@ -1,5 +1,7 @@
 package at.ac.tuwien.big.we14.lab2.api.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -21,6 +23,15 @@ public class GameBean {
 	private int questionsQuantity;
 	private Question currentQuestion;
 	protected static Logger log = Logger.getLogger(GameBean.class);
+	private int roundCount;
+	
+	
+	private HashMap<String, Round> Game = new HashMap<String, Round>();
+	private List<String> roundList = new ArrayList<String>();
+	
+	//private Round currentRound = new Round(null);
+	
+	
 	
 	public String getPlayer1() {
 		return player1;
@@ -96,6 +107,12 @@ public class GameBean {
 	public void setCurrentQuestion(Question currentQuestion) {
 		log.info("current question in bean gesetzt:"+currentQuestion);
 		this.currentQuestion = currentQuestion;
+	}
+	public int getRoundCount() {
+		return roundCount;
+	}
+	public void setRoundCount(int roundCount) {
+		this.roundCount = roundCount;
 	}
 
 }
