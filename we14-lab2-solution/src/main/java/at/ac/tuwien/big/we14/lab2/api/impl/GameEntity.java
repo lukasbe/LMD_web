@@ -95,8 +95,8 @@ public class GameEntity {
 	}
 	
 	public void validateQuestion(String player, int timeleft, String[] ticked, GameBean bean){
-		HashMap<Choice, Boolean> gesetzehackerl = new HashMap<Choice,Boolean>();
-		List<Choice> gesetzehackerlliste = new ArrayList<Choice>();
+		//HashMap<Choice, Boolean> gesetzehackerl = new HashMap<Choice,Boolean>();
+		ArrayList<Choice> gesetzehackerlliste = new ArrayList<Choice>();
 		
 		
 		
