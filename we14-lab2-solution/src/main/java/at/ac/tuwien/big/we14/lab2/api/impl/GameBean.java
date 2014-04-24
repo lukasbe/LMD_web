@@ -12,11 +12,11 @@ public class GameBean {
 	
 	private String player1 = "Hugobert";
 	private List<Boolean> player1RoundSummary = new ArrayList<Boolean>();
-	private int player1WonRounds = 99;
+	private int player1WonRounds = 0;
 	private int player1RoundTime;
 	private String player2 = "Computer";
 	private List<Boolean> player2RoundSummary = new ArrayList<Boolean>();
-	private int player2WonRounds = 11;
+	private int player2WonRounds = 0;
 	private int player2RoundTime;
 	private int currentRound;
 	private String currentRoundWinner = "bean predefined roundwin";
