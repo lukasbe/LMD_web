@@ -66,7 +66,7 @@ public class GameEntity {
 		{
 			log.info("nextround whileschleife passiert");
 		    String Runde = it.next();
-		    log.info("count("+count+") ?=? roundCount("+gamebean.getRoundCount())")";
+		    log.info("count("+count+") ?=? roundCount("+gamebean.getRoundCount());
 		    if(count == gamebean.getRoundCount()){
 		    	log.info("roundcount ist "+gamebean.getRoundCount());
 		    	gamebean.setRoundCount(gamebean.getRoundCount()-1);
