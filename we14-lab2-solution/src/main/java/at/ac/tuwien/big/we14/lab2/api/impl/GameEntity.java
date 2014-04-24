@@ -15,33 +15,35 @@ import at.ac.tuwien.big.we14.lab2.servlet.BigQuizServlet;
 public class GameEntity {
 	protected static Logger log = Logger.getLogger(GameEntity.class);
 	// Key = CategoryName meistens 5, List<Question> = questioncount viele Fragen pro Key
-	private HashMap<String, Round> Game = new HashMap<String, Round>();
 	private GameBean gamebean;
 	
 	private int getRoundNumber(){
-		return Game.size()-gamebean.getRoundCount();
+		return gamebean.getGame().size()-gamebean.getRoundCount();
 	}
 	
-	public void setGame(HashMap<String, List<Question>> game) {
+	public void setGame(HashMap<String, List<Question>> game, GameBean bean) {
 		//Game = game;
-		gamebean = new GameBean();
+		this.gamebean = bean;
 		gamebean.setRoundsQuantity(game.size());
 		
 		gamebean.setRoundCount(game.size());
 		
 		for(Entry<String, List<Question>> entry : game.entrySet()) {
-		   gamebean.setRoundList(gamebean.getRoundList().add(entry.getKey()));
+		   gamebean.getRoundList().add(entry.getKey());//ACHTUNG  POINTER?
+		   //gamebean.setRoundList(gamebean.getRoundList().add(entry.getKey()));
 		   //roundList.add(entry.getKey());
 		   gamebean.setQuestionsQuantity(entry.getValue().size());
 		   Round r = new Round(entry.getValue());
-		   Game.put(entry.getKey(), r);
-
+		   HashMap<String, Round> g = new HashMap<String, Round>();
+		   g.put(entry.getKey(), r);
+		   gamebean.setGame(g);
 		}
 		
 		log.info("set game sagt hallo");
 	}
 
-	public boolean hasNextRound(){
+	public boolean hasNextRound(GameBean bean){
+		this.gamebean = bean;
 		log.info("has next round aufgerufen");
 		if(gamebean.getRoundCount()<=0){
 			return false;
@@ -50,7 +52,8 @@ public class GameEntity {
 		}
 	}
 	
-	public Round nextRound(){
+	public Round nextRound(GameBean bean){
+		this.gamebean = bean;
 		int count = gamebean.getRoundsQuantity();
 		Iterator<String> it = gamebean.getRoundList().iterator();
 		log.info("nextRound sagt hallo");
@@ -64,9 +67,9 @@ public class GameEntity {
 		    	gamebean.setRoundCount(gamebean.getRoundCount()-1);
 		    	log.info("Runde in nextRound: "+Runde);
 		    	//currentRound = Game.get(Runde); alt
-		    	gamebean.setCurrentRoundObj(Game.get(Runde));
+		    	gamebean.setCurrentRoundObj(gamebean.getGame().get(Runde));
 		    	gamebean.setCurrentRound(this.getRoundNumber());
-		    	return Game.get(Runde);
+		    	return gamebean.getGame().get(Runde);
 		    }
 		    count--;
 		}
@@ -74,7 +77,8 @@ public class GameEntity {
 		return new Round(null);
 	}
 
-	public Round thisRound(){
+	public Round thisRound(GameBean bean){
+		this.gamebean = bean;
 		return gamebean.getCurrentRoundObj();
 	}
 	
@@ -82,12 +86,11 @@ public class GameEntity {
 		return gamebean;
 	}
 	
-	public void nextQuestion(Round r){
-		
+	public void nextQuestion(Round r, GameBean bean){
+		this.gamebean = bean;
 		Question q = r.next();
 		gamebean.setCurrentQuestion(q);
 		log.info("nächste Frage:"+q);
 		log.info("nächste Frage backtrace"+gamebean.getCurrentQuestion());
 	}
-
 }
