@@ -13,11 +13,15 @@ public class GameBean {
 	private String player1 = "Hugobert";
 	private List<Boolean> player1RoundSummary = new ArrayList<Boolean>();
 	private int player1WonRounds = 99;
+	private int player1RoundTime;
 	private String player2 = "Computer";
 	private List<Boolean> player2RoundSummary = new ArrayList<Boolean>();
 	private int player2WonRounds = 11;
+	private int player2RoundTime;
 	private int currentRound;
 	private String currentRoundWinner = "bean predefined roundwin";
+	private int player1TotalTime;
+	private int player2TotalTime;
 	private String gameWinner = "bean predefined gamewin";
 	private int roundsQuantity;
 	private int questionsQuantity;
@@ -27,6 +31,7 @@ public class GameBean {
 	private Round currentRoundObj;
 	private List<String> roundList = new ArrayList<String>();
 	private HashMap<String, Round> Game = new HashMap<String, Round>();
+	
 	
 	
 	
@@ -130,6 +135,30 @@ public class GameBean {
 	}
 	public void setGame(HashMap<String, Round> game) {
 		Game = game;
+	}
+	public int getPlayer1RoundTime() {
+		return player1RoundTime;
+	}
+	public void setPlayer1RoundTime(int player1RoundTime) {
+		this.player1RoundTime = player1RoundTime;
+	}
+	public int getPlayer2RoundTime() {
+		return player2RoundTime;
+	}
+	public void setPlayer2RoundTime(int player2RoundTime) {
+		this.player2RoundTime = player2RoundTime;
+	}
+	public int getPlayer1TotalTime() {
+		return player1TotalTime;
+	}
+	public void setPlayer1TotalTime(int player1TotalTime) {
+		this.player1TotalTime = player1TotalTime;
+	}
+	public int getPlayer2TotalTime() {
+		return player2TotalTime;
+	}
+	public void setPlayer2TotalTime(int player2TotalTime) {
+		this.player2TotalTime = player2TotalTime;
 	}
 
 }
