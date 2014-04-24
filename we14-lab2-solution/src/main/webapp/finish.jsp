@@ -54,9 +54,13 @@
          
                        function timeStamp() {
                        if(supportsLocalStorage()==true){
-                    	   	alert("vorher");
-                    	   	localStorage.setItem("Date", "" + Date.now().getDate() + "." + Date.now().getMonth() + "." + Date.now().getYear());
-                       		alert("nachher");
+                    	   	var d = new Date();
+                    	    var date = d.getDate();
+                    	    var month = d.getMonth() + 1;
+                    	    var year = d.getFullYear();
+                    	    var formatedDate = date + "." + month + "." + year;
+                    	    localStorage.setItem("date", formatedDate);
+                       }
                        }
          </script>
     

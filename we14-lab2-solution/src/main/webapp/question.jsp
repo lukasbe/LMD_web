@@ -83,11 +83,11 @@
             //display lastGame
             function dispLastGame(){
             if(supportsLocalStorage()){
-            	if(localStorage.getItem("Date") === null)
+            	if(localStorage.getItem("date") === null)
             		document.getElementById('lg').innerHTML = "Letztes Spiel: Nie"
             
             	else{
-            		document.getElementById('lg').innerHTML = "Letztes Spiel: " + localStorage.getItem("Date");
+            		document.getElementById('lg').innerHTML = "Letztes Spiel: " + localStorage.getItem("date");
             	}
             }
             else{
