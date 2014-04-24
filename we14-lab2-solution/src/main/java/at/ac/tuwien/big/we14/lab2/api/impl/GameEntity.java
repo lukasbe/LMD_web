@@ -164,13 +164,17 @@ public void determineRoundsWinner(GameBean bean){
 			 }
 		}
 		if(player1Points < player2Points){
+			bean.setPlayer2WonRounds(bean.getPlayer2WonRounds()+1);
 			bean.setCurrentRoundWinner(bean.getPlayer2());
 		} else if(player1Points > player2Points){
+			bean.setPlayer1WonRounds(bean.getPlayer1WonRounds()+1);
 			bean.setCurrentRoundWinner(bean.getPlayer1());
 		} else{
 			if(bean.getPlayer1RoundTime() < bean.getPlayer2RoundTime()){
+				bean.setPlayer1WonRounds(bean.getPlayer1WonRounds()+1);
 				bean.setCurrentRoundWinner(bean.getPlayer1());	
 			} else if(bean.getPlayer1RoundTime() > bean.getPlayer2RoundTime()){
+				bean.setPlayer2WonRounds(bean.getPlayer2WonRounds()+1);
 				bean.setCurrentRoundWinner(bean.getPlayer2());
 			}else{
 				bean.setCurrentRoundWinner("Niemand");
