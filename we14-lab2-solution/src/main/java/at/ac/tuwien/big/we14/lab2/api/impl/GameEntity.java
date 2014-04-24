@@ -110,7 +110,6 @@ public class GameEntity {
 		ans.setPlayer(player);
 		ans.setTime(timeleft);
 		ans.setTickedHackerl(gesetzehackerl);
-		
 		log.info("ist es wahr?: "+ans.validateWith(bean.getCurrentQuestion().getCorrectChoices()));
 		
 	}
