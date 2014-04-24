@@ -194,7 +194,7 @@ public class BigQuizServlet extends HttpServlet {
         			ans.setPlayer(gameBean.getPlayer1());
         			//ans.setTime((int) request.getAttribute("timeleftvalue"));
         			log.info("submitted time: "+request.getParameter("timeleftvalue"));
-        			request.getPara
+        			
         			
         			
         			log.info("es gibt eine nächste Frage");
