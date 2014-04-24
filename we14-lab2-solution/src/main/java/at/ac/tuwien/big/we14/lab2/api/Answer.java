@@ -64,6 +64,6 @@ public interface Answer {
 	
 	public Boolean getIsComputerCorrect();
 	
-	public int getComputerTime();
+	public int getComputerTime(ArrayList<Choice> correctChoices);
 	
 }

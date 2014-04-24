@@ -116,11 +116,11 @@ public class SimpleAnswer implements Answer{
 	    return random.nextBoolean();
 	}
 	@Override
-	public int getComputerTime(){
+	public int getComputerTime(ArrayList<Choice> correctChoices){
 		if(computertime == -1){
 			Random generator = new Random();
 			
-			this.computertime = generator.nextInt(30);
+			this.computertime = generator.nextInt((int)correctChoices.get(0).getQuestion().getMaxTime());
 			return computertime;
 		}else{
 			return computertime;
