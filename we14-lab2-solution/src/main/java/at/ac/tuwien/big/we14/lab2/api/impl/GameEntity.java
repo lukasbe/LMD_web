@@ -141,7 +141,7 @@ public class GameEntity {
 		log.info("nächste Frage backtrace"+gamebean.getCurrentQuestion());
 	}
 	
-public void determineRounds(GameBean bean){
+public void determineRoundsWinner(GameBean bean){
 		
 		int player1Points = 0;
 		int player2Points = 0;

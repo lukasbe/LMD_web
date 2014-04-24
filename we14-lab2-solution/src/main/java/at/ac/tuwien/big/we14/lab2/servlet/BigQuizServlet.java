@@ -242,7 +242,7 @@ public class BigQuizServlet extends HttpServlet {
         			
         			
         			gameEntity.validateQuestion(gameBean.getPlayer1(), Integer.parseInt(request.getParameter("timeleftvalue")),request.getParameterValues("checkedChoices"),gameBean);
-        			
+        			gameEntity.determineRoundsWinner(gameBean);
         			
         			
         			
