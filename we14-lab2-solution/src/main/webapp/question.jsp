@@ -30,22 +30,28 @@
                 <div id="player1info">
                     <span id="player1name"><%= gameBean.getPlayer1() %></span>
                     <ul class="playerroundsummary">
-                        <%for(int i = 1; i <= gameBean.getQuestionsQuantity(); i++){%>
-	                        <li><span class="accessibility">Frage <%=i%>:</span><%="<span id=\""%><%="player1answer" + i%>" 	
+                         <%for(int i = 1; i <= gameBean.getQuestionsQuantity(); i++){%>
+	                        <li><span class="accessibility">Frage <%=i%>:</span><%="<span id=\""%><%="Player1answer" + i%>" 	
 		                        
 		                        <%if(gameBean.getPlayer1RoundSummary().isEmpty()) { %>
-		                        	<%="class=\"unknown\">Unbekannt"%>
+		                        	<%="class=\"unknown\">Empty"%>
 		                        
-		                        <% } else if(gameBean.getPlayer1RoundSummary().get(i-1) == null){%>
+		                        <% } try{
+		                        	if(gameBean.getPlayer1RoundSummary().get(i-1) == null){%>
 		                        	<%="class=\"unknown\">Unbekannt"%>
 		                     	
 		                        <% } else if(gameBean.getPlayer1RoundSummary().get(i-1)){ %>
 		                        	<%="class=\"correct\">Richtig"%>
 		                        	
 		                        <% } else {%>
-		                        	<%="class=\"incorrect\">Falsch"%><%}%>
+		                        	<%="class=\"incorrect\">Falsch"%>
+		                         <%}
+		                        		}catch(Exception e){%>
+		                        	<%="class=\"unknown\">Unbekannt"%>
+		                        		<% } %>
 	                        <%="</span>"%></li>
                         <%}%>
+
                         <!-- <li><span class="accessibility">Frage 1:</span><span id="player1answer1" class="correct">Richtig</span></li>
                         <li><span class="accessibility">Frage 2:</span><span id="player1answer2" class="incorrect">Falsch</span></li>
                         <li><span class="accessibility">Frage 3:</span><span id="player1answer3" class="unknown">Unbekannt</span></li>
