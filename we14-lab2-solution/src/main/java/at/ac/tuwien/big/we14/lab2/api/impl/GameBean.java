@@ -11,14 +11,14 @@ import at.ac.tuwien.big.we14.lab2.api.Question;
 public class GameBean {
 	
 	private String player1 = "Hugobert";
-	private List<Boolean> player1RoundSummary;
-	private int player1WonRounds;
+	private List<Boolean> player1RoundSummary = new ArrayList<Boolean>();
+	private int player1WonRounds = 99;
 	private String player2 = "Computer";
-	private List<Boolean> player2RoundSummary;
-	private int player2WonRounds;
+	private List<Boolean> player2RoundSummary = new ArrayList<Boolean>();
+	private int player2WonRounds = 11;
 	private int currentRound;
-	private String currentRoundWinner;
-	private String gameWinner;
+	private String currentRoundWinner = "bean predefined roundwin";
+	private String gameWinner = "bean predefined gamewin";
 	private int roundsQuantity;
 	private int questionsQuantity;
 	private Question currentQuestion;
