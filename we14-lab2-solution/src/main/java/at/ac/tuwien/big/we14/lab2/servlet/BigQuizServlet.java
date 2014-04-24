@@ -104,21 +104,14 @@ public class BigQuizServlet extends HttpServlet {
         		log.info("neues spiel wurde erstellt.Alles sollte zufällig sein");
         		if(gameEntity.hasNextRound(gameBean) == true){
         			
-        			/*
-        			List<Boolean> lis = new ArrayList<Boolean>();
-        			lis.add(true);
-        			lis.add(false);
-        			lis.add(false);
-        			
-        			List<Boolean> lis2 = new ArrayList<Boolean>();
-        			lis2.add(true);
-        			lis2.add(true);
-        			lis2.add(false);
-        			
-        			gameBean.setPlayer1RoundSummary(lis);
-        			gameBean.setPlayer2RoundSummary(lis2);
-        			session.setAttribute("gameBean",gameBean);
-        			*/
+        			gameBean.getPlayer1RoundSummary().clear();
+	        		gameBean.getPlayer2RoundSummary().clear();
+	        		gameBean.setPlayer1WonRounds(0);
+	        		gameBean.setPlayer2WonRounds(0);
+	        		gameBean.setPlayer1RoundTime(0);
+	        		gameBean.setPlayer2RoundTime(0);
+	        		gameBean.setPlayer1TotalTime(0);
+	        		gameBean.setPlayer1TotalTime(0);
         			
         			
         			log.info("es gibt eine nächste Runde");
@@ -163,6 +156,8 @@ public class BigQuizServlet extends HttpServlet {
         			
 	        		gameBean.getPlayer1RoundSummary().clear();
 	        		gameBean.getPlayer2RoundSummary().clear();
+	        		gameBean.setPlayer1RoundTime(0);
+	        		gameBean.setPlayer2RoundTime(0);
 	        		
 	        		//Es gibt noch Runden
         			log.info("es gibt eine nächste Runde");
