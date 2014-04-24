@@ -34,6 +34,7 @@ public class GameEntity {
 	public void setGame(HashMap<String, List<Question>> game) {
 		//Game = game;
 		roundSize = game.size();
+		gamebean = new GameBean();
 		gamebean.setRoundsQuantity(game.size());
 		
 		roundCount = game.size();
@@ -88,7 +89,7 @@ public class GameEntity {
 	
 	public void nextQuestion(Round r){
 		
-		r.next();
+		log.info("nächste Frage:"+r.next());
 		
 	}
 

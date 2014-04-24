@@ -2,6 +2,8 @@ package at.ac.tuwien.big.we14.lab2.api.impl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import at.ac.tuwien.big.we14.lab2.api.Question;
 
 public class GameBean {
@@ -18,6 +20,7 @@ public class GameBean {
 	private int roundsQuantity;
 	private int questionsQuantity;
 	private Question currentQuestion;
+	protected static Logger log = Logger.getLogger(GameBean.class);
 	
 	public String getPlayer1() {
 		return player1;
@@ -89,6 +92,7 @@ public class GameBean {
 		return currentQuestion;
 	}
 	public void setCurrentQuestion(Question currentQuestion) {
+		log.info("currentQuestion in bean gesetzt:"+currentQuestion.toString());
 		this.currentQuestion = currentQuestion;
 	}
 
