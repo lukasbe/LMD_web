@@ -132,7 +132,7 @@
             else{
             	document.getElementById('lg').innerHTML = "Letztes Spiel: Nie";
             }
-            }          
+            };          
             // initialize time
             $(document).ready(function() {
                 var maxtime = <%=gameBean.getCurrentQuestion().getMaxTime()%>;
