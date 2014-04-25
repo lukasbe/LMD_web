@@ -61,7 +61,7 @@ public class BigQuizServlet extends HttpServlet {
 			return;
 		}
 
-		if (action.equals("start")) {
+		if (action.equals("startgame")) {
 			//log.info("Action: Start");
 			// Neues Spiel wird gestartet.
 			HttpSession session = request.getSession(true);
