@@ -15,7 +15,7 @@ import at.ac.tuwien.big.we14.lab2.servlet.BigQuizServlet;
 
 public class SimpleAnswer implements Answer{
 	
-	protected static Logger log = Logger.getLogger(SimpleAnswer.class);
+	//protected static Logger log = Logger.getLogger(SimpleAnswer.class);
 	
 	private int Id;
 	private Boolean isCorrect = null;
@@ -80,31 +80,31 @@ public class SimpleAnswer implements Answer{
 	@Override
 	public Boolean validateWith(List<Choice> correctChoices) {
 		if(tickedhackerl == null){
-			log.info("FEHLER!! Zuerst die Hackerl in setTickedHackerl initialisieren.");
+			//log.info("FEHLER!! Zuerst die Hackerl in setTickedHackerl initialisieren.");
 			return null;
 		}
 		
-		log.info("validate");
+		//log.info("validate");
 		
 		this.correctChoices = correctChoices;
 		
 		boolean answeredCorrectly = false;
 		
-		log.info("validate, boolean initialisiert");
+		//log.info("validate, boolean initialisiert");
 		
 		if(!(tickedhackerl.size() == correctChoices.size())){
-				log.info("vergleich Größe false");
+			//log.info("vergleich Größe false");
 			return false;
 		}
 			
 		for(Choice c : tickedhackerl){
 				
 			if(correctChoices.contains(c)){
-				log.info("korrekte Antwort ausgewählt");
+				//log.info("korrekte Antwort ausgewählt");
 				answeredCorrectly = true;
 			}
 			else{
-				log.info("Antwort ausgewählt, die nicht korrekt ist: " + c);
+				//log.info("Antwort ausgewählt, die nicht korrekt ist: " + c);
 				answeredCorrectly = false;
 				break;
 			}
@@ -121,12 +121,12 @@ public class SimpleAnswer implements Answer{
 	}
 	@Override
 	public int getComputerTime(List<Choice> correctChoices){
-		log.info("computertime");
+		//log.info("computertime");
 		if(computertime == -1){
 			Random generator = new Random();
 			
 			this.computertime = generator.nextInt((int)correctChoices.get(0).getQuestion().getMaxTime());
-			log.info("computertime"+computertime);
+			//log.info("computertime"+computertime);
 			return computertime;
 		}else{
 			return computertime;
