@@ -11,7 +11,7 @@
         <script src="js/jquery.js" type="text/javascript"></script>
         <script src="js/framework.js" type="text/javascript"></script>
     </head>
-    <body id="winnerpage" onLoad="timeStamp();">
+    <body id="winnerpage">
         <a class="accessibility" href="#roundwinner">Zur Spielwertung springen</a>
         <header role="banner" aria-labelledby="mainheading"><h1 id="mainheading"><span class="accessibility">Business Informatics Group</span> Quiz</h1></header>
         <nav role="navigation" aria-labelledby="navheading">
@@ -53,16 +53,17 @@
          <script type="text/javascript">
             //<![CDATA[
          
-                       function timeStamp() {
-                       if(supportsLocalStorage()==true){
-                    	   	var d = new Date();
-                    	    var date = d.getDate();
-                    	    var month = d.getMonth() + 1;
-                    	    var year = d.getFullYear();
-                    	    var formatedDate = date + "." + month + "." + year;
-                    	    localStorage.setItem("date", formatedDate);
-                       }
-                       }
+                       window.onload = function timeStamp() {
+                       		if(supportsLocalStorage()==true){
+                    	   		var d = new Date();
+                    	    	var date = d.getDate();
+                    	    	var month = d.getMonth() + 1;
+                    	    	var year = d.getFullYear();
+                    	    	var formatedDate = date + "." + month + "." + year;
+                    	    	localStorage.setItem("date", formatedDate);
+                       		}
+                       };
+              //]]>
          </script>
     
     </body>
