@@ -2,11 +2,7 @@ package at.ac.tuwien.big.we14.lab2.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map.Entry;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -19,19 +15,14 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
-import at.ac.tuwien.big.we14.lab2.api.Answer;
 import at.ac.tuwien.big.we14.lab2.api.Category;
-import at.ac.tuwien.big.we14.lab2.api.Choice;
 import at.ac.tuwien.big.we14.lab2.api.GameGenerator;
-import at.ac.tuwien.big.we14.lab2.api.Question;
 import at.ac.tuwien.big.we14.lab2.api.QuestionDataProvider;
 import at.ac.tuwien.big.we14.lab2.api.QuizFactory;
 import at.ac.tuwien.big.we14.lab2.api.impl.GameBean;
 import at.ac.tuwien.big.we14.lab2.api.impl.GameEntity;
 import at.ac.tuwien.big.we14.lab2.api.impl.ServletQuizFactory;
-import at.ac.tuwien.big.we14.lab2.api.impl.SimpleAnswer;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleGameGenerator;
-import at.ac.tuwien.big.we14.lab2.api.impl.SimpleQuestionGenerator;
 import at.ac.tuwien.big.we14.lab2.api.impl.TempClass;
 
 
