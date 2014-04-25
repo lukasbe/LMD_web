@@ -21,7 +21,7 @@
         
         <section role="main" id="quiz">
 	        <form id="startform" action="BigQuizServlet" method="GET">
-	        	<input type="hidden" name="action" value="start"/>
+	        	<input type="hidden" name="action" value="startgame"/>
 				<a id="startgame" href="javascript:{}" onclick="document.getElementById('startform').submit();">Quiz starten</a>
 			</form>
 	     </section>
