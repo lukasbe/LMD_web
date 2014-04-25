@@ -5,8 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import at.ac.tuwien.big.we14.lab2.api.Category;
 import at.ac.tuwien.big.we14.lab2.api.GameGenerator;
 import at.ac.tuwien.big.we14.lab2.api.Question;
@@ -21,8 +19,6 @@ public class SimpleGameGenerator implements GameGenerator{
 	
 	private SimpleCategoryGenerator catGen = new SimpleCategoryGenerator();
 	private QuestionGenerator questionGen = new SimpleQuestionGenerator();
-	
-	protected static Logger log = Logger.getLogger(SimpleGameGenerator.class);
 	
 	public SimpleGameGenerator(){}
 	

@@ -1,17 +1,11 @@
 package at.ac.tuwien.big.we14.lab2.api.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.Random;
-
-import org.apache.log4j.Logger;
-import org.eclipse.jetty.util.log.Log;
 
 import at.ac.tuwien.big.we14.lab2.api.Answer;
 import at.ac.tuwien.big.we14.lab2.api.Choice;
-import at.ac.tuwien.big.we14.lab2.servlet.BigQuizServlet;
 
 public class SimpleAnswer implements Answer{
 	

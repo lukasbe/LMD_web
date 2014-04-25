@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
-
 import at.ac.tuwien.big.we14.lab2.api.Category;
 import at.ac.tuwien.big.we14.lab2.api.GameGenerator;
 import at.ac.tuwien.big.we14.lab2.api.QuestionDataProvider;
@@ -29,7 +27,6 @@ import at.ac.tuwien.big.we14.lab2.api.impl.SimpleGameGenerator;
 public class BigQuizServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	protected static Logger log = Logger.getLogger(BigQuizServlet.class);
 	private GameGenerator gameGen = new SimpleGameGenerator();
 	// private GameEntity gameEntity = new GameEntity();
 	private GameBean gameBean = new GameBean();
@@ -37,8 +34,6 @@ public class BigQuizServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		log.info("initialisiert");
-
 	}
 
 	@Override

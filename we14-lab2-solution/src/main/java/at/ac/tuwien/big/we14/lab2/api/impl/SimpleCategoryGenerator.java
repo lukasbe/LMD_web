@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.apache.log4j.Logger;
-import org.eclipse.jetty.util.log.Log;
-
 import at.ac.tuwien.big.we14.lab2.api.Category;
 /**
  * 
@@ -19,7 +16,6 @@ public class SimpleCategoryGenerator {
 
 	List<Category> alreadyUsedCategory = new ArrayList<Category>();
 	List<Category> categories = new ArrayList<Category>();
-	protected static Logger log = Logger.getLogger(SimpleCategoryGenerator.class);
 	public SimpleCategoryGenerator(){}
 	
 	public SimpleCategoryGenerator(List<Category> catergories)

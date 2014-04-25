@@ -3,29 +3,21 @@ package at.ac.tuwien.big.we14.lab2.api.impl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
-
-import org.apache.log4j.Logger;
 
 import at.ac.tuwien.big.we14.lab2.api.Answer;
 import at.ac.tuwien.big.we14.lab2.api.Choice;
 import at.ac.tuwien.big.we14.lab2.api.Question;
-import at.ac.tuwien.big.we14.lab2.servlet.BigQuizServlet;
 
 public class GameEntity {
-	protected static Logger log = Logger.getLogger(GameEntity.class);
-	// Key = CategoryName meistens 5, List<Question> = questioncount viele Fragen pro Key
 	private GameBean gamebean;
 	
 	private int getRoundNumber(){
-		log.info("gamesize: "+gamebean.getGame().size()+" roundcount: "+gamebean.getRoundCount());
 		return gamebean.getGame().size()-gamebean.getRoundCount();
 	}
 	
 	public void setGame(HashMap<String, List<Question>> game, GameBean bean) {
-		//Game = game;
 		this.gamebean = bean;
 		gamebean.setRoundsQuantity(game.size());
 		
@@ -33,24 +25,19 @@ public class GameEntity {
 		
 		HashMap<String, Round> g = new HashMap<String, Round>();
 		for(Entry<String, List<Question>> entry : game.entrySet()) {
-		   gamebean.getRoundList().add(entry.getKey());//ACHTUNG  POINTER?
-		   //gamebean.setRoundList(gamebean.getRoundList().add(entry.getKey()));
-		   //roundList.add(entry.getKey());
+		   gamebean.getRoundList().add(entry.getKey());
+
 		   gamebean.setQuestionsQuantity(entry.getValue().size());
 		   Round r = new Round(entry.getValue());
 		  
 		   g.put(entry.getKey(), r);
 		   
 		}
-				
 		gamebean.setGame(g);
-		
-		log.info("set game sagt hallo");
 	}
 
 	public boolean hasNextRound(GameBean bean){
 		this.gamebean = bean;
-		log.info("has next round aufgerufen");
 		if(gamebean.getRoundCount()<=0){
 			return false;
 		}else{
@@ -62,26 +49,17 @@ public class GameEntity {
 		this.gamebean = bean;
 		int count = gamebean.getRoundsQuantity();
 		Iterator<String> it = gamebean.getRoundList().iterator();
-		log.info("nextRound sagt hallo");
-		log.info("roundlistiterator hasNext?"+it.hasNext());
 		while(it.hasNext())
 		{
-			log.info("nextround whileschleife passiert");
 		    String Runde = it.next();
-		    log.info("count("+count+") ?=? roundCount("+gamebean.getRoundCount());
 		    if(count == gamebean.getRoundCount()){
-		    	log.info("roundcount ist "+gamebean.getRoundCount());
 		    	gamebean.setRoundCount(gamebean.getRoundCount()-1);
-		    	log.info("Runde in nextRound: "+Runde);
-		    	//currentRound = Game.get(Runde); alt
 		    	gamebean.setCurrentRoundObj(gamebean.getGame().get(Runde));
-		    	log.info("Aktuelles rundenobject: "+gamebean.getGame().get(Runde));
 		    	gamebean.setCurrentRound(this.getRoundNumber());
 		    	return gamebean.getGame().get(Runde);
 		    }
 		    count--;
 		}
-		log.info("Rueckgabe hat einen Fehler!Aktuelle Rudne wird zurückgegeben");
 		return new Round(null);
 	}
 
@@ -95,7 +73,6 @@ public class GameEntity {
 	}
 	
 	public void validateQuestion(String player, int timeleft, String[] ticked, GameBean bean){
-		//HashMap<Choice, Boolean> gesetzehackerl = new HashMap<Choice,Boolean>();
 		ArrayList<Choice> gesetzehackerlliste = new ArrayList<Choice>();
 		
 		boolean playerright, cpuplayerright = false;
@@ -104,15 +81,11 @@ public class GameEntity {
 			playerright = false;
 			Answer a = new SimpleAnswer();
 			cpuplayerright = a.getIsComputerCorrect();
-		
 		}else{
 			for(String s:ticked){
-				log.info("parametervalues: "+ s);
 				for(Choice c:bean.getCurrentQuestion().getAllChoices()){
 					if(c.getId() == Integer.parseInt(s)){
 						gesetzehackerlliste.add(c);
-						
-						//gesetzehackerl.put(c, true);
 					}
 				}
 			}
@@ -121,14 +94,11 @@ public class GameEntity {
 			ans.setPlayer(player);
 			ans.setTime(timeleft);
 			ans.setTickedHackerl(gesetzehackerlliste);
-			log.info("ist es wahr?: "+ans.validateWith(bean.getCurrentQuestion().getCorrectChoices()));
 			cpuplayerright = ans.getIsComputerCorrect();
 			cputime = ans.getComputerTime(bean.getCurrentQuestion().getCorrectChoices());
-			log.info("cputime"+cputime);
 			playerright = ans.validateWith(bean.getCurrentQuestion().getCorrectChoices());
 			playertime = timeleft;
 		}
-		//ArrayList playerSummary = new ArrayList<Boolean>();
 		
 		gamebean.getPlayer1RoundSummary().add(playerright);
 		gamebean.getPlayer2RoundSummary().add(cpuplayerright);
@@ -142,12 +112,9 @@ public class GameEntity {
 		this.gamebean = bean;
 		Question q = r.next();
 		gamebean.setCurrentQuestion(q);
-		log.info("nächste Frage:"+q);
-		log.info("nächste Frage backtrace"+gamebean.getCurrentQuestion());
 	}
 	
-public void determineRoundsWinner(GameBean bean){
-		
+	public void determineRoundsWinner(GameBean bean){
 		int player1Points = 0;
 		int player2Points = 0;
 		
@@ -175,7 +142,6 @@ public void determineRoundsWinner(GameBean bean){
 			bean.setPlayer1WonRounds(bean.getPlayer1WonRounds()+1);
 			bean.setCurrentRoundWinner(bean.getPlayer1());
 		} else{
-			log.info("Unentschieden: Zeit entscheidet: Player1:"+bean.getPlayer1RoundTime()+"Player2: "+bean.getPlayer2RoundTime());
 			if(bean.getPlayer1RoundTime() < bean.getPlayer2RoundTime()){
 				bean.setPlayer1WonRounds(bean.getPlayer1WonRounds()+1);
 				bean.setCurrentRoundWinner(bean.getPlayer1());	
@@ -189,7 +155,7 @@ public void determineRoundsWinner(GameBean bean){
 		}
 	}
 
-public void determineWinner(GameBean bean){
+	public void determineWinner(GameBean bean){
 	
 		if(bean.getPlayer1WonRounds() > bean.getPlayer2WonRounds()){
 			bean.setGameWinner(bean.getPlayer1());
@@ -200,6 +166,5 @@ public void determineWinner(GameBean bean){
 		else{
 			bean.setGameWinner("Niemand");
 		}
-}
-	
+	}
 }

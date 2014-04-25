@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import at.ac.tuwien.big.we14.lab2.api.Question;
 
 public class GameBean {
