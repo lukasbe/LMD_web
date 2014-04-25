@@ -32,6 +32,7 @@ import at.ac.tuwien.big.we14.lab2.api.impl.ServletQuizFactory;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleAnswer;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleGameGenerator;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleQuestionGenerator;
+import at.ac.tuwien.big.we14.lab2.api.impl.TempClass;
 
 
 // Your Servlet implementation
@@ -97,6 +98,12 @@ public class BigQuizServlet extends HttpServlet {
         		log.info("neues Spiel wird erstellt:");
         		// Erstellt automatisch ein komplettes Spiel mit Kategorien
         		gameGen = new SimpleGameGenerator(categories);
+        		
+        		// **************** TEST GENERATOR
+        		TempClass tp = new TempClass(categories);
+        		tp.testGenerator();
+        		// ****************
+        		
         		log.info("simple generatior ist aus");
         		int rounds = 5;
         		int questioncount = 3;
