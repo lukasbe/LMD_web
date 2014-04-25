@@ -26,16 +26,11 @@ public class GameBean {
 	private int roundsQuantity;
 	private int questionsQuantity;
 	private Question currentQuestion;
-	protected static Logger log = Logger.getLogger(GameBean.class);
+	//protected static Logger log = Logger.getLogger(GameBean.class);
 	private int roundCount;
 	private Round currentRoundObj;
 	private List<String> roundList = new ArrayList<String>();
 	private HashMap<String, Round> Game = new HashMap<String, Round>();
-	
-	
-	
-	
-	
 	
 	public String getPlayer1() {
 		return player1;
@@ -77,7 +72,7 @@ public class GameBean {
 		return currentRound;
 	}
 	public void setCurrentRound(int currentRound) {
-		log.info("current round in bean gesetzt:"+currentRound);
+		//log.info("current round in bean gesetzt:"+currentRound);
 		this.currentRound = currentRound;
 	}
 	public String getCurrentRoundWinner() {
@@ -105,11 +100,11 @@ public class GameBean {
 		this.questionsQuantity = questionsQuantity;
 	}
 	public Question getCurrentQuestion() {
-		log.info("getCurrentQuestion sagt "+currentQuestion);
+		//log.info("getCurrentQuestion sagt "+currentQuestion);
 		return currentQuestion;
 	}
 	public void setCurrentQuestion(Question currentQuestion) {
-		log.info("current question in bean gesetzt:"+currentQuestion);
+		//log.info("current question in bean gesetzt:"+currentQuestion);
 		this.currentQuestion = currentQuestion;
 	}
 	public int getRoundCount() {
