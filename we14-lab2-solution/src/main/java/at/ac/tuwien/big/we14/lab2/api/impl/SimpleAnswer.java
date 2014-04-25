@@ -13,7 +13,6 @@ public class SimpleAnswer implements Answer{
 	
 	private int Id;
 	private Boolean isCorrect = null;
-	private int time;
 	private String player;
 	private int computertime = -1;
 	ArrayList<Choice> tickedhackerl;
@@ -38,8 +37,6 @@ public class SimpleAnswer implements Answer{
 
 	@Override
 	public void setTime(int time) {
-		// TODO Auto-generated method stub
-		this.time = time;
 	}
 
 	@Override
