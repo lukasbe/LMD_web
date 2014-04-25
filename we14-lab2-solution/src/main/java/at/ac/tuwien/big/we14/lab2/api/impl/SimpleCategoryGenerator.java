@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.apache.log4j.Logger;
+import org.eclipse.jetty.util.log.Log;
 
 import at.ac.tuwien.big.we14.lab2.api.Category;
 /**
@@ -18,7 +19,7 @@ public class SimpleCategoryGenerator {
 
 	List<Category> alreadyUsedCategory = new ArrayList<Category>();
 	List<Category> categories = new ArrayList<Category>();
-	//protected static Logger log = Logger.getLogger(SimpleCategoryGenerator.class);
+	protected static Logger log = Logger.getLogger(SimpleCategoryGenerator.class);
 	public SimpleCategoryGenerator(){}
 	
 	public SimpleCategoryGenerator(List<Category> catergories)
@@ -28,7 +29,6 @@ public class SimpleCategoryGenerator {
 	
 	public Category getCategory()
 	{
-		if(categories == null) return null;
 		if(categories.isEmpty()) return null;
 		
 		List<Category> list = new ArrayList<Category>();
@@ -48,9 +48,9 @@ public class SimpleCategoryGenerator {
 		}
 		
 		Random r = new Random();
+		
 		Category c = list.get(r.nextInt(list.size()));
 		alreadyUsedCategory.add(c);
-		
 		return c;
 	}
 }

@@ -25,18 +25,20 @@ public class TempClass {
 	
 	public void testGenerator()
 	{
-		
-		HashMap<String, List<Question>> list = gameGen.generateGame(5, 3);
-		
-		
-		for (Entry<String, List<Question>> entry : list.entrySet()) {
-		    String key = entry.getKey();
-		    List<Question> value = entry.getValue();
-		    log.info("Kategorie: " + key);
-		    for(Question l: value)
-		    {
-		    	log.info("--> Frage-ID: " + l.getId() + "; Text: " + l.getText());
-		    }
+		for(int i = 0; i < 5; i++)
+		{
+			
+			HashMap<String, List<Question>> list = gameGen.generateGame(5, 3);
+			log.info("\n");
+			for (Entry<String, List<Question>> entry : list.entrySet()) {
+			    String key = entry.getKey();
+			    List<Question> value = entry.getValue();
+			    log.info("Kategorie: " + key);
+			    for(Question l: value)
+			    {
+			    	log.info("--> Frage-ID: " + l.getId() + "; Text: " + l.getText());
+			    }
+			}
 		}
 	}
 }

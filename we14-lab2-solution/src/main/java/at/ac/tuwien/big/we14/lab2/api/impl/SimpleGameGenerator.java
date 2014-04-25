@@ -47,6 +47,7 @@ public class SimpleGameGenerator implements GameGenerator{
 			questionList = new LinkedList<Question>();
 			// Neue zufällige Kategorie wählen, welche noch nicht war
 			category = catGen.getCategory();
+			log.error("----->>> SGG: CAT-Name: " + category.getName());
 			// Dem Fragengenerator eine zufällige Kategorie zuweisen 
 			questionGen = new SimpleQuestionGenerator(category);
 			
