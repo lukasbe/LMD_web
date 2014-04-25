@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 
@@ -47,7 +46,7 @@ public class SimpleGameGenerator implements GameGenerator{
 			questionList = new LinkedList<Question>();
 			// Neue zufällige Kategorie wählen, welche noch nicht war
 			category = catGen.getCategory();
-			log.error("----->>> SGG: CAT-Name: " + category.getName());
+			//log.error("----->>> SGG: CAT-Name: " + category.getName());
 			// Dem Fragengenerator eine zufällige Kategorie zuweisen 
 			questionGen = new SimpleQuestionGenerator(category);
 			
@@ -60,12 +59,14 @@ public class SimpleGameGenerator implements GameGenerator{
 			Game.put(category.getName(), questionList);
 			
 		}
+		/*
 		for (Entry<String, List<Question>> entry : Game.entrySet()) {
 			{
 				String key = entry.getKey();
 				log.error("GAMEGEN-Kategorie: " + key);
 			}
 		}
+		*/
 		return Game;
 	}
 }
