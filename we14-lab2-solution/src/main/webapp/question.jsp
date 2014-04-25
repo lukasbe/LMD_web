@@ -105,7 +105,7 @@
             
             <section id="timer" aria-labelledby="timerheading">
                 <h2 id="timerheading" class="accessibility">Timer</h2>
-                <p><span id="timeleftlabel">Verbleibende Zeit:</span> <time id="timeleft"><%= gameBean.getCurrentQuestion().getMaxTime() %></time></p>
+                <p><span id="timeleftlabel">Verbleibende Zeit:</span> <time id="timeleft">00:<%= gameBean.getCurrentQuestion().getMaxTime() %></time></p>
                 <meter id="timermeter" min="0" low="20" value="100" max="100"/>
             </section>
             <section id="lastgame">
@@ -132,7 +132,7 @@
             else{
             	document.getElementById('lg').innerHTML = "Letztes Spiel: Nie";
             }
-            }          
+            };          
             // initialize time
             $(document).ready(function() {
                 var maxtime = <%=gameBean.getCurrentQuestion().getMaxTime()%>;
